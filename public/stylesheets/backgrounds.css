@@ -1,0 +1,42 @@
+body{
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.custom-bg-ai{
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.custom-btn-color{
+    background-color:#12C1FC ;
+}
+.custom-btn-color:focus {
+    color: white  !important;
+    background-color: #243B55 !important;
+    border-color: #12C1FC !important;
+    margin-bottom: -5px !important;
+}
+.custom-btn-color:not(:active){
+    margin-bottom: 5px !important;
+}
+.tab-content{
+    background-color: #243B55;
+    color: #12C1FC;
+    border: #12C1FC solid 2px;
+    border-radius: 5px;
+}
+
+*::placeholder {
+    color: white !important;
+}
+input:focus {
+    color: white !important;
+}
+input:not(:focus) {
+    color: white !important;
+}
+
+.nav-tabs{
+    border: none !important;
+}

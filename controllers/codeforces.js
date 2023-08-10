@@ -1,0 +1,57 @@
+const puppeteer = require('puppeteer-core');
+
+module.exports.searchCF = async function(user){
+    const browser = await puppeteer.launch({
+        executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe'
+    });
+    const page = await browser.newPage();
+  
+    await page.goto(`https://codeforces.com/profile/${user}`);
+    console.log("creating")
+    var dataObj = {
+        username : '.main-info > h1 > a',
+        // userFullName : '.main-info div:nth-child(3) > div',
+        // userInstitute : '.main-info div:nth-child(2) > a',
+        userRank : '.main-info div:nth-child(1)', 
+        userRating : '.info ul > li > span' ,
+        userMaxRank : '.info ul > li span:nth-child(3) span:nth-child(1)' ,
+        userMaxRating : '.info ul > li span:nth-child(3) span:nth-child(2)' ,
+        userContribution : '.info ul li:nth-child(2) > span',
+        problemsTotal : '._UserActivityFrame_footer > div div:nth-child(1) > div',            
+        problemsLastYear : '._UserActivityFrame_footer > div div:nth-child(2) > div',
+        problemsLastMonth : '._UserActivityFrame_footer > div div:nth-child(3) > div',
+        lastOnline : '.info ul li:nth-child(4) > span',
+        registered : '.info ul li:nth-child(5) > span',
+        userImage : '.title-photo > div > div > div > img'
+    }
+    await page.screenshot({path : "imn.png"})
+    for(const keys in dataObj){
+        if(keys === "userFullName"){
+            const data = await page.waitForSelector(dataObj[keys]);
+            const data2= await data.evaluate((e) => {
+                return e.innerText;
+            })
+            const name = data2.slice(0 , data2.indexOf(','));
+            const location = data2.slice(data2.indexOf(',')+2 , data2.length)
+            dataObj[keys] = name;
+            dataObj['userLocation'] = location;
+        }
+        else if(keys === "userImage"){
+            const data = await page.waitForSelector(dataObj[keys]);
+            dataObj[keys] = await data.evaluate((e) => {
+                return e.src;
+            })
+        }
+        else{
+            const data = await page.waitForSelector(dataObj[keys]);
+            dataObj[keys] = await data.evaluate((e) => {
+                return e.innerText;
+            })
+        }
+    }
+
+    await browser.close();
+    return dataObj;
+
+}
+

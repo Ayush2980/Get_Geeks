@@ -1,0 +1,64 @@
+<% layout('layout/boilerplate') %>
+<div class="container-fluid " >
+    <form class="d-flex" action="/fetch">
+      <input class="form-control me-2 border-opacity-50 border-white custom-bg-ai" type="text" placeholder="Search" name="search" aria-label="Search" required>
+      <input type="submit" class="rounded" value="Search">
+    </form>
+</div>
+<div class="row row-cols-2 row-cols-lg-2 g-2 g-lg-3 mt-5">
+    <div class="col rounded">
+        <div class="p-3 bg-dark  rounded">
+            <div class="card custom-bg-ai">
+                <div class="img-cont mt-4 mb-4">
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <img src= "<%= userData.userDetails.images.dp%>" class=" rounded" alt="..." style="width: 100%;">
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-pills mb-3" id="pills-tab-friends" role="tablist">
+                        <li class="nav-item mx-2" role="presentation">
+                          <button class="nav-link custom-btn-ai active" id="pills-friend-details-tab" data-bs-toggle="pill" data-bs-target="#pills-friends-details" type="button" role="tab" aria-controls="pills-friends-details" aria-selected="true">Details</button>
+                        </li>
+                        <li class="nav-item mx-2" role="presentation">
+                          <button class="nav-link custom-btn-ai" id="pills-friend-recents-tab" data-bs-toggle="pill" data-bs-target="#pills-recents-friends" type="button" role="tab" aria-controls="pills-recents-friends" aria-selected="false">Recents</button>
+                        </li>
+                        <li class="nav-item mx-2" role="presentation">
+                          <button class="nav-link custom-btn-ai" id="pills-problems-tab" data-bs-toggle="pill" data-bs-target="#pills-problems-friends" type="button" role="tab" aria-controls="pills-problems-friends" aria-selected="false">Contact</button>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane px-4 py-4 rounded bg-secondary bg-gradient fade show active" id="pills-friends-details" role="tabpanel" aria-labelledby="pills-friend-details-tab">
+                            <p>Username : <%= userData.userDetails.username%></p>
+                            <p>Country : <%= userData.userDetails.country%></p>
+                            <p>Current Rating : <%= userData.userDetails.ratingNo%></p>
+                            <p>Star : <%= userData.userDetails.ratingStar%></p>
+                            <p><%= userData.userDetails.maxRating%></p>
+                            <p>Global Rank : <%= userData.userDetails.globalRank%></p>
+                            <p>Country Rank : <%= userData.userDetails.countryRank%></p>
+                            <p>Total Contests : <%= userData.userDetails.contestParticipated%></p>
+                        </div>
+                        <div class="tab-pane px-4 py-4 rounded bg-secondary bg-gradient fade" id="pills-recents-friends" role="tabpanel" aria-labelledby="pills-friend-recents-tab">
+                            <h4>Last Problem Solved</h4>
+                            <p>Problem Title : <%= userData.recents.page2.problemTitle%></p>
+                            <p>Problem Code : <%= userData.recents.page2.ProblemCode%></p>
+                            <p>Problem Rating : <%= userData.recents.page2.Difficulty%></p>
+                            <h4><%= userData.userDetails.username%>'s  Response</h4>
+                            <p>Language Used : <%= userData.recents.page1.Lang%></p>
+                            <p>Submission Time: <%= userData.recents.page1.time%></p>
+                            <% for(var i =0 ; i< userData.recents.page2.tags.length; i++ ){%>
+                              <button type="button" class="btn text-white" style="background-color: #042743;" disabled><%= userData.recents.page2.tags[i]%></button>
+                            <% } %>
+                        </div>
+                        <div class="tab-pane px-4 py-4 rounded bg-secondary bg-gradient fade" id="pills-problems-friends" role="tabpanel" aria-labelledby="pills-problems-tab">...</div>
+                      </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+
+</div>
