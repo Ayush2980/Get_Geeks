@@ -1,11 +1,11 @@
-<% layout('layout/boilerplate') %>
-<div class="container-fluid " >
+<% layout('layout/boilerplate_loader') %>
+<div class="container-fluid" >
   <form class="d-flex" action="/fetch">
     <input class="form-control me-2 border-opacity-50 border-white custom-bg-ai" type="text" placeholder="Search" name="search" aria-label="Search" required>
     <select class="form-select" aria-label="Default select example" name="handle" required>
       <option value="CF">Code Forces</option>
       <option value="CC">Code Chef</option>
     </select>
-    <input type="submit" class="rounded" value="Search">
+    <input type="submit" class="rounded" id="Search-bar-homepage" value="Search">
   </form>
 </div>

@@ -1,6 +1,22 @@
-function preLoader(){
-    const loader = document.getElementById('loader');
-    const mainBody = document.getElementById('main-body');
-    mainBody.style.display = "inline";
-    loader.style.display = "none";
+const SearchBtn = document.getElementById('Search-bar-homepage');
+const navbar = document.querySelector('nav');
+const footer = document.querySelector('footer');
+const mainBody = document.getElementById('main-body');
+SearchBtn.addEventListener('click' , () => {
+    navbar.style.display = 'none';
+    // document.getElementsByClassName('load-conatainer')[0].style.display = 'inline';
+    footer.style.display = 'none';
+    mainBody.style.display = 'none';
+    document.getElementById('loader').style.display = "block";
+})
+
+window.onload = function (){
+    if(navbar.style.display == 'none'){
+        navbar.style.display = 'block';
+        // document.getElementsByClassName('load-conatainer')[0].style.display = 'inline';
+        footer.style.display = 'block';
+        mainBody.style.display = 'block';
+        document.getElementById('loader').style.display = "none";
+
+    }
 }
