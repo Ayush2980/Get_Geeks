@@ -26,9 +26,6 @@
                         <li class="nav-item mx-2" role="presentation">
                           <button class="nav-link custom-btn-color" id="pills-friend-recents-tab" data-bs-toggle="pill" data-bs-target="#pills-recents-friends" type="button" role="tab" aria-controls="pills-recents-friends" aria-selected="false">Recents</button>
                         </li>
-                        <li class="nav-item mx-2" role="presentation">
-                          <button class="nav-link custom-btn-color" id="pills-problems-tab" data-bs-toggle="pill" data-bs-target="#pills-problems-friends" type="button" role="tab" aria-controls="pills-problems-friends" aria-selected="false">Contact</button>
-                        </li>
                       </ul>
                       <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane px-4 py-4 rounded text-white show active" id="pills-friends-details" role="tabpanel" aria-labelledby="pills-friend-details-tab">
@@ -52,9 +49,6 @@
                             <% for(var i =0 ; i< userData.recents.page2.tags.length; i++ ){%>
                               <button type="button" class="btn text-white" style="background-color: #042743;" disabled><%= userData.recents.page2.tags[i]%></button>
                             <% } %>
-                        </div>
-                        <div class="tab-pane px-4 py-4 rounded text-white" id="pills-problems-friends" role="tabpanel" aria-labelledby="pills-problems-tab">
-                          <img src="/img/curve.png" alt="" class="img-fluid">
                         </div>
                       </div>
                 </div>

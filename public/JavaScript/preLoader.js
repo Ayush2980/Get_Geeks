@@ -9,14 +9,3 @@ SearchBtn.addEventListener('click' , () => {
     mainBody.style.display = 'none';
     document.getElementById('loader').style.display = "block";
 })
-
-window.onload = function (){
-    if(navbar.style.display == 'none'){
-        navbar.style.display = 'block';
-        // document.getElementsByClassName('load-conatainer')[0].style.display = 'inline';
-        footer.style.display = 'block';
-        mainBody.style.display = 'block';
-        document.getElementById('loader').style.display = "none";
-
-    }
-}

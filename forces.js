@@ -26,14 +26,21 @@ async function searchCF(user){
     await page.screenshot({path : "imn.png"})
     for(const keys in dataObj){
         if(keys === "userFullName"){
-            const data = await page.waitForSelector(dataObj[keys]);
-            const data2= await data.evaluate((e) => {
-                return e.innerText;
-            })
-            const name = data2.slice(0 , data2.indexOf(','));
-            const location = data2.slice(data2.indexOf(',')+2 , data2.length)
-            dataObj[keys] = name;
-            dataObj['userLocation'] = location;
+            try{
+                const data = await page.waitForSelector(dataObj[keys]);
+                const data2= await data.evaluate((e) => {
+                    return e.innerText;
+                })
+                const name = data2.slice(0 , data2.indexOf(','));
+                const location = data2.slice(data2.indexOf(',')+2 , data2.length)
+                dataObj[keys] = name;
+                dataObj['userLocation'] = location;
+            }
+            catch(e){
+                dataObj[keys] = "Coder N";
+                dataObj['userLocation'] = "Somewhere on Earth !!!";
+
+            }
         }
         else if(keys === "userImage"){
             const data = await page.waitForSelector(dataObj[keys]);
@@ -42,10 +49,15 @@ async function searchCF(user){
             })
         }
         else{
-            const data = await page.waitForSelector(dataObj[keys]);
-            dataObj[keys] = await data.evaluate((e) => {
-                return e.innerText;
-            })
+            try{
+                const data = await page.waitForSelector(dataObj[keys]);
+                dataObj[keys] = await data.evaluate((e) => {
+                    return e.innerText;
+                })
+            }
+            catch(e){
+                dataObj[keys] = "No Data"
+            }
         }
     }
 
