@@ -26,8 +26,9 @@ app.get('/find' , (req , res) => {
   res.render('pages/homepage')
 })
 
-app.get('/f' , (req , res) => {
-  res.send("jjj");
+
+app.get('/login' , (req , res) => {
+  res.render('pages/Authentication_login');
 })
 
 
@@ -41,25 +42,6 @@ app.get('/fetch' ,  async(req , res) => {
       res.render('pages/findCC' , {userData});
     }
 });
-
-
-app.get("/s" , async (req , res) => {
-  const api_url ="https://zenquotes.io/api/quotes/";
-
-  async function getapi(url)
-  {
-    const response = await fetch(url);
-    var data = await response.json();
-    return data;
-  }
-  
-  let x = Math.floor((Math.random() * 49));
-  const dataAPI = await getapi(api_url);  
-  const quoteOBJ = dataAPI[x];
-  console.log(quoteOBJ)
-  res.render('partials/loader.ejs' , {quoteOBJ});
-})
-
 
 
 
