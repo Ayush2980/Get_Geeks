@@ -8,6 +8,9 @@ module.exports.searchCF = async function searchCF(user){
     const page = await browser.newPage();
   
     await page.goto(`https://codeforces.com/profile/${user}`);
+    const url = await page.url();
+    console.log(url);
+    if(url == 'https://codeforces.com/') return undefined;
     console.log("creating")
     var dataObj = {
         username : '.main-info > h1 > a',

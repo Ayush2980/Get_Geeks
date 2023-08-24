@@ -18,15 +18,21 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <% if(!loggedin){ %>
         <li class="nav-but ms-2 me-2">
-          <a href="#" class="text-white my-2 btn btn-outline-success">SignIn</a>
+          <a href="/signin" class="text-white my-2 btn btn-outline-success">SignIn</a>
         </li>
         <li class="nav-but ms-2 me-2">
-          <a href="#" class="text-white my-2 btn btn-outline-primary">SignUp</a>
+          <a href="/signup" class="text-white my-2 btn btn-outline-primary">SignUp</a>
         </li>
-        <li class="nav-but ms-2 me-2">
-          <a href="#" class="text-white my-2 btn btn-outline-light">Profile</a>
-        </li>
+        <% }else{%>
+          <li class="nav-but ms-2 me-2">
+            <a href="#" class="text-white my-2 btn btn-outline-light">Profile</a>
+          </li>
+          <li class="nav-but ms-2 me-2">
+            <a href="/signout" class="text-white my-2 btn btn-outline-primary">Log Out</a>
+          </li>
+          <% } %>
       </ul>
     </div>
   </div>

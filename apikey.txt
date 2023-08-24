@@ -1,5 +1,0 @@
-ec4R9WlIvCgAP0TWjiyJmw==SUur5r9KZM28bHuS
-
-
-problems : 1 ==> loading page removed when reloaded
-2 : loading page ui

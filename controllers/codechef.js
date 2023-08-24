@@ -8,6 +8,8 @@ module.exports.searchCode = async function(user){
     const page = await browser.newPage();
   
     await page.goto(`https://www.codechef.com/users/${user}`);
+    const url = page.url();
+    if(url == 'https://www.codechef.com/') return undefined;
 
     const dataObj = {
         userDetails : {},
@@ -59,7 +61,7 @@ module.exports.searchCode = async function(user){
         }
         else {
             dataObj.recents.page1[key] = await data.evaluate((e) => {
-                return e.innerHTML
+                return e.innerHTML;
             })
         }
     }
