@@ -1,10 +1,11 @@
+const { number } = require('joi');
 const mongoose = require('mongoose');
 const {ObjectId} = mongoose.Schema.Types
 const passportLocalMongoose = require('passport-local-mongoose')
 
 const userSchema = new mongoose.Schema({
     username : {
-        type: String,
+        type : String,
         required : true
     },
     fullname : {
@@ -25,17 +26,26 @@ const userSchema = new mongoose.Schema({
     CFprof : {
         type : String
     },
+    images : {
+        url : String , 
+        filename : String
+    },
     Stalklist : [{
-        type : String
+        type : Object
     }],
-    followers : [{
-        type : ObjectId ,
-        ref : "GGUsers"
+    friendList : [{
+        friendId : {
+            type : ObjectId,
+            ref : "User",
+        },
+        status : {
+            type : String,
+        }
     }],
-    following : [{
-        type : ObjectId ,
-        ref : "GGUsers"
-    }]    
+    pending : [{
+        type : ObjectId,
+        ref : "User",
+    }]   
 })
 
 userSchema.plugin(passportLocalMongoose);

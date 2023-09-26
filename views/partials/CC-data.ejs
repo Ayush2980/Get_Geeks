@@ -1,0 +1,55 @@
+<div class="row my-5">
+    <div class="col rounded">
+      <div class="p-3 rounded" style="background-color: #032d45;">
+              <div class="card custom-bg-ai">
+                <div class="img-cont mt-4 mb-4">
+                      <div class="row">
+                          <div class="col-4"></div>
+                          <div class="col-4">
+                            <img src= "<%= userDataCC.userDetails.images.dp%>"  style="height: 50%;" class="rounded-circle" alt="...">
+                          </div>
+                          <div class="col-2">
+                            <form action="/Ccstalk/<%= id%>/<%= userData.username%>" method="post" >
+                              <button class="btn btn-success">Stalk</button>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <ul class="nav nav-tabs" id="pills-tab-friends" role="tablist">
+                          <li class="nav-item mx-2" role="presentation">
+                            <button class="nav-link custom-btn-color active" id="pills-friend-details-tab" data-bs-toggle="pill" data-bs-target="#pills-friends-details" type="button" role="tab" aria-controls="pills-friends-details" aria-selected="true">Details</button>
+                          </li>
+                          <li class="nav-item mx-2" role="presentation">
+                            <button class="nav-link custom-btn-color" id="pills-friend-recents-tab" data-bs-toggle="pill" data-bs-target="#pills-recents-friends" type="button" role="tab" aria-controls="pills-recents-friends" aria-selected="false">Recents</button>
+                          </li>
+                        </ul>
+                        <div class="tab-content tab-cc" id="pills-tabContent">
+                          <div class="tab-pane px-4 py-4 rounded text-white show active" id="pills-friends-details" role="tabpanel" aria-labelledby="pills-friend-details-tab">
+                              <h4 class="my-4">Username : <%= userDataCC.userDetails.username%></h4>
+                              <p>Country : <%= userDataCC.userDetails.country%></p>
+                              <p>Current Rating : <%= userDataCC.userDetails.ratingNo%></p>
+                              <p>Star : <%= userDataCC.userDetails.ratingStar%></p>
+                              <p><%= userDataCC.userDetails.maxRating%></p>
+                              <p>Global Rank : <%= userDataCC.userDetails.globalRank%></p>
+                              <p>Country Rank : <%= userDataCC.userDetails.countryRank%></p>
+                              <p>Total Contests : <%= userDataCC.userDetails.contestParticipated%></p>
+                          </div>
+                          <div class="tab-pane px-4 py-4 rounded text-white" id="pills-recents-friends" role="tabpanel" aria-labelledby="pills-friend-recents-tab">
+                              <h4 class="my-4">Last Problem Solved</h4>
+                              <p>Problem Title : <%= userDataCC.recents.page2.problemTitle%></p>
+                              <p>Problem Code : <%= userDataCC.recents.page2.ProblemCode%></p>
+                              <p>Problem Rating : <%= userDataCC.recents.page2.Difficulty%></p>
+                              <h4 class="my-4"><%= userDataCC.userDetails.username%>'s  Response</h4>
+                              <p>Language Used : <%= userDataCC.recents.page1.Lang%></p>
+                              <p>Submission Time: <%= userDataCC.recents.page1.time%></p>
+                              <% for(var i =0 ; i< userDataCC.recents.page2.tags.length; i++ ){%>
+                                <button type="button" class="btn text-white" style="background-color: #042743;" disabled><%= userDataCC.recents.page2.tags[i]%></button>
+                              <% } %>
+                          </div>
+                        </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+  </div>

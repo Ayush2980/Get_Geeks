@@ -2,57 +2,6 @@
 <div class="container-fluid " >
     <form class="d-flex" action="/find">
       <button type="submit">Find Another User</button>
-
     </form>
 </div>
-<div class="row my-5">
-  <div class="col rounded">
-    <div class="p-3 rounded" style="background-color: #032d45;">
-            <div class="card custom-bg-ai">
-              <div class="img-cont mt-4 mb-4">
-                    <div class="row">
-                        <div class="col-4"></div>
-                        <div class="col-4">
-                          <img src= "<%= userData.userDetails.images.dp%>" class=" rounded" alt="..." style="width: 100%;">
-                        </div>
-                        <div class="col-2"></div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <ul class="nav nav-tabs" id="pills-tab-friends" role="tablist">
-                        <li class="nav-item mx-2" role="presentation">
-                          <button class="nav-link custom-btn-color active" id="pills-friend-details-tab" data-bs-toggle="pill" data-bs-target="#pills-friends-details" type="button" role="tab" aria-controls="pills-friends-details" aria-selected="true">Details</button>
-                        </li>
-                        <li class="nav-item mx-2" role="presentation">
-                          <button class="nav-link custom-btn-color" id="pills-friend-recents-tab" data-bs-toggle="pill" data-bs-target="#pills-recents-friends" type="button" role="tab" aria-controls="pills-recents-friends" aria-selected="false">Recents</button>
-                        </li>
-                      </ul>
-                      <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane px-4 py-4 rounded text-white show active" id="pills-friends-details" role="tabpanel" aria-labelledby="pills-friend-details-tab">
-                            <h4 class="my-4">Username : <%= userData.userDetails.username%></h4>
-                            <p>Country : <%= userData.userDetails.country%></p>
-                            <p>Current Rating : <%= userData.userDetails.ratingNo%></p>
-                            <p>Star : <%= userData.userDetails.ratingStar%></p>
-                            <p><%= userData.userDetails.maxRating%></p>
-                            <p>Global Rank : <%= userData.userDetails.globalRank%></p>
-                            <p>Country Rank : <%= userData.userDetails.countryRank%></p>
-                            <p>Total Contests : <%= userData.userDetails.contestParticipated%></p>
-                        </div>
-                        <div class="tab-pane px-4 py-4 rounded text-white" id="pills-recents-friends" role="tabpanel" aria-labelledby="pills-friend-recents-tab">
-                            <h4 class="my-4">Last Problem Solved</h4>
-                            <p>Problem Title : <%= userData.recents.page2.problemTitle%></p>
-                            <p>Problem Code : <%= userData.recents.page2.ProblemCode%></p>
-                            <p>Problem Rating : <%= userData.recents.page2.Difficulty%></p>
-                            <h4 class="my-4"><%= userData.userDetails.username%>'s  Response</h4>
-                            <p>Language Used : <%= userData.recents.page1.Lang%></p>
-                            <p>Submission Time: <%= userData.recents.page1.time%></p>
-                            <% for(var i =0 ; i< userData.recents.page2.tags.length; i++ ){%>
-                              <button type="button" class="btn text-white" style="background-color: #042743;" disabled><%= userData.recents.page2.tags[i]%></button>
-                            <% } %>
-                        </div>
-                      </div>
-                </div>
-              </div>
-        </div>
-      </div>
-</div>
+<%- include('../partials/CC-data.ejs')%>

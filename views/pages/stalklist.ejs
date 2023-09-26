@@ -1,0 +1,52 @@
+<% layout("layout/boilerplate") %>
+<div id="cluster-map"></div>
+<div class="container">
+    <h1 class="text-light text-center">StalkList</h1>
+    <div class="row text-light">
+        <div class="col">
+            <h1 class="text-center">CodeForces</h1>
+            <% for (let user of Stalklist){%>
+                <%if(user.handle != "CC"){%>
+                    <div class="card mb-3 custom-bg-ai text-light">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= user.username %></h5>
+                                </div>  
+                                <form action="/fetch">
+                                    <button class="btn btn-primary">View <%= user.username %></button>
+                                </form>
+                                <form action="/delete/<%= id%>/<%= user.username %>">
+                                    <button class="btn btn-primary">Remove <%= user.username %></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <%}%>
+                <% }%>
+            </div>
+            <div class="col">
+                <h1 class="text-center">Code Chef</h1>
+                <% for (let user of Stalklist){%>
+                    <%if(user.handle == "CC"){%>
+                        <div class="card mb-3 custom-bg-ai text-light">
+                            <div class="row">
+                                <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= user.username %></h5>
+                                </div>  
+                                <form action="/fetch">
+                                    <button class="btn btn-primary">View <%= user.username %></button>
+                                </form>
+                                <form action="/delete/<%= id%>/<%= user.username %>">
+                                    <button class="btn btn-primary">Remove <%= user.username %></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                    <% }%>
+        </div>
+      </div>
+      
+</div>

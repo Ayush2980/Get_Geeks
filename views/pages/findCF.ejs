@@ -3,54 +3,5 @@
     <form action="/find">
         <button type="submit">Find Another User</button>
     </form>
-
 </div>
-<div class="row my-5">
-  <div class="col rounded">
-    <div class="p-3 rounded" style="background-color: #032d45;">
-            <div class="card custom-bg-ai">
-              <div class="img-cont mt-4 mb-4">
-                    <div class="row">
-                        <div class="col-4"></div>
-                        <div class="col-4">
-                          <img src= "<%= userData.userImage%>" class=" rounded" alt="..." style="width: 100%;">
-                        </div>
-                        <div class="col-2"></div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <ul class="nav nav-tabs" id="pills-tab-friends" role="tablist">
-                        <li class="nav-item mx-2" role="presentation">
-                          <button class="nav-link custom-btn-color active" id="pills-friend-details-tab" data-bs-toggle="pill" data-bs-target="#pills-friends-details" type="button" role="tab" aria-controls="pills-friends-details" aria-selected="true">Details</button>
-                        </li>
-                        <li class="nav-item mx-2" role="presentation">
-                          <button class="nav-link custom-btn-color" id="pills-friend-recents-tab" data-bs-toggle="pill" data-bs-target="#pills-recents-friends" type="button" role="tab" aria-controls="pills-recents-friends" aria-selected="false">Recents</button>
-                        </li>
-                      </ul>
-                      <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane px-4 py-4 rounded text-white show active" id="pills-friends-details" role="tabpanel" aria-labelledby="pills-friend-details-tab">
-                            <h4 class="my-4">User Name : <%= userData.userFullName%></h4>
-                            <p>CodeForces username : <%= userData.username %></p>
-                            <p>Location : <%= userData.userLocation%></p>
-                            <p>Institution : <%= userData.userInstitute %></p>
-                            <p>Current Rank : <%= userData.userRank %></p>
-                            <p>Current Rating : <%= userData.userRating %></p>
-                            <p>Contributions : <%= userData.userContribution%></p>
-                        </div>
-                        <div class="tab-pane px-4 py-4 rounded text-white" id="pills-recents-friends" role="tabpanel" aria-labelledby="pills-friend-recents-tab">
-                            <h4>Recent Activity</h4>
-                            <p>Max Rating : <%= userData.userMaxRating%></p>
-                            <p>Max Rank : <%= userData.userMaxRank%></p>
-                            <p>Last Online : <%= userData.lastOnline%></p>
-                            <p>Problems Solved</p>
-                            <p>Total: <%= userData.problemsTotal%></p>
-                            <p>Last Year  : <%= userData.problemsLastYear%></p>
-                            <p>Last Month  : <%= userData.problemsLastMonth%></p>
-                            <p>Registered : <%= userData.registered%></p>
-                        </div>
-                      </div>
-                </div>
-              </div>
-        </div>
-      </div>
-</div>
+<%- include("../partials/CF-data.ejs")%>

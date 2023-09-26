@@ -1,0 +1,30 @@
+<%for(let i = 0;i < currUser.pending.length; i++){%>
+    <div class="card mb-3 custom-bg-ai text-light">
+        <div class="row">
+            <div class="col-md-4">
+                <%if(currUser.pending[i].images.url) {%>
+                <img class="img-fluid" alt="" src="<%=currUser.pending[i].images.url%>">
+                <% }else {%>
+                <img class="img-fluid" alt=""
+                    src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png">
+                <% } %>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= currUser.pending[i].username %> </h5>
+
+                    <p class="card-text"><%= currUser.pending[i].state %> , <%= currUser.pending[i].country %></p>
+                    <p class="card-text">
+                        <small class="text-muted"><%= currUser.pending[i].fullname%></small>
+                    </p>
+                </div>
+                <form action="/accept/<%= loggedin._id%>/<%= currUser.pending[i].id%>" method="post">
+                    <button class="btn btn-success">Accept</button>
+                </form>
+                <form action="/sendReq/<%= loggedin._id%>/<%= currUser.pending[i].id %>" method="post">
+                    <button class="btn btn-danger">Reject</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<%}%>

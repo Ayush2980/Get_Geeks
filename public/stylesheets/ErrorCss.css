@@ -1,0 +1,150 @@
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Tomorrow', sans-serif;
+    height:100vh;
+  background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #050819);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+  }
+  .text{
+    position:absolute;
+    top:10%;
+    color:#fff;
+    text-align:center;
+  }
+  h1{
+    font-size:50px;
+  }
+  .star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:#fff;
+    right:0;
+    animation:starTwinkle 3s infinite linear;
+  }
+  .astronaut img{
+    width:100px;
+    position:absolute;
+    top:55%;
+    animation:astronautFly 6s infinite linear;
+  }
+  @keyframes astronautFly{
+    0%{
+      left:-100px;
+    }
+    25%{
+      top:50%;
+      transform:rotate(30deg);
+    }
+    50%{
+      transform:rotate(45deg);
+      top:55%;
+    }
+    75%{
+      top:60%;
+      transform:rotate(30deg);
+    }
+    100%{
+      left:110%;
+      transform:rotate(45deg);
+    }
+  }
+  @keyframes starTwinkle{
+    0%{
+       background:rgba(255,255,255,0.4);
+    }
+    25%{
+      background:rgba(255,255,255,0.8);
+    }
+    50%{
+     background:rgba(255,255,255,1);
+    }
+    75%{
+      background:rgba(255,255,255,0.8);
+    }
+    100%{
+      background:rgba(255,255,255,0.4);
+    }
+  }
+  .search-bar{
+    margin-top: 20%;
+    width: 200%;
+    margin-left: -50%;
+  }
+  *::placeholder {
+    color: white !important;
+}
+input:focus {
+    color: white !important;
+}
+input:not(:focus) {
+    color: white !important;
+}
+
+
+
+/* //Solves the problem when invalid comes up and all css properties are reset for that invalid label */
+
+input:invalid:focus{
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+input:invalid:not(:focus){
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+input:valid:focus{
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+input:valid:not(:focus){
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+select:focus {
+    color: white !important;
+    background-color: #141E30;
+}
+
+select:not(:focus) {
+    color: white !important;
+    background-color: #141E30;
+}
+
+.Buttons > a{
+    width: 200%;
+    margin-left: -30%;
+    color: white;
+    border: 2px solid  rgb(49, 32, 201) ;
+}
+#Search-bar-homepage{
+    margin-left: 2%;
+    background: #141E30;
+    color: white;
+    border: 2px solid  rgb(49, 32, 201) ;
+}
+#Search-bar-homepage:hover{
+    margin-left: 2%;
+    background:rgb(49, 32, 201);
+    color: white;
+    border: 2px solid  rgb(49, 32, 201) ;
+}
+.Buttons a:hover{
+    width: 200%;
+    margin-left: -30%;
+    color: white;
+    background-color: rgb(49, 32, 201) ;
+}

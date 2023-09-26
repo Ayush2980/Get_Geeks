@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse position-relative" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 position-absolute end-50">
         <li class="nav-item ms-2 me-2">
-          <a class="text-white nav-link my-2 active" aria-current="page" href="#">Home</a>
+          <a class="text-white nav-link my-2 active" aria-current="page" href="/find">Home</a>
         </li>
         <li class="nav-item ms-2 me-2">
           <a class="text-white nav-link my-2 active" aria-current="page" href="#">About us</a>
@@ -27,7 +27,13 @@
         </li>
         <% }else{%>
           <li class="nav-but ms-2 me-2">
-            <a href="#" class="text-white my-2 btn btn-outline-light">Profile</a>
+            <a href="/users/<%= id%>" class="text-white my-2 btn btn-outline-primary">Community</a>
+          </li>
+          <li class="nav-but ms-2 me-2">
+            <a href="/stalklist/<%= id %>" class="text-white my-2 btn btn-outline-primary">StalkList</a>
+          </li>
+          <li class="nav-but ms-2 me-2">
+            <form action="/profile/<%= id%>" method="post"><button class="text-white my-2 btn btn-outline-primary">Profile</button></form>
           </li>
           <li class="nav-but ms-2 me-2">
             <a href="/signout" class="text-white my-2 btn btn-outline-primary">Log Out</a>

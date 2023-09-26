@@ -20,7 +20,8 @@ body{
 .custom-btn-color:not(:active){
     margin-bottom: 5px !important;
 }
-.tab-content{
+/* PArticularly for the tabs in find cc and findcf pages  */
+.tab-cc{
     background-color: #243B55;
     color: #12C1FC;
     border: #12C1FC solid 2px;
@@ -50,6 +51,12 @@ input:invalid:focus{
     background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+input:active{
+    background: #141E30;  
+    background: -webkit-linear-gradient(to right, #243B55, #141E30);  
+    background: linear-gradient(to right, #243B55, #141E30);
+}
+
 input:invalid:not(:focus){
     background: #141E30;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
@@ -69,3 +76,6 @@ input:valid:not(:focus){
 
 }
 
+#Search-bar-homepage{
+    margin-left: 2%;
+}

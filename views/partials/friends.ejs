@@ -1,0 +1,32 @@
+<%for(let i = 0;i < currUser.friendList.length; i++){%>
+    <% if(currUser.friendList[i].status == 1){ %>
+    <div class="card mb-3 custom-bg-ai text-light">
+        <div class="row">
+            <div class="col-md-4">
+                <%if(currUser.friendList[i].friendId.images.url) {%>
+                <img class="img-fluid" alt="" src="<%=currUser.friendList[i].friendId.images.url%>">
+                <% }else {%>
+                <img class="img-fluid" alt=""
+                    src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png">
+                <% } %>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= currUser.friendList[i].friendId.username %> </h5>
+
+                    <p class="card-text"><%= currUser.friendList[i].friendId.state %> , <%= currUser.friendList[i].friendId.country %></p>
+                    <p class="card-text">
+                        <small class="text-muted"><%= currUser.friendList[i].friendId.fullname%></small>
+                    </p>
+                </div>
+                <form action="" method="post">
+                    <button class="btn btn-success">Chat</button>
+                </form>
+                <form action="/removeFriend/<%= loggedin._id%>/<%= currUser.friendList[i].friendId.id %>" method="post">
+                    <button class="btn btn-danger">Remove friend</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%}%>
+<%}%>
