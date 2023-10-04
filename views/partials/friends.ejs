@@ -19,7 +19,7 @@
                         <small class="text-muted"><%= currUser.friendList[i].friendId.fullname%></small>
                     </p>
                 </div>
-                <form action="" method="post">
+                <form action="/chat/<%= loggedin._id %>/<%= currUser.friendList[i].friendId.id%>">
                     <button class="btn btn-success">Chat</button>
                 </form>
                 <form action="/removeFriend/<%= loggedin._id%>/<%= currUser.friendList[i].friendId.id %>" method="post">

@@ -32,6 +32,8 @@
     "puppeteer": "^20.8.1",
     "puppeteer-core": "^20.8.1",
     "request": "^2.88.2",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2",
     "xhr2": "^0.2.1",
     "xmldom": "^0.6.0"
   }

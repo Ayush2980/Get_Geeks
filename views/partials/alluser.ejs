@@ -28,7 +28,7 @@
                     <% for(let i = 0; i< loggedin.friendList.length; i++){ %>
                         <%if(loggedin.friendList[i].friendId == user.id){%>
                             <%if(loggedin.friendList[i].status == 1){%>
-                                <form action="" method="post">
+                                <form action="/chat/<%= loggedin._id %>/<%= currUser.friendList[i].friendId.id%>">
                                     <button class="btn btn-success">Chat</button>
                                 </form>
                                 <form action="/removeFriend/<%= loggedin._id%>/<%= currUser.friendList[i].friendId.id %>" method="post">
