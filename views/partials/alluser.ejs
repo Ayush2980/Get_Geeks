@@ -50,7 +50,7 @@
                             <form action="/accept/<%= loggedin._id%>/<%= currUser.pending[i].id%>" method="post">
                                 <button class="btn btn-success">Accept</button>
                             </form>
-                            <form action="/sendReq/<%= loggedin._id%>/<%= currUser.pending[i].id %>" method="post">
+                            <form action="/reject/<%= loggedin._id%>/<%= currUser.pending[i].id %>" method="post">
                                 <button class="btn btn-danger">Reject</button>
                             </form>
                             <% userType = 1;%>

@@ -1,8 +1,13 @@
+const userSchema = require('../models/users.js');
+const User = new userSchema;
+
+
+
 module.exports.find = (req , res) => {
     res.render('pages/homepage')
 }
 module.exports.profile = async(req , res) => {
-    const currUser = await userSchema.findById(req.params.id).populate('followers').populate('following');
+    const currUser = await userSchema.findById(req.params.id);
     console.log(currUser);
     // const userDataCC = await fetcher.searchCode(currUser.CCprof);
     // const userData = await helper.searchCF(currUser.CFprof);

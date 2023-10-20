@@ -45,7 +45,11 @@ const userSchema = new mongoose.Schema({
     pending : [{
         type : ObjectId,
         ref : "User",
-    }]   
+    }],
+    blogs : [{
+        type : ObjectId,
+        ref : 'Blog'
+    }]
 })
 
 userSchema.plugin(passportLocalMongoose);

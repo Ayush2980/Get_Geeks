@@ -1,5 +1,11 @@
+const userSchema = require('../models/users.js');
+const User = new userSchema;
 module.exports.getSignUp = (req , res) => {
     res.render('pages/Authentication_signup');
+}
+module.exports.signInRedirect = (req , res) => {
+    req.flash('error' , "You need to be Signed In");
+    res.redirect('/signin')
 }
 module.exports.postSignUp = async(req , res) => {
     console.log(JSON.parse(JSON.stringify(req.body.user)) , req.file);

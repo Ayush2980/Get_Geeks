@@ -20,12 +20,19 @@ const multer = require('multer');
 const {storage} = require('./cloudinary')
 const upload = multer({ storage});
 
+//Socket.io
+const http = require('http').createServer(app);
+const {Server} = require('socket.io');
+const io = new Server(http , {})
+
 
 //Middlewares
 app.engine('ejs' , ejsMate);
 app.set('view engine' , 'ejs');
 app.set('views' , path.join(__dirname , './views'));
 app.use(express.static('public'))
+//serving the node_modules directory as a static asset
+app.use('/socket.io', express.static(__dirname + '/node_modules/socket.io-client/dist'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(flash());
@@ -67,10 +74,13 @@ async function main(){
 const Auth = require('./routes/Authentication.js');
 const API  = require('./routes/API.js');
 const UserFunc = require('./routes/UserFunc.js');
+const Blogs = require('./routes/Blogs.js');
 
 app.use('/' , Auth);
 app.use('/' , API);
 app.use('/' , UserFunc);
+app.use('/Blogs' , Blogs)
+
 
 //Error Handlers
 app.all('*' , (req , res , next) => {
@@ -81,15 +91,18 @@ app.all('*' , (req , res , next) => {
 app.use((err , req , res , next) => {
   const {message = "Some Error Occured" , statusCode = 404} = err;
   res.render('pages/Error.ejs' , {message , statusCode});
+});
+
+io.on("connection" , (socket) => {
+  console.log("User Connected")
+  socket.on("like" , (data) => {
+    socket.broadcast.emit("like" , data)
+  })
+  socket.on("dislike" , (data) => {
+    socket.broadcast.emit("dislike" , data)
+  })
 })
 
-
-
-
-
-
-
-
-app.listen(8000 , () => {
+http.listen(8000, () => {
     console.log('Listening on port 8000 !!!');
 })

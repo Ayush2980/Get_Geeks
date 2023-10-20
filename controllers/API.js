@@ -1,3 +1,5 @@
+const helper = require('../controllers/codeforces.js');
+const searchCF = require('../controllers/codechef.js');
 module.exports.fetch = async(req , res) => {
     if(req.query.handle === "CF"){
       const userData = await helper.searchCF(req.query.search);
