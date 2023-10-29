@@ -19,6 +19,7 @@ const LocalStrategy =  require('passport-local');
 const multer = require('multer'); 
 const {storage} = require('./cloudinary')
 const upload = multer({ storage});
+const bcrypt = require('bcrypt');
 
 //Socket.io
 const http = require('http').createServer(app);
@@ -79,8 +80,7 @@ const Blogs = require('./routes/Blogs.js');
 app.use('/' , Auth);
 app.use('/' , API);
 app.use('/' , UserFunc);
-app.use('/Blogs' , Blogs)
-
+app.use('/Blogs' , Blogs);
 
 //Error Handlers
 app.all('*' , (req , res , next) => {
@@ -101,8 +101,17 @@ io.on("connection" , (socket) => {
   socket.on("dislike" , (data) => {
     socket.broadcast.emit("dislike" , data)
   })
+  socket.on("sent-email" , (data) => {
+    console.log("Server Side hit ..... broaodcasting to whole project !!!")
+    console.log(data)
+    socket.broadcast.emit("sent-email" , data)
+  })
+  socket.on("email-not-sent" , (data) => {
+    socket.broadcast.emit("email-not-sent" , data)
+  })
 })
 
-http.listen(8000, () => {
+http.listen(8000, () => 
+{
     console.log('Listening on port 8000 !!!');
 })

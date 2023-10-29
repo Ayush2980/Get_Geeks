@@ -7,7 +7,6 @@ const userSchema = require('../models/users.js');
 
 
 router.get('/find' , UserFunct.find);
-router.post('/profile/:id' , asyncError(UserFunct.profile))
 router.post('/addFriend/:id/:friendId' , asyncError(UserFunct.addFriend))
 router.get('/users/:id' , asyncError(UserFunct.users));
 router.post('/Cfstalk/:id/:username' , asyncError(UserFunct.AddToStalkListCF))
@@ -19,6 +18,8 @@ router.post('/sendReq/:id/:friendID' , asyncError(UserFunct.sendFriendRequest))
 router.post('/accept/:id/:friendId' , asyncError(UserFunct.acceptFriendRequest))
 router.post('/reject/:id/:friendId' , asyncError(UserFunct.rejectRequest))
 router.post('/removeFriend/:id/:friendID' , asyncError(UserFunct.removeFriend))
+//Profile view
+router.get('/profile/:id' , asyncError(UserFunct.showProfile))
 
 
 

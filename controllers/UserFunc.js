@@ -1,18 +1,11 @@
 const userSchema = require('../models/users.js');
 const User = new userSchema;
+const blogSchema = require('../models/Blogs.js')
 
 
 
 module.exports.find = (req , res) => {
     res.render('pages/homepage')
-}
-module.exports.profile = async(req , res) => {
-    const currUser = await userSchema.findById(req.params.id);
-    console.log(currUser);
-    // const userDataCC = await fetcher.searchCode(currUser.CCprof);
-    // const userData = await helper.searchCF(currUser.CFprof);
-    // res.render('pages/profile.ejs' , {currUser , userData , userDataCC});
-    res.send(currUser);   
 }
 module.exports.addFriend = async(req , res) => {
     const currUser = await userSchema.findByIdAndUpdate({_id : req.params.id} , {$push : {following : req.params.friendId}});
@@ -97,6 +90,12 @@ module.exports.removeFriend = async(req , res) => {
     const currUser = await userSchema.findByIdAndUpdate({_id : id} , {$pull : {friendList : {friendId : friendID}}});
     const friendData = await userSchema.findByIdAndUpdate({_id : friendID} , {$pull : {friendList : {friendId : id}}})
     req.flash('error' , 'Friend Removed');
-    res.redirect('/find');
-  
+    res.redirect('/find'); 
+}
+module.exports.showProfile = async(req , res) => {
+  const {id} = req.params;
+  console.log(id);
+  const currUser = await userSchema.findById(id).populate('blogs');
+  console.log(currUser)
+  res.render('pages/profile.ejs' , {currUser});
 }

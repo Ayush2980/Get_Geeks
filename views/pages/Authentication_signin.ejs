@@ -1,9 +1,9 @@
 <% layout('layout/boilerplate_auth')%>
-<%-include('../partials/flash-error.ejs')%> 
+<%-include('../partials/flash-error.ejs')%>
 <%-include('../partials/flash-success.ejs')%>
-<div class="row text-light">
-  <h1 class="text-center">Sign Up</h1>
-  <div class="col-md-6 offset-md-3">
+<div class="row text-light login">
+  <h1 class="text-center">Login</h1>
+  <div class="col-md-6 offset-md-3 auth-box">
     <form action="/signin" method="POST" novalidate class="validated-form">
       <div class="mb-3">
         <label class="form-label" for="username">User Name</label>
@@ -17,19 +17,42 @@
         <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="password">Password</label>
+        <label class="form-label" style="width: 100%;" for="password">
+          <div class="row">
+            <div class="col-6">Password</div>
+            <div class="col-3 col-sm-4"></div>
+            <div class="col-3 col-sm-2 show-hide">🙈</div>
+          </div>
+        </label>
         <input
           class="form-control"
-          type="text"
+          type="password"
           id="password"
           name="password"
           required
         />
         <div class="valid-feedback">Looks good!</div>
       </div>
-      <div class="mb-3">
-        <button class="btn btn-primary">Register</button>
+      <div class="mb-3 row">
+        <div class="col-4">
+          <button class="btn btn-primary">Sign In</button>
+        </div>
       </div>
     </form>
   </div>
 </div>
+<script>
+  const showHide = document.getElementsByClassName('show-hide')[0];
+  const pass = document.getElementById('password');
+  showHide.addEventListener("click" , () => {
+      if(showHide.innerHTML == '🙈'){
+          showHide.innerHTML = '🙉';
+          password.type = 'text';
+        }
+        else{
+          showHide.innerHTML = '🙈';
+          password.type = 'password';
+        }
+  })
+</script>
+

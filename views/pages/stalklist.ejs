@@ -13,12 +13,18 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><%= user.username %></h5>
                                 </div>  
-                                <form action="/fetch">
-                                    <button class="btn btn-primary">View <%= user.username %></button>
-                                </form>
-                                <form action="/delete/<%= id%>/<%= user.username %>">
-                                    <button class="btn btn-primary">Remove <%= user.username %></button>
-                                </form>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <form action="/fetch?search=<%= user.username&handle=CF%>">
+                                            <button class="btn btn-primary">View <%= user.username %></button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <form action="/delete/<%= id%>/<%= user.username %>">
+                                            <button class="btn btn-primary">Remove <%= user.username %></button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -35,7 +41,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><%= user.username %></h5>
                                 </div>  
-                                <form action="/fetch">
+                                <form action="/fetch?search=<%= user.username&handle=CC%>">
                                     <button class="btn btn-primary">View <%= user.username %></button>
                                 </form>
                                 <form action="/delete/<%= id%>/<%= user.username %>">

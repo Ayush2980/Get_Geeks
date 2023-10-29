@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
+    Email : {
+        type : String,
+        required :true
+    },
     state : {
         type : String,
         required : true,
@@ -42,6 +46,7 @@ const userSchema = new mongoose.Schema({
             type : String,
         }
     }],
+    token : String ,
     pending : [{
         type : ObjectId,
         ref : "User",

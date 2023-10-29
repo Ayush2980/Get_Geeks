@@ -20,6 +20,13 @@
                 </div>
             </div>
             <div class="mb-3">
+                <label class="form-label" for="Email">Email</label>
+                <input class="form-control" type="email" id="Email" name="user[Email]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
                 <label class="form-label" for="state">State</label>
                 <input class="form-control" type="text" id="state" name="user[state]" required>
                 <div class="valid-feedback">
@@ -34,8 +41,14 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="password">Password</label>
-                <input class="form-control" type="text" id="password" name="user[password]" required>
+                <label class="form-label" style="width: 100%;" for="password">
+                    <div class="row">
+                      <div class="col-6">Password</div>
+                      <div class="col-3 col-sm-4"></div>
+                      <div class="col-3 col-sm-2 show-hide">🙈</div>
+                    </div>
+                  </label>
+                <input class="form-control" type="password" id="password" name="user[password]" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -69,3 +82,17 @@
         </form>
     </div>
 </div>
+<script>
+    const showHide = document.getElementsByClassName('show-hide')[0];
+    const pass = document.getElementById('password');
+    showHide.addEventListener("click" , () => {
+        if(showHide.innerHTML == '🙈'){
+            showHide.innerHTML = '🙉';
+            password.type = 'text';
+          }
+          else{
+            showHide.innerHTML = '🙈';
+            password.type = 'password';
+          }
+    })
+  </script>

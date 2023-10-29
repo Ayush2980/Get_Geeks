@@ -6,12 +6,14 @@
                       <div class="row">
                           <div class="col-4"></div>
                           <div class="col-4">
-                            <img src= "<%= userData.userImage%>" class="rounded-circle" alt="..." style="width: 100%;">
+                            <img src= "<%= userData.userImage%>" class="rounded-circle" alt="..." style="width: 100%; border-radius: 1000px;">
                           </div>
                           <div class="col-2">
-                            <form action="/Cfstalk/<%= id%>/<%= userData.username%>" method="post" >
-                              <button class="btn btn-success">Stalk</button>
-                            </form>
+                            <% if(loggedin){ %>
+                              <form action="/Cfstalk/<%= id%>/<%= userData.username%>" method="post" >
+                                <button class="btn btn-success">Stalk</button>
+                              </form>
+                            <% } %>
                           </div>
                       </div>
                   </div>

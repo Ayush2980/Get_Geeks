@@ -2,14 +2,19 @@ const Joi = require("joi");
 const { joiPasswordExtendCore } = require('joi-password');
 const joiPassword = Joi.extend(joiPasswordExtendCore);
 
-module.exports.userSchema = Joi.object({
+module.exports.userJOI = Joi.object({
   user : Joi.object({
     username: Joi.string().required(),
     fullname: Joi.string().required(),
+    Email : Joi.string().required(),
     state: Joi.string().required(),
     country: Joi.string().required(),
     CCprof: Joi.string().required(),
     CFprof: Joi.string().required(),
+    images : Joi.object({
+      url : Joi.string(),
+      filename : Joi.string(),
+    }),
     password: joiPassword
                 .string()
                 .minOfSpecialCharacters(1)
@@ -20,5 +25,4 @@ module.exports.userSchema = Joi.object({
                 .onlyLatinCharacters()
                 .required(),
   }).required(),
-  image : Joi.optional()
 });

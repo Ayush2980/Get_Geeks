@@ -1,69 +1,84 @@
 <div class="container">
-    <h1 class="text-light" >All Users</h1>
+  <h1 class="text-light">All Users</h1>
 
-<% for (let user of allUsers){%>
-    <%userType = undefined%>
-        <div class="card mb-3 custom-bg-ai text-light">
-            <div class="row">
-                <div class="col-md-4">
-                    <%if(user.images.url) {%>
-                    <img class="img-fluid" alt="" src="<%=user.images.url%>">
-                    <% }else {%>
-                    <img class="img-fluid" alt=""
-                        src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png">
-                    <% } %>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= user.username %> </h5>
-                        
-                        <p class="card-text"><%= user.state %> , <%= user.country %></p>
-                        <p class="card-text">
-                            <small class="text-muted"><%= user.fullname%></small>
-                        </p>
-                    </div>
-                    <form action="/profile/<%= user.id%>" method="post">
-                        <button class="btn btn-primary">View <%= user.username %></button>
-                    </form>
-                    <% for(let i = 0; i< loggedin.friendList.length; i++){ %>
-                        <%if(loggedin.friendList[i].friendId == user.id){%>
-                            <%if(loggedin.friendList[i].status == 1){%>
-                                <form action="/chat/<%= loggedin._id %>/<%= currUser.friendList[i].friendId.id%>">
-                                    <button class="btn btn-success">Chat</button>
-                                </form>
-                                <form action="/removeFriend/<%= loggedin._id%>/<%= currUser.friendList[i].friendId.id %>" method="post">
-                                    <button class="btn btn-danger">Remove friend</button>
-                                </form>
-                                <% userType = 1;%>
-                                <%break;%>
-                                <%}else{%>
-                                    <form action="/profile/<%= user.id%>" method="post">
-                                        <button class="btn btn-primary" disabled>Request Sent</button>
-                                    </form>
-                                    <% userType = 1;%>
-                                <%break;%>
-                            <%}%>
-                        <%}%>
-                    <%}%>
-                    <% for(let i = 0; i< loggedin.pending.length; i++){ %>
-                        <%if(loggedin.pending[i] == user.id){%>
-                            <form action="/accept/<%= loggedin._id%>/<%= currUser.pending[i].id%>" method="post">
-                                <button class="btn btn-success">Accept</button>
-                            </form>
-                            <form action="/reject/<%= loggedin._id%>/<%= currUser.pending[i].id %>" method="post">
-                                <button class="btn btn-danger">Reject</button>
-                            </form>
-                            <% userType = 1;%>
-                            <%break;%>
-                        <%}%>
-                    <%}%>
-                    <%if(userType == undefined){%>
-                        <form action="/sendReq/<%= loggedin._id%>/<%= user.id %>" method="post">
-                            <button class="btn btn-primary">Add friend</button>
-                        </form>
-                    <%}%>
-                            </div>
-                        </div>
+  <% for (let user of allUsers){%> <%userType = undefined%>
+  <div class="card mb-3 custom-bg-ai text-light">
+    <div class="row">
+      <div class="col-md-4">
+        <%if(user.images.url) {%>
+        <img class="img-fluid" alt="" src="<%=user.images.url%>" />
+        <% }else {%>
+        <img
+          class="img-fluid"
+          alt=""
+          src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png"
+        />
+        <% } %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= user.username %></h5>
+
+          <p class="card-text"><%= user.state %> , <%= user.country %></p>
+          <p class="card-text">
+            <small class="text-light"><%= user.fullname%></small>
+          </p>
         </div>
-<% }%>
+        <div class="row">
+          <div class="col">
+            <form action="/profile/<%= user.id%>" method="post">
+              <button class="btn btn-primary">View <%= user.username %></button>
+            </form>
+          </div>
+          <% for(let i = 0; i< loggedin.friendList.length; i++){ %>
+          <%if(loggedin.friendList[i].friendId == user.id){%>
+          <%if(loggedin.friendList[i].status == 1){%>
+            <div class="col">
+                <form
+                  action="/removeFriend/<%= loggedin._id%>/<%= currUser.friendList[i].friendId.id %>"
+                  method="post"
+                >
+                  <button class="btn btn-danger">Remove friend</button>
+                </form>
+            </div>
+          <% userType = 1;%> <%break;%> <%}else{%>
+            <div class="col">
+                <form action="/profile/<%= user.id%>" method="post">
+                  <button class="btn btn-primary" disabled>Request Sent</button>
+                </form>
+            </div>
+          <% userType = 1;%> <%break;%> <%}%> <%}%> <%}%> <% for(let i = 0; i<
+          loggedin.pending.length; i++){ %> <%if(loggedin.pending[i] ==
+          user.id){%>
+            <div class="col">
+                <form
+                  action="/accept/<%= loggedin._id%>/<%= currUser.pending[i].id%>"
+                  method="post"
+                >
+                  <button class="btn btn-success">Accept</button>
+                </form>
+            </div>
+            <div class="col">
+                <form
+                  action="/reject/<%= loggedin._id%>/<%= currUser.pending[i].id %>"
+                  method="post"
+                >
+                  <button class="btn btn-danger">Reject</button>
+                </form>
+            </div>
+          <% userType = 1;%> <%break;%> <%}%> <%}%> <%if(userType ==
+          undefined){%>
+            <div class="col">
+                <form
+                  action="/sendReq/<%= loggedin._id%>/<%= user.id %>"
+                  method="post"
+                >
+                  <button class="btn btn-primary">Add friend</button>
+                </form>
+            </div>
+          <%}%>
+        </div>
+      </div>
+    </div>
+  <% }%>
 </div>

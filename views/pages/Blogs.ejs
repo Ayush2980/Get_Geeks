@@ -1,167 +1,54 @@
 <% layout("layout/boilerplate_blogs.ejs") %>
 <div class="container-fluid">
-  <%- include('../partials/flash-success.ejs')%>
-  <%- include('../partials/flash-error.ejs')%>
-  <% if(loggedin){ %>
-    <div id="login" hidden> <%= JSON.stringify(loggedin)%> </div>
-    <form action="/Blogs/addNew/<%= loggedin._id %>">
-      <button class="btn btn-primary">Add New Blog</button>
-    </form>
-    <% } %>
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col-6 blog-cont">
-        <div id="data" hidden> <%=blogs.length %> </div>
-        <form action="/signin_redirect" hidden>
-          <button id="redirector">redirect</button>
-        </form>
-        <% for(var i = 0;i < blogs.length ;i ++){ %>
-          <div class="blog-details" hidden><%= JSON.stringify(blogs[i])%></div>
+  <%- include('../partials/flash-success.ejs')%> <%-
+  include('../partials/flash-error.ejs')%> <% if(loggedin){ %>
+  <div id="login" hidden><%= JSON.stringify(loggedin)%></div>
+  <form action="/Blogs/addNew/<%= loggedin._id %>">
+    <button class="btn btn-primary">Add New Blog</button>
+  </form>
+  <% } %>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6 blog-cont">
+      <div id="data" hidden><%=blogs.length %></div>
+      <form action="/signin_redirect" hidden>
+        <button id="redirector">redirect</button>
+      </form>
+      <% if(blogs){ %> 
+        <% for(var i = 0;i < blogs.length ;i++){ %>
+        <div class="blog-details" hidden><%= JSON.stringify(blogs[i])%></div>
         <div class="card text-center my-2">
-            <div class="card-header">
-              <%= blogs[i].author.fullname%>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title"><%= blogs[i].title %></h5>
-              <p class="card-text"><%= blogs[i].body %></p>
-            </div>
-            <div class="card-footer">
-              <div class="row">
-                <div class="col-4">
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Comment
-                  </button>
-                  <!-- Modal data -->
-                  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl  modal-dialog-centered modal-dialog-scrollable">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="staticBackdropLabel">Post by <b><%= blogs[i].author.fullname%></b> on <b><%= blogs[i].title %></b></h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-6"><%= blogs[i].body %></div>
-                            <div class="col-6"></div>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          Footer
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-2"></div>
-                <div class="col-6">
-                  <button type="button" class="btn likeBtn"> <span class="like"><%= blogs[i].likes %></span> Likes</button>
-                  <button type="button" class="btn btn-secondary" data-bs-placement="right" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title='<div class="row"><div class="col-12">Uploaded on : <%= blogs[i].createdAt %></div><div class="col-12">Updated on : <%= blogs[i].updatedAt %></div></div>'>
-                    Details
-                  </button>
-                </div>
+          <div class="card-header"><%= blogs[i].author.fullname %></div>
+          <div class="card-body">
+            <h5 class="card-title"><%= blogs[i].title %></h5>
+            <p class="card-text"><%= blogs[i].body %></p>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-4"></div>
+              <div class="col-2"></div>
+              <div class="col-6">
+                <button type="button" class="btn likeBtn">
+                  <span class="like"><%= blogs[i].likes %></span> Likes
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-placement="right"
+                  data-bs-toggle="tooltip"
+                  data-bs-html="true"
+                  data-bs-title='<div class="row"><div class="col-12">Uploaded on : <%= blogs[i].createdAt %></div><div class="col-12">Updated on : <%= blogs[i].updatedAt %></div></div>'
+                >
+                  Details
+                </button>
               </div>
             </div>
           </div>
+        </div>
+        <% } %>
       <% } %>
     </div>
     <div class="col-3"></div>
   </div>
 </div>
 <script src="/socket.io/socket.io.js"></script>
-<script>
-  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-
-
-  //Real Time Like functionality using SOcket
-  var elemCnt = document.getElementById('data').innerHTML;
-  var btn = document.getElementsByClassName('likeBtn');
-  var like = document.getElementsByClassName('like');
-  const loggedIn = document.getElementById('login');
-  //for each button we code ==::::
-  for(let i =0;i < elemCnt ;i++){
-    //Setting the default design for buttons based on logged in user data 
-    if(loggedIn){
-      const blogData = JSON.parse(document.getElementsByClassName('blog-details')[i].innerHTML); //has the total blog info 
-      const userData = JSON.parse(document.getElementById('login').innerHTML);
-      const isLiked = (blogData.likers.indexOf(userData._id) > -1);//True means user has liked it 
-      if(isLiked) btn[i].classList.add('btn-danger');
-      else btn[i].classList.add('btn-outline-danger');
-    }
-    else{
-      btn[i].classList.add('btn-outline-danger');
-    }
-    //Adding event Listener to all buttons 
-    btn[i].addEventListener('click' , (e) => {
-      e.preventDefault();
-      if(loggedIn ){
-        const isLiked = btn[i].classList.contains('btn-outline-danger');
-        if(isLiked){//We are liking in this case
-          btn[i].classList.remove('btn-outline-danger');
-          btn[i].classList.add('btn-danger');
-          const blogData = JSON.parse(document.getElementsByClassName('blog-details')[i].innerHTML); //has the total blog info 
-          const userData = JSON.parse(document.getElementById('login').innerHTML);
-          $.ajax({
-            url : `/Blogs/like/${userData._id}/${blogData._id}`,
-            type : 'POST',
-            success : (data) => {
-              if(data.success == true){
-                var socket = io();
-                socket.emit("like" , data.Blog)
-              }
-              else{
-                console.log(data.msg);
-              }
-            }
-          })
-          
-          
-        }
-        else{//We are disliking in this case 
-          btn[i].classList.add('btn-outline-danger');
-          btn[i].classList.remove('btn-danger');
-          const blogData = JSON.parse(document.getElementsByClassName('blog-details')[i].innerHTML); //has the total blog info 
-          const userData = JSON.parse(document.getElementById('login').innerHTML);
-          $.ajax({
-            url : `/Blogs/unlike/${userData._id}/${blogData._id}`,
-            type : 'POST',
-            success : (data) => {
-              if(data.success == true){
-                var socket = io();
-                socket.emit("dislike" , data.Blog)
-              }
-              else{
-                console.log(data.msg);
-              }
-            }
-          })
-        }
-      }
-      else{
-        document.getElementById('redirector').click();
-      }
-    })
-  }
-  var socket = io();
-  socket.on("like" , (data) => {
-    const blogDetails = document.getElementsByClassName('blog-details');
-    for(let i= 0; i < blogDetails.length; i++){
-      const id = JSON.parse(blogDetails[i].innerHTML)._id
-      if(data._id == id){
-        like[i].innerHTML = data.likes;
-        break;
-      }
-    }
-  })
-  socket.on("dislike" , (data) => {
-    const blogDetails = document.getElementsByClassName('blog-details');
-    for(let i= 0; i < blogDetails.length; i++){
-      const id = JSON.parse(blogDetails[i].innerHTML)._id
-      if(data._id == id){
-        like[i].innerHTML = data.likes;
-        break;
-      }
-    }
-  })
-</script>
