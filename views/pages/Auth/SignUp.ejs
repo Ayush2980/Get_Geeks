@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="/stylesheets/auth/custom-register.css" />
+<link rel="stylesheet" href="/stylesheets/auth/register.css" />
+<% layout('layout/BoilerPlateMain')%>
+<%-include('../../partials/flash/flash-error.ejs')%>
+<%-include('../../partials/flash/flash-success.ejs')%>
+<div id="main" class="main-container">
+    <div class="box">
+        <h2>SignUp</h2>
+        <div class="form-div">
+          <form class="row" action="/register" method="post" novalidate>
+            <div class="col-6 text-white">
+              <div class="input-box">
+                <input id="user-name" type="text" name="username" required="" />
+                <label>Username</label>
+              </div>
+              <div class="input-box">
+                <input id="user-name" type="text" name="Email" required="" />
+                <label>Email</label>
+              </div>
+              <div class="input-box">
+                <input id="user-name" type="text" name="country" required="" />
+                <label>Country</label>
+              </div>
+            </div>
+            <div class="col-6 text-white">
+              <div class="input-box">
+                <input id="user-name" type="password" name="password" required="" />
+                <label>Password</label>
+              </div>
+              <div class="input-box">
+                <input id="user-name" type="text" name="CFprof" required="" />
+                <label>CF Handle</label>
+              </div>
+              <div class="input-box">
+                <input id="user-pass" type="text" name="CCprof" required="" />
+                <label>CC Handle</label>
+              </div>
+            </div>
+            
+            <input id="submit" type="submit" name="" value="Submit" />
+          </form>
+        </div>
+        
+        <div class="lower-deck">
+          <p class="text-white">New to getGeeks ? <a href="/signin" style="color: blue;"> SignIn.</a></p>
+        </div>
+      </div>
+</div>
+
+<div id="logged-in"></div>
+
+<script>
+</script>

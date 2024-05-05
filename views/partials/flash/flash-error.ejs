@@ -1,0 +1,59 @@
+<% if(error && error.length){ %>
+<div id="error-alert" class="error-alert alert alert-danger" role="alert" >
+  <div class="error-text"><%= error%></div>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<%}%>
+<link rel="stylesheet" href="/stylesheets/flash/flash-error.styles.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+<script>
+  console.log("data loaded");
+  const errorobj = document.getElementById("error-alert");
+  const errortext = document.getElementsByClassName("error-text")[0];
+  anime({
+    targets : errorobj,
+    // translateX : [{value : "0%" , duration : 1000}],
+    duration : 2000,
+    easing : "easeInOutQuad",
+    update  : (anim) => {
+      const {progress} = anim;
+      if(progress == 25){
+        anime({
+          targets : errorobj ,
+          duration : 2000,
+          translateX : "0%",  
+          easing : "easeInOutQuad"
+        })
+      }
+      if(progress == 100){
+        anime({
+          targets : errorobj ,
+          duration : 2000,
+          opacity : 0,  
+          easing : "easeInOutQuad"
+          
+        })
+      }
+    }
+  })
+  // anime({
+  //   targets: errorobj,
+  //   opacity: [
+  //     { value: 0, duration: 200 },
+  //     { value: 1, duration: 800 },
+  //   ],
+  //   width: "20%",
+  //   duration: 1000,
+  //   easing: "easeInOutQuad",
+  //   update : (anim) => {
+  //     const {progress} = anim;
+
+  //   }
+  // });
+</script>

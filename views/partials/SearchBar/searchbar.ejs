@@ -1,0 +1,100 @@
+<form
+  class="d-flex justify-content-center mx-2 my-2 input-container"
+  action="/fetch"
+>
+  <div class="input-group mb-3" id="big-search" style="width: 0%; opacity: 0">
+    <input type="text" class="real-handle" name="handle" value="CF" hidden />
+    <button
+      type="button"
+      class="btn btn-outline-secondary search-img-btn"
+      id="flag-platform"
+    >
+      @cf
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <span class="visually-hidden">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu custom-styling">
+      <li class="plats">
+        <a class="dropdown-item codeforces" href="#">CodeForces</a>
+      </li>
+      <li><hr class="dropdown-divider" /></li>
+      <li class="plats">
+        <a class="dropdown-item codechef" href="#">CodeChef</a>
+      </li>
+    </ul>
+    <input
+      type="text"
+      name="username"
+      class="form-control real-input"
+      required
+    />
+    <button type="submit" class="search-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="100"
+        height="100"
+        viewBox="0,0,256,256"
+        style="fill: #ffffff"
+      >
+        <g
+          fill="#ffffff"
+          fill-rule="nonzero"
+          stroke="none"
+          stroke-width="1"
+          stroke-linecap="butt"
+          stroke-linejoin="miter"
+          stroke-miterlimit="10"
+          stroke-dasharray=""
+          stroke-dashoffset="0"
+          font-family="none"
+          font-weight="none"
+          font-size="none"
+          text-anchor="none"
+          style="mix-blend-mode: normal"
+        >
+          <g transform="scale(5.12,5.12)">
+            <path
+              d="M21,3c-9.39844,0 -17,7.60156 -17,17c0,9.39844 7.60156,17 17,17c3.35547,0 6.46094,-0.98437 9.09375,-2.65625l12.28125,12.28125l4.25,-4.25l-12.125,-12.09375c2.17969,-2.85937 3.5,-6.40234 3.5,-10.28125c0,-9.39844 -7.60156,-17 -17,-17zM21,7c7.19922,0 13,5.80078 13,13c0,7.19922 -5.80078,13 -13,13c-7.19922,0 -13,-5.80078 -13,-13c0,-7.19922 5.80078,-13 13,-13z"
+            ></path>
+          </g>
+        </g>
+      </svg>
+    </button>
+  </div>
+</form>
+
+<link rel="stylesheet" href="/stylesheets/homepage/homepage.styles.css" />
+<link rel="stylesheet" href="/stylesheets/homepage/customHomepage.styles.css" />
+<script src="/JavaScript/homepage/searchbar.js"></script>
+<script>
+  window.addEventListener("load", () => {
+    const searchbar = document.getElementById("big-search");
+    console.log("this is the animator this sid e");
+    anime({
+      targets: searchbar,
+      opacity: [
+        { value: 0, duration: 200 },
+        { value: 1, duration: 800 },
+      ],
+      width: "80%", // Maximum width
+      duration: 1000, // Duration of the animation in milliseconds
+      easing: "easeInOutQuad", // Easing function for smooth animation
+    });
+
+    const platforms = document.getElementsByClassName("plats");
+    const texts = document.getElementsByClassName("dropdown-item");
+    for (let i = 0; i < 2; i++) {
+      platforms[i].addEventListener("hover", () => {
+        texts[i].style.color = `black`;
+      });
+    }
+  });
+</script>

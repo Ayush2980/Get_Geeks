@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+	box-sizing: border-box;
+}
+
+h3 {
+	margin: 10px 0;
+}
+
+h6 {
+	margin: 5px 0;
+	text-transform: uppercase;
+}
+
+p {
+	font-size: 14px;
+	line-height: 21px;
+}
+
+.input-container{
+    width: 100% !important;
+}
+
+.card-containerr {
+	background-color: #141E30;
+	border-radius: 5px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+	color: #B3B8CD;
+	padding-top: 30px;
+	position: relative;
+	width: 350px;
+	max-width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 100%;
+}
+
+.card-containerr .left{
+	width: 50%;
+	/* border: white solid 2px; */
+	margin: 5%;
+}
+.card-containerr .right{
+	width: 50%;
+	/* border: white solid 2px; */
+	margin: 5%;
+}
+
+
+.card-containerr .round {
+	border: 1px solid #03BFCB;
+	border-radius: 100%;
+	padding: 7px;
+    height:45% !important;
+}
+
+button.primary {
+	background-color: #03BFCB;
+	border: 1px solid #03BFCB;
+	border-radius: 3px;
+	color: #231E39;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	padding: 10px 25px;
+}
+
+button.primary.ghost {
+	background-color: transparent;
+	color: #02899C;
+}
+
+.skills {
+	background-color: #1F1A36;
+	text-align: left;
+	padding: 15px;
+	margin-top: 30px;
+	overflow-y: scroll;
+	height: 75%;
+	position: relative;
+}
+
+
+.skills ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.skills ul li {
+	font-size: 12px;
+	margin: 0 7px 7px 0;
+	padding: 7px;
+}
+.skills ul .green {
+	border: 1px green solid;
+	border-radius: 3px;
+}
+.skills ul .red {
+	border: 1px red solid;
+	border-radius: 3px;
+}
+
+.rating{
+	width: 100%;
+	height: 50%;
+}
+
+
+/* Scrollbar settings */
+::-webkit-scrollbar {
+	width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+	background: #141E30;
+
+  }
+   
+  ::-webkit-scrollbar-thumb {
+	background: #888; 
+	border-radius : 100px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+	background: #555; 
+  }
+
+
+/* Rating changes bar  */
+.rank , .date ,.change , .delta{
+	width: 10%;
+}
+.contest{
+	width: 50%;
+}
+
+@media(max-width : 920px){
+	.right , .left{
+		width:  100% !important;
+		margin: 0px !important;
+	}
+	.left{
+		padding: 2% !important;
+	}
+	.right{
+		margin-top: 4% !important;
+	}
+	.card-containerr{
+		flex-direction: column !important;
+	}
+	.card-containerr{
+		height:  100% !important;
+	}
+	h6{
+		text-transform: capitalize;
+	}
+}

@@ -1,1 +1,2 @@
-Go and check outwhy teh usernameand password you are giving is not working
+user handles check and verification 
+user email check using actual handle of get geeks

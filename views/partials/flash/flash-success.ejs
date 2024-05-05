@@ -1,0 +1,45 @@
+<% if(success && success.length){ %>
+<div id="success-alert" class="success-alert alert alert-success" role="alert">
+  <div class=""><%= success%></div>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+    ></button>
+  </div>
+  <%}%> 
+<link rel="stylesheet" href="/stylesheets/flash/flash-success.styles.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+<script>
+  console.log("data loaded");
+  const successobj = document.getElementById("success-alert");
+  const successtext = document.getElementsByClassName("success-text")[0];
+  anime({
+    targets : successobj,
+    // translateX : [{value : "0%" , duration : 1000}],
+    duration : 2000,
+    easing : "easeInOutQuad",
+    update  : (anim) => {
+      const {progress} = anim;
+      if(progress == 25){
+        anime({
+          targets : successobj ,
+          duration : 2000,
+          translateX : "0%",  
+          easing : "easeInOutQuad"
+        })
+      }
+      if(progress == 100){
+        anime({
+          targets : successobj ,
+          duration : 2000,
+          opacity : 0,  
+          easing : "easeInOutQuad"
+          
+        })
+      }
+    }
+  })
+</script>

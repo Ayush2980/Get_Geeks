@@ -1,0 +1,34 @@
+<% layout('layout/BoilerPlateMain')%>
+<%-include('../../partials/flash/flash-error.ejs')%>
+<%-include('../../partials/flash/flash-success.ejs')%>
+<div id="main" class="main-container">
+  <div class="box">
+    <h2>Login</h2>
+    <form class="signin-form" method="post" action="/signin">
+      <div class="input-box">
+        <input id="user-name" type="text" name="username" required />
+        <label>Username</label>
+      </div>
+      <div class="input-box">
+        <input id="user-pass" type="password" name="password" required />
+        <label>Password</label>
+      </div>
+      <input id="submit" type="submit" name="" value="Login" />
+    </form>
+    <div class="lower-deck">
+      <p class="text-white">New to getGeeks ? <a href="/signup" style="color: blue;"> Register.</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="logged-in"></div>
+
+<link rel="stylesheet" href="/stylesheets/auth/login.css" />
+<script>
+  // const submitBtn = document.getElementById("submit");
+  // submitBtn.addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   console.log(document.getElementsByClassName("signin-form")[0].value);
+  //   console.log("Clicked");
+  // });
+</script>

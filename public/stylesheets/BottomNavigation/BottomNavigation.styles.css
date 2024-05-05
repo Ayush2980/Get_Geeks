@@ -1,0 +1,89 @@
+.bottom-navigation {
+  position: fixed;
+  bottom: 3.5%;
+  width: 100vw;
+  height: 10vh;
+  /* background-color: red; */
+  z-index: 20000;
+}
+
+@media (min-width: 920px) {
+  .bottom-navigation {
+    display: none;
+  }
+}
+@media (max-width: 920px) {
+  .nav {
+    position: relative;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #1b222f;
+    border: 1px solid #252325;
+    border-radius: 30px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    overflow: hidden;
+  }
+
+  .nav-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 50px;
+    margin: 0 5px;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .nav-item.is-active {
+    /* color of active tab text */
+    color: #6ba7a8;
+  }
+
+  .nav-item.is-active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120%;
+    height: 120%;
+    transform: translate(-10%, -10%);
+    /* this is the torch like effect */
+    background: radial-gradient(#6ba7a8, transparent);
+    filter: blur(10px);
+    opacity: 0.2;
+  }
+
+  .nav-item i {
+    font-size: 24px;
+  }
+
+  .nav-item span {
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .nav-indicator-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.175);
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-indicator {
+    width: 30px;
+    height: 5px;
+    background-color: #6ba7a8;
+    border-radius: 10px;
+  }
+}

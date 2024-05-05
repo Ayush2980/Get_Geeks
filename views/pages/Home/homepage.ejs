@@ -1,0 +1,132 @@
+<% layout('layout/BoilerPlateMain.ejs') %>
+<div class="container-fluid" >
+
+    <%- include('../../partials/flash/flash-success.ejs') %>
+    <%- include('../../partials/flash/flash-error.ejs') %>
+
+    <%- include('../../partials/SearchBar/searchbar.ejs') %>
+    
+    <div class="content">
+        <div class="section1">
+           <h1 class="heading-mobile" style="font-size: 2.5rem; text-align: start;">Welcome to getGeeks</h1>
+           <div class="mountain">
+               <div class="mountain-words">
+                   <h1 class="big-screen-data">All your Competitve Programming friends in one place, accessible easily.</h1>
+                   <h2 class="mx-5 big-screen-data">GetGeeks makes your task of keeping a track of your peers in competitve programming
+                       easier by storing their data of multiple handles under one hood.</h2>
+                    <h2 class="small-screen-data">GetGeeks makes your task of keeping a track of your peers in competitve programming
+                        easier by storing their data of multiple handles under one hood.</h2>
+                   <h2 style="text-align: start; display: block;" class="common-screen-text">Grind and Grow !!</h2>
+                   <button class="get-started">Get Started</button>
+               </div>
+           </div>
+       </div>
+
+        <div class="section2 row justify-content-md-center">
+            <div style="padding-top: 5%;" class="card col-10 col-md-4 mx-2 mx-md-5 my-3 my-md-5">
+                <img src="https://raw.githubusercontent.com/hammercait/fylo-dark-theme-landing-page/658fd0afb4462e6a7e94996ab981bb7d5b336997/images/icon-access-anywhere.svg" class="card-img-top" alt="...">
+                <div class="card-body" style="width: 100%;">
+                    <h3 class="card-title text-white" style="width: 100%;">Access your files, anywhere</h3>
+                    <p class="card-text">The ability to use a smartphone, tablet, or computer to access your account means your files
+                        follow you everywhere.</p>
+                </div>
+              </div>
+            <div style="padding-top: 5%;" class="card col-10 col-md-4 mx-2 mx-md-5 my-3 my-md-5">
+                <img src="https://raw.githubusercontent.com/hammercait/fylo-dark-theme-landing-page/658fd0afb4462e6a7e94996ab981bb7d5b336997/images/icon-security.svg" class="card-img-top" alt="...">
+                <div class="card-body" style="width: 100%;">
+                    <h3 class="card-title text-white" style="width: 100%;">Access your files, anywhere</h3>
+                    <p class="card-text">The ability to use a smartphone, tablet, or computer to access your account means your files
+                        follow you everywhere.</p>
+                </div>
+              </div>
+            <div style="padding-top: 5%;" class="card col-10 col-md-4 mx-2 mx-md-5 my-3 my-md-5">
+                <img src="https://raw.githubusercontent.com/hammercait/fylo-dark-theme-landing-page/658fd0afb4462e6a7e94996ab981bb7d5b336997/images/icon-collaboration.svg" class="card-img-top" alt="...">
+                <div class="card-body" style="width: 100%;">
+                    <h3 class="card-title text-white" style="width: 100%;">Access your files, anywhere</h3>
+                    <p class="card-text">The ability to use a smartphone, tablet, or computer to access your account means your files
+                        follow you everywhere.</p>
+                </div>
+              </div>
+            <div style="padding-top: 5%;" class="card col-10 col-md-4 mx-2 mx-md-5 my-3 my-md-5">
+                <img src="https://raw.githubusercontent.com/hammercait/fylo-dark-theme-landing-page/658fd0afb4462e6a7e94996ab981bb7d5b336997/images/icon-any-file.svg" class="card-img-top" alt="...">
+                <div class="card-body" style="width: 100%;">
+                    <h3 class="card-title text-white" style="width: 100%;">Access your files, anywhere</h3>
+                    <p class="card-text">The ability to use a smartphone, tablet, or computer to access your account means your files
+                        follow you everywhere.</p>
+                </div>
+              </div>
+              
+        </div>
+    </div>
+        <div class="pg-footer">
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-content-column">
+          <div class="footer-logo">
+            <a class="footer-logo-link" href="#">
+              <span class="hidden-link-text">LOGO</span>
+              <h1>LOGO</h1>
+            </a>
+          </div>
+          <div class="footer-menu">
+            <h2 class="footer-menu-name"> Get Started</h2>
+            <ul id="menu-get-started" class="footer-menu-list">
+              <li class="menu-item menu-item-type-post_type menu-item-object-product">
+                <a href="#">Start</a>
+              </li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-product">
+                <a href="#">Documentation</a>
+              </li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-product">
+                <a href="#">Installation</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-content-column">
+          <div class="footer-menu">
+            <h2 class="footer-menu-name"> Company</h2>
+            <ul id="menu-company" class="footer-menu-list">
+              <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                <a href="#">Contact</a>
+              </li>
+              <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
+                <a href="#">News</a>
+              </li>
+              <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                <a href="#">Careers</a>
+              </li>
+            </ul>
+    </footer>
+  </div>
+    
+    </div>
+</div>
+
+<link rel="stylesheet" href="/stylesheets/homepage/homepage.styles.css">
+<link rel="stylesheet" href="/stylesheets/homepage/customHomepage.styles.css">
+<script src="/JavaScript/homepage/searchbar.js"></script>
+<script>
+    window.addEventListener("load" , () => {
+        const searchbar = document.getElementById("big-search");
+    console.log("this is the animator this sid e")
+    anime({
+        targets: searchbar,
+        opacity : [
+        {value : 0, duration :200  },
+        {value : 1, duration :800  }
+        ],
+        width: '80%', // Maximum width
+        duration: 1000, // Duration of the animation in milliseconds
+        easing: 'easeInOutQuad' // Easing function for smooth animation
+    });
+
+    const platforms = document.getElementsByClassName("plats");
+    const texts = document.getElementsByClassName("dropdown-item");
+    for(let i = 0;i <2;i++){
+      platforms[i].addEventListener("hover" , () => {
+        texts[i].style.color = `black`
+      })
+    }
+  });
+</script>

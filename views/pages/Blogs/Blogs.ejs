@@ -1,0 +1,131 @@
+<% layout("layout/BoilerPlateMain.ejs") %>
+<div class="container-fluid">
+  <%- include('../../partials/flash/flash-success.ejs')%> <%-
+  include('../../partials/flash/flash-error.ejs')%> <% if(loggedin){ %>
+  <form
+    class="plus-form"
+    method="get"
+    action="/Blogs/addNew/<%= loggedin._id%>"
+  >
+    <button class="new-blog-btn">
+      <svg
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 512 512"
+        xml:space="preserve"
+        fill="#000000"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <circle style="fill: #141e30" cx="256" cy="256" r="256"></circle>
+          <path
+            style="fill: #243b55"
+            d="M256,0v512c141.385,0,256-114.615,256-256S397.385,0,256,0z"
+          ></path>
+          <polygon
+            style="fill: #f2f2f4"
+            points="384,228.571 283.429,228.571 283.429,128 228.571,128 228.571,228.571 128,228.571 128,283.429 228.571,283.429 228.571,384 283.429,384 283.429,283.429 384,283.429 "
+          ></polygon>
+          <rect
+            x="283.429"
+            y="228.571"
+            style="fill: #dfdfe1"
+            width="100.571"
+            height="54.857"
+          ></rect>
+        </g>
+      </svg>
+    </button>
+  </form>
+  <% } %>
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 col-md-6 mx-5 blog-cont">
+      <div id="data" hidden><%=blogs.length %></div>
+      <form action="/signin_redirect" hidden>
+        <button id="redirector">redirect</button>
+      </form>
+      <% if(loggedin){ %>
+      <p class="text-white" id="hidden-id" hidden><%= loggedin._id %></p>
+      <%}%> <% if(blogs){ %> <% for(var i = blogs.length - 1;i >= 0 ;i--){ %>
+      <!-- <div class="wrapper"> -->
+      <div class="card my-4">
+        <div class="user">
+          <div class="profile">
+            <img src="https://placehold.co/50" alt="avatar" class="ava" />
+            <div class="username">
+              <h3 class="name text-white"><%= blogs[i].author.username %></h3>
+              <p class="uname">@realjohndoe</p>
+            </div>
+          </div>
+          <% if(loggedin && (parseInt(loggedin._id) ==
+          parseInt(blogs[i].author._id))){ %>
+          <svg
+            fill="#ffffff"
+            width="24px"
+            height="24px"
+            class="delete-icon"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="#ffffff"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"
+              ></path>
+            </g>
+          </svg>
+          <%}%>
+        </div>
+        <div class="twitt text-white">
+          <h4 class="py-3 text-white"><%= blogs[i].title%></h4>
+          <p class="px-2"><%= blogs[i].body %></p>
+        </div>
+        <div class="insight">
+          <div class="like">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="heart">
+                <path
+                  id="Vector"
+                  d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.57831 8.50903 2.99871 7.05 2.99871C5.59096 2.99871 4.19169 3.57831 3.16 4.61C2.1283 5.64169 1.54871 7.04097 1.54871 8.5C1.54871 9.95903 2.1283 11.3583 3.16 12.39L4.22 13.45L12 21.23L19.78 13.45L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6054C22.3095 9.93789 22.4518 9.22249 22.4518 8.5C22.4518 7.77751 22.3095 7.0621 22.0329 6.39464C21.7563 5.72718 21.351 5.12075 20.84 4.61V4.61Z"
+                  stroke="white"
+                  stroke-opacity="0.6"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </g>
+            </svg>
+
+            <p class="like-value"><%= blogs[i].likes %></p>
+          </div>
+          <div class="created">
+            <p>3:40 PM – Feb 24, 2022</p>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+      <% } %> <% } %>
+    </div>
+  </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<link rel="stylesheet" href="/stylesheets/Blogs/Blogs.css" />

@@ -1,0 +1,304 @@
+<% layout('layout/BoilerPlateMain.ejs') %>
+<div class="container-profile">
+  <%  if(loggedin){  %>
+    <div id="hidden-id-profile" hidden >loggedin._id</div>
+  <% } %>
+  <div class="row">
+    <div
+      class="col-12 col-md-4 left-profile d-flex justify-content-center align-items-start"
+    >
+      <div class="profile-top-cont row">
+        <div class="col-4 col-md-12 cover-round-img">
+          <img
+            class="round-img"
+            src="https://cdn.codechef.com/sites/default/files/uploads/pictures/0776e14a73d4d772e407f291bf470d35.jpeg"
+            alt=""
+          />
+          <div class="edit-option">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20.1498 7.93997L8.27978 19.81C7.21978 20.88 4.04977 21.3699 3.32977 20.6599C2.60977 19.9499 3.11978 16.78 4.17978 15.71L16.0498 3.84C16.5979 3.31801 17.3283 3.03097 18.0851 3.04019C18.842 3.04942 19.5652 3.35418 20.1004 3.88938C20.6356 4.42457 20.9403 5.14781 20.9496 5.90463C20.9588 6.66146 20.6718 7.39189 20.1498 7.93997V7.93997Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+          </div>
+        </div>
+        <div class="user-data col-8 col-md-12">
+          <h5>Ayush Barman</h5>
+          <h6>Ayush2980 | He/Him</h6>
+        </div>
+      </div>
+      <div class="second-div">
+        <div class="user-about">
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam
+            natus quibusdam sapiente porro voluptatum numquam.
+          </p>
+        </div>
+        <div class="btn btn-secondary my-0 edit-pr-btn" >Edit Profile</div>
+        <div class="handles my-2">
+          <div class="linked-in icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              role="img"
+              aria-labelledby="a5jf7qpbvp58uksv6slzg1ol9thkttmq"
+              class="octicon"
+              >
+              <title id="a5jf7qpbvp58uksv6slzg1ol9thkttmq">LinkedIn</title>
+              <g clip-path="url(#clip0_202_91845)">
+                <path
+                d="M14.5455 0H1.45455C0.650909 0 0 0.650909 0 1.45455V14.5455C0 15.3491 0.650909 16 1.45455 16H14.5455C15.3491 16 16 15.3491 16 14.5455V1.45455C16 0.650909 15.3491 0 14.5455 0ZM5.05746 13.0909H2.912V6.18764H5.05746V13.0909ZM3.96291 5.20073C3.27127 5.20073 2.712 4.64 2.712 3.94982C2.712 3.25964 3.272 2.69964 3.96291 2.69964C4.65236 2.69964 5.21309 3.26036 5.21309 3.94982C5.21309 4.64 4.65236 5.20073 3.96291 5.20073ZM13.0938 13.0909H10.9498V9.73382C10.9498 8.93309 10.9353 7.90327 9.83491 7.90327C8.71855 7.90327 8.54691 8.77527 8.54691 9.67564V13.0909H6.40291V6.18764H8.46109V7.13091H8.49018C8.77673 6.58836 9.47636 6.016 10.52 6.016C12.6924 6.016 13.0938 7.44582 13.0938 9.30473V13.0909V13.0909Z"
+                fill="currentColor"
+                ></path>
+              </g>
+            </svg>
+            <p class="handle-link">LinkedIn</p>
+          </div>
+          <div class="codechef icon">
+            <img style="border-radius: 5px;  width: 20px; height: 20px;" src="https://i.pinimg.com/originals/c5/d9/fc/c5d9fc1e18bcf039f464c2ab6cfb3eb6.jpg" alt="">
+            <p class="handle-link">codechef</p>
+          </div>
+          <div class="codeforces icon">
+            <img style="border-radius: 5px;  width: 20px; height: 20px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAsVBMVEX///9PgcH/1ACuDwpHfL+ctNj/0QD/9typAADv3NxhjMatBAD/4XTTl5f/1zC0NDI9d72Co9Fpksm6y+Tc5fGnvd08dr3T3u5WhsPo7vawxOGhudv/9tP/7rH/1hP//vfZoJ+wFxP/54v/7az/6JT//fL/9Mr/3VL/31z/4Wz/5ID/8Lv/2z/57u3lwcDqzMveray/U1G6RkTJc3HQiIfNgYD/++nEZmX25+a5QT7CXVtLKWyXAAADgElEQVR4nO3daVPaQBjA8RhjDAQxAcJlBe8DgXJVab//B2s4qu10Zo+nQ5Nt///XZmd/86zgG7OeR0RERERERERERERE9F/UytJGVVUjzVpFb/IPanaTIDhSFwRJt1n0RoW1qjrdu7Lq5BybbUPfpraDY8xsgDkxK3rDtjUTK+DRUeLYFHu2wJzYK3rTVjVMP2Q+ChpFb9qmjv0I8yF2it62Ran9CPMhpkVv2yLJCPMhFr1t80SH1Klj2pcc0vyY9oveuHEXQuFF0Rs37kQoPCl648YhRFj+ECIsfwgRlj+ECMsfQoTlDyHC8ocQYflDiLD8IUR4qE4vb2rKRrefzFYqp/CyHoahry4MB3f3jgoffJ3uHXnrpPDG0Lc1Pg7dEz5ZAPMGOmLphDU7oO/XHRNe2gL98Nkp4b01MCc+uCQcCYSac1ou4VDg0w2xXMIXyQh9v+aOcCQC+r47wrEMGKr+eiuXcCAUnjojlAERIkSIECFChAgRIkSI0HnhZHp1pmz22Wnh7DyKolhZ/gPzqavC6XUUHxsUR4uKk8KlmW9nvHJQuIhMfZuipXPCufEA98SVY8KV1QS3xKlTwoo18DiOnRIuLM/odogrh4SCEe6G6Izwi2CE299EZ4TXImG8ckY4kRzSXLhwRij6Ncy7/ueFxwgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSI8ADCQ7xH+BB3q8v/H78uFL4qdtMXCvuKNdfCdyqcezWZUPk+704iEiYd1aKxiBgvBTcjbHtSbcYTCpVrvsnebTITXY2QH9IX5W5SyTENUuWaU9EMo4nnPYlmqNyM7JiqD6ns9S3xW/7gq+R+C911Og37IQYNzZozwRCj9eZJm2t09o01m/F69kNMerpFv1oPcfc6M8nlAfpLn5q2xKSpXXMSWxLj+f7Joe13ourb/kdZ2wrYzgzWrNgR8+/C9x5t7nsaqL7sP2raENv6CW5a23zaRPOfH70zJobP2gut9rWqpic1qbYM1/TeTF8NGUdnvz75WtPeurbhhY+Gl8tta3aTQPehGgRJ12yAuypz3dtLd28wXU5+e3T4MhrXlY1rt2YH9KNWljaqqhppZjy/fevZcnGu7Ntqql+GiIiIiIiIiIiIiIjob/cdbx3Q0gt9Dn0AAAAASUVORK5CYII=" alt="">
+            <p class="handle-link">codeforces</p>
+          </div>
+        </div>
+        <div class="user-connection">
+          
+          <svg
+          text="muted"
+          aria-hidden="true"
+          height="16"
+          viewBox="0 0 16 16"
+          version="1.1"
+          fill="white"
+          width="16"
+          data-view-component="true"
+          class="octicon octicon-people"
+          >
+            <path
+              d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"
+            ></path>
+          </svg>
+          1 Follower · 2 Following
+        </div>
+        <div class="btns my-3">
+          <button class="primary">Add Friend</button>
+          <button class="primary">Message</button>
+        </div>
+      </div>
+      <div class="third-div flex-column">
+        <div class="d-flex flex-column justify-content-center align-items-start  name-branch my-2">
+          <label for="gg-username">Fullname</label>
+          <input class="form-control my-2" type="text" id="gg-username">
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-start  about-branch">
+          <label for="gg-about">About</label>
+          <textarea name="" class="form-control my-2" id="gg-about" cols="20" rows="3"></textarea>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-start my-2  pronouns-branch">
+          <div class="btn-group">
+            <button class="btn btn-secondary btn-sm dropdown-toggle show-pronoun" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Pronouns
+            </button>
+            <ul class="dropdown-menu" style="background-color: #141E30;">
+              <li class="my-0 dd-pro" >He/him</li>
+              <li class="my-0 dd-pro" >She/her</li>
+            </ul>
+          </div>
+          
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-start my-2  links-branch">
+          <h6>Other Handles</h6>
+          <div class="linked-in icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 16 16"
+              fill="none"
+              role="img"
+              aria-labelledby="a5jf7qpbvp58uksv6slzg1ol9thkttmq"
+              class="octicon"
+              >
+              <title id="a5jf7qpbvp58uksv6slzg1ol9thkttmq">LinkedIn</title>
+              <g clip-path="url(#clip0_202_91845)">
+                <path
+                d="M14.5455 0H1.45455C0.650909 0 0 0.650909 0 1.45455V14.5455C0 15.3491 0.650909 16 1.45455 16H14.5455C15.3491 16 16 15.3491 16 14.5455V1.45455C16 0.650909 15.3491 0 14.5455 0ZM5.05746 13.0909H2.912V6.18764H5.05746V13.0909ZM3.96291 5.20073C3.27127 5.20073 2.712 4.64 2.712 3.94982C2.712 3.25964 3.272 2.69964 3.96291 2.69964C4.65236 2.69964 5.21309 3.26036 5.21309 3.94982C5.21309 4.64 4.65236 5.20073 3.96291 5.20073ZM13.0938 13.0909H10.9498V9.73382C10.9498 8.93309 10.9353 7.90327 9.83491 7.90327C8.71855 7.90327 8.54691 8.77527 8.54691 9.67564V13.0909H6.40291V6.18764H8.46109V7.13091H8.49018C8.77673 6.58836 9.47636 6.016 10.52 6.016C12.6924 6.016 13.0938 7.44582 13.0938 9.30473V13.0909V13.0909Z"
+                fill="currentColor"
+                ></path>
+              </g>
+            </svg>
+            <input class="form-control linked-in-data my-2 mx-2" type="text" class="mx-2">
+          </div>
+          <!-- <div class="codechef icon">
+            <img style="border-radius: 5px;  width: 30px; height: 30px;" src="https://i.pinimg.com/originals/c5/d9/fc/c5d9fc1e18bcf039f464c2ab6cfb3eb6.jpg" alt="">
+            <div class="btn-verify mx-2">Verify Handle</div>
+          </div> -->
+          <div class="codeforces icon">
+            <img style="border-radius: 5px;  width: 30px; height: 30px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAsVBMVEX///9PgcH/1ACuDwpHfL+ctNj/0QD/9typAADv3NxhjMatBAD/4XTTl5f/1zC0NDI9d72Co9Fpksm6y+Tc5fGnvd08dr3T3u5WhsPo7vawxOGhudv/9tP/7rH/1hP//vfZoJ+wFxP/54v/7az/6JT//fL/9Mr/3VL/31z/4Wz/5ID/8Lv/2z/57u3lwcDqzMveray/U1G6RkTJc3HQiIfNgYD/++nEZmX25+a5QT7CXVtLKWyXAAADgElEQVR4nO3daVPaQBjA8RhjDAQxAcJlBe8DgXJVab//B2s4qu10Zo+nQ5Nt///XZmd/86zgG7OeR0RERERERERERERE9F/UytJGVVUjzVpFb/IPanaTIDhSFwRJt1n0RoW1qjrdu7Lq5BybbUPfpraDY8xsgDkxK3rDtjUTK+DRUeLYFHu2wJzYK3rTVjVMP2Q+ChpFb9qmjv0I8yF2it62Ran9CPMhpkVv2yLJCPMhFr1t80SH1Klj2pcc0vyY9oveuHEXQuFF0Rs37kQoPCl648YhRFj+ECIsfwgRlj+ECMsfQoTlDyHC8ocQYflDiLD8IUR4qE4vb2rKRrefzFYqp/CyHoahry4MB3f3jgoffJ3uHXnrpPDG0Lc1Pg7dEz5ZAPMGOmLphDU7oO/XHRNe2gL98Nkp4b01MCc+uCQcCYSac1ou4VDg0w2xXMIXyQh9v+aOcCQC+r47wrEMGKr+eiuXcCAUnjojlAERIkSIECFChAgRIkSI0HnhZHp1pmz22Wnh7DyKolhZ/gPzqavC6XUUHxsUR4uKk8KlmW9nvHJQuIhMfZuipXPCufEA98SVY8KV1QS3xKlTwoo18DiOnRIuLM/odogrh4SCEe6G6Izwi2CE299EZ4TXImG8ckY4kRzSXLhwRij6Ncy7/ueFxwgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSI8ADCQ7xH+BB3q8v/H78uFL4qdtMXCvuKNdfCdyqcezWZUPk+704iEiYd1aKxiBgvBTcjbHtSbcYTCpVrvsnebTITXY2QH9IX5W5SyTENUuWaU9EMo4nnPYlmqNyM7JiqD6ns9S3xW/7gq+R+C911Og37IQYNzZozwRCj9eZJm2t09o01m/F69kNMerpFv1oPcfc6M8nlAfpLn5q2xKSpXXMSWxLj+f7Joe13ourb/kdZ2wrYzgzWrNgR8+/C9x5t7nsaqL7sP2raENv6CW5a23zaRPOfH70zJobP2gut9rWqpic1qbYM1/TeTF8NGUdnvz75WtPeurbhhY+Gl8tta3aTQPehGgRJ12yAuypz3dtLd28wXU5+e3T4MhrXlY1rt2YH9KNWljaqqhppZjy/fevZcnGu7Ntqql+GiIiIiIiIiIiIiIjob/cdbx3Q0gt9Dn0AAAAASUVORK5CYII=" alt="">
+            <div class="btn-success btn mx-2">Verify Handle</div>
+          </div>
+          
+        </div>
+        <input class="form-control my-2" type="file" name="" id="gg-dp" hidden>
+        <div class="final-btns">
+          <div class="btn mx-2 btn-success save-edit">Save</div>
+          <div class="btn mx-2 btn-secondary cancel-edit ">Cancel</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-5 right-profile" style="margin: 5%">
+      <h1>Handles</h1>
+      <div class="big-view" style="display: none;">
+        <div class="codeforces-handle my-3">
+          <h3>CodeForces</h3>
+          <div class="card prof-handle-card">
+            <div class="card-header d-flex flex-row align-items-center">
+              <img
+              style="width: 50px; height: 50px; border-radius: 100%"
+                src="https://cdn.codechef.com/sites/default/files/uploads/pictures/0776e14a73d4d772e407f291bf470d35.jpeg"
+                alt=""
+                />
+              <h5 class="mx-4">barman_ayush</h5>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Account Information : </h5>
+              <p class="card-text">
+                <div class="row rating-holder">
+                  <div class="col-4" style="border-right: 2px gray solid;">
+                    <h6>Max Rating  </h6>
+                    <p>1698</p>
+                  </div>
+                  <div class="col-4">
+                    <h6>Current Rating </h6>
+                    <p>1698</p>
+                  </div>
+                </div>
+              </p>
+              <button class="primary mx-2" style="border-radius: 7px;">View Details</button>
+              <button class="primary mx-2" style="border-radius: 7px;">Stalk</button>
+              
+            </div>
+          </div>
+        </div>
+        <div class="codechef-handle my-3">
+          <h3>CodeChef</h3>
+          <div class="card prof-handle-card">
+            <div class="card-header d-flex flex-row align-items-center">
+              <img
+              style="width: 50px; height: 50px; border-radius: 100%"
+                src="https://cdn.codechef.com/sites/default/files/uploads/pictures/0776e14a73d4d772e407f291bf470d35.jpeg"
+                alt=""
+                />
+                <h5 class="mx-4">barman_ayush</h5>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Account Information : </h5>
+                <p class="card-text">
+                  <div class="row rating-holder">
+                    <div class="col-4" style="border-right: 2px gray solid;">
+                      <h6>Max Rating  </h6>
+                      <p>1698</p>
+                    </div>
+                    <div class="col-4">
+                      <h6>Current Rating </h6>
+                      <p>1698</p>
+                    </div>
+                  </div>
+                </p>
+                <button class="primary mx-2" style="border-radius: 7px;">View Details</button>
+                <button class="primary mx-2" style="border-radius: 7px;">Stalk</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="mobile-view">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="codeforces-handle my-3">
+                <h3>CodeForces</h3>
+                <div class="card prof-handle-card">
+                  <div class="card-header d-flex flex-row align-items-center">
+                    <img
+                      style="width: 50px; height: 50px; border-radius: 100%"
+                      src="https://cdn.codechef.com/sites/default/files/uploads/pictures/0776e14a73d4d772e407f291bf470d35.jpeg"
+                      alt=""
+                      />
+                    <h5 class="mx-4">barman_ayush</h5>
+                  </div>
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Account Information : </h5>
+                    <p class="card-text">
+                      <div class="row rating-holder">
+                        <div class="col-6" style="border-right: 2px gray solid; text-align: center;">
+                          <h6>Max Rating  </h6>
+                          <p>1698</p>
+                        </div>
+                        <div class="col-6" style="text-align: center;">
+                          <h6>Current Rating </h6>
+                          <p>1698</p>
+                        </div>
+                      </div>
+                    </p>
+                  </div>
+                  <div class="btn-holder d-flex flex-row">
+                    <button class="primary mx-2" style="border-radius: 7px;">View Details</button>
+                    <button class="primary mx-2" style="border-radius: 7px;">Stalk</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="codechef-handle my-3">
+                <h3>CodeChef</h3>
+                <div class="card prof-handle-card">
+                  <div class="card-header d-flex flex-row align-items-center">
+                    <img
+                    style="width: 50px; height: 50px; border-radius: 100%"
+                      src="https://cdn.codechef.com/sites/default/files/uploads/pictures/0776e14a73d4d772e407f291bf470d35.jpeg"
+                      alt=""
+                    />
+                    <h5 class="mx-4">barman_ayush</h5>
+                  </div>
+                  <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">Account Information : </h5>
+                    <p class="card-text">
+                      <div class="row rating-holder">
+                        <div class="col-6" style="border-right: 2px gray solid; text-align: center;">
+                          <h6>Max Rating  </h6>
+                          <p>1698</p>
+                        </div>
+                        <div class="col-6" style="text-align: center;">
+                          <h6>Current Rating </h6>
+                          <p>1698</p>
+                        </div>
+                      </div>
+                    </p>
+                  </div>
+                  <div class="btn-holder d-flex flex-row">
+                    <button class="primary mx-2" style="border-radius: 7px;">View Details</button>
+                    <button class="primary mx-2" style="border-radius: 7px;">Stalk</button>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" href="/stylesheets/Profile/profile.styles.css" />
+<script src="/JavaScript/Profile/profile.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script type="module"  src="/JavaScript/Sockets/EditProfile.js"></script>

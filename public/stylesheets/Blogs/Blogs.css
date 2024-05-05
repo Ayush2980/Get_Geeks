@@ -1,0 +1,134 @@
+.new-blog-btn {
+  border-radius: 1000px;
+  width: 4%;
+  height: auto;
+  /* background-color: lightblue; */
+  background-color: transparent;
+  border: none;
+  display: inline;
+  position: fixed;
+  right: 24%;
+  bottom: 10%;
+}
+.container-fluid {
+  position: relative;
+}
+.new-blog-btn:hover{
+    width: 4.1%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+/* Each blog card  */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;1,400;1,800&display=swap");
+
+:root {
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: #fff;
+  background-color: #141d26;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding: 35px 31px;
+  gap: 15px;
+  border-radius: 10px;
+  background: #243447;
+  box-shadow: 0px 15px 60px 0px rgba(52, 81, 116, 0.15);
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.ava {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.icon {
+  font-size: 30px;
+  color: #1da1f2;
+}
+
+.username {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.username .name {
+  line-height: normal;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.username .uname {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.twitt .tag {
+  text-decoration: none;
+  color: #1da1f2;
+}
+
+.insight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.like {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.like svg:hover {
+  fill: crimson;
+  filter: drop-shadow(0 0 10px crimson);
+  cursor: pointer;
+}
+
+.delete-icon:hover{
+  fill: red;
+  filter: drop-shadow(0 0 10px crimson);
+  cursor: pointer;
+}

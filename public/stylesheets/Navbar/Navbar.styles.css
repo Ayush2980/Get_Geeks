@@ -1,0 +1,27 @@
+.profile-btn{
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  width: 8vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 50px !important;
+}
+.profile-dropdown{
+  background-color: #1c2431;
+  color: white;
+  border: gray 1px solid;
+  width: 10%;
+}
+.nav-but{
+  margin-right: 2vw !important;
+}
+
+.dropdown-a{
+  color: inherit;
+}
+.dropdown-li:hover{
+  color: black;
+
+}

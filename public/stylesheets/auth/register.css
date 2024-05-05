@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  width: 80vw;
+  height: 80vh;
+  transition: 0.4s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  align-items: center;
+  width: 50vw;
+  height: 80%;
+  background-image: linear-gradient(hsl(218, 28%, 15%), hsl(217, 28%, 13%));
+  padding-top: 5%;
+  box-sizing: border-box;
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+.box > form {
+  width: 80%;
+}
+.lower-deck {
+  margin-top: -5%;
+  margin-left: -10%;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start !important;
+}
+.box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+.box p {
+  margin-bottom: 0;
+}
+.box p:nth-child(even) {
+  margin-top: 0;
+}
+.box a {
+  color: #9a9d9e;
+  font-size: 14px;
+  text-decoration: none;
+}
+.box .input-box {
+  position: relative;
+}
+.box .input-box input {
+  width: 80%;
+  padding: 10px 0;
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #fff;
+  border: 1px solid #fff;
+  border: none;
+  border-bottom-style: solid;
+  outline: none;
+  letter-spacing: 1px;
+  background: transparent;
+}
+
+.box .input-box label {
+  position: absolute;
+  color: #fff;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.box .input-box input:focus ~ label,
+.box .input-box input:valid ~ label {
+  top: -18px;
+  left: 0;
+  color: #03a9f4;
+  font-size: 12px;
+}
+.box input[type="submit"] {
+  background: transparent;
+  border: none;
+  outline: none;
+  background: #03a9f4;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#logged-in {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  top: 50px;
+  display: none;
+}
+.login-true {
+  opacity: 0;
+}
+.redirect-btn {
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  /* margin: 1%; */
+  /* padding: 10px 20px; */
+  padding: 2% 4%;
+  background-color: #03a9f4;
+  color: white;
+}
+@media (max-width: 800px) {
+  .box {
+    width: 90vw;
+  }
+  .box > form {
+    width: 100%;
+  }
+}

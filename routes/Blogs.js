@@ -7,6 +7,7 @@ router.get('/' , Blogs.Blogs);
 // router.get('/' , Blogs.);
 router.get('/addNew/:id' , Blogs.formBlogs);
 router.post('/addNew/:id' ,Blogs.postBlogs );
+//Below remaining
 router.post('/delete/:id/:blogId' , );
 router.post('/like/:id/:blogId' , Blogs.likeBtn);
 router.post('/unlike/:id/:blogId' , Blogs.unlikeBtn);

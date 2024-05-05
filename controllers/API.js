@@ -1,15 +1,40 @@
-const helper = require('../controllers/codeforces.js');
-const fetcher = require('../controllers/codechef.js');
-module.exports.fetch = async(req , res) => {
-    if(req.query.handle === "CF"){
-      const userData = await helper.searchCF(req.query.search);
-      if(userData == undefined) throw new HandleError("User Not Found",404);
-      res.locals.image_stalk = userData.userImage;
-      res.render('pages/findCF' , {userData});
+const { getsvg } = require("../controllers/codeforces.js");
+const {getNumberFromString , getDesignFromRating} = require("../utils/Miscellaneous.js");
+const fetcher = require("../controllers/codechef.js");
+const { default: axios } = require("axios");
+module.exports.fetch = async (req, res) => {
+  try {
+    console.log("Hitt theroute ");
+    const { username, handle } = req.query; //handle if null
+    if (!username) throw new Error("Need a username for result !!!");
+    if (handle === "CF") {
+      const { data } = await axios.get(
+        `https://codeforces.com/api/user.info?handles=${username}`
+      );
+      const contestData = await axios.get(
+        `https://codeforces.com/api/user.rating?handle=${username}`
+      );
+      const Svg = await getsvg(username);
+      const contestArray = contestData.data.result;
+      contestArray.forEach((e) => {
+        e.changeInRating = e.newRating - e.oldRating;
+      });
+      contestArray.reverse();
+      const { status, result } = data;
+      if (!result[0].city) result[0].city = "";
+      else result[0].city += " , ";
+      if (status == "FAILED") throw new HandleError("User Not Found", 404);
+      res.render("pages/findCF", { ...result[0], ...Svg, contestArray });
+    } else if (handle === "CC") {
+      let userDataCC = await fetcher.searchCode(username);
+      if (userDataCC == undefined) throw new HandleError("User Not Found", 404);
+      userDataCC.maxRating = getNumberFromString(userDataCC.maxRating);
+      userDataCC.maxRatingHtml = getDesignFromRating(userDataCC.maxRating);
+      res.render("pages/findCC", { ...userDataCC });
     }
-    else if(req.query.handle === "CC"){
-      const userDataCC = await fetcher.searchCode(req.query.search);
-      if(userDataCC == undefined) throw new HandleError("User Not Found",404);
-      res.render('pages/findCC' , {userDataCC});
-    }
-}
+  } catch (e) {
+    console.log(e.message);
+    req.flash("error", e.message);
+    res.redirect("/find");
+  }
+};

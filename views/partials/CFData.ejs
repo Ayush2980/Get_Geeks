@@ -1,0 +1,76 @@
+<div class="card-containerr">
+  <div class="left">
+    <img class="round" src="<%= titlePhoto %>" alt="user" />
+    <h3><%= firstName%> <%= lastName %></h3>
+    <h6><%= city%><%= country %></h6>
+    <div class="row" style="margin: 5% 0%;">
+      <div class="col-6" style="border-right: 3px solid grey;">
+        <h6>Current Status :</h6>
+        <h6>Rating : <%= rating %> , <%= rank %></h6>
+      </div>
+      <div class="col-6">
+        <h6>Peak Status :</h6>
+        <h6>Peak Rating : <%= maxRating %> , <%= maxRank %></h6>
+      </div>
+    </div>
+    <div class="online-data row" style="margin-bottom: 2% ;">
+      <h6 class="col-6" style="border-right: 2px gray solid;" >Last Online : <%= lastOnline %></h6>
+      <h6 class="col-6">Registered : <%= registered %></h6>
+    </div>
+    <div class="buttons">
+      <button class="primary">Message</button>
+      <button class="primary ghost">Following</button>
+    </div>
+  </div>
+  <div class="right">
+    <%- data2%>
+    <div class="skills">
+      <ul>
+        <li
+          class="green-fixed mx-0 my-0"
+          style="position: sticky; top: -5%; background-color: #1f1a36"
+        >
+          <h6 class="skillHeading">Rating Changes</h6>
+          <div class="row">
+            <div class="col-1 px-0" style="margin: 0px; margin-left: 2%">
+              Rank
+            </div>
+            <div class="col-4">Contest</div>
+            <div class="col-3">Change In Rating</div>
+            <div class="col-2">Total Change</div>
+          </div>
+        </li>
+
+        <% contestArray.forEach((e) => { %> <% if(e.changeInRating >= 0){ %>
+        <li class="row green mx-0">
+          <div class="col-1 mx-0 px-0"><%= e.rank %></div>
+          <div class="col-4"><%= e.contestName %></div>
+          <div class="col-3"><%= e.oldRating %> -> <%= e.newRating %></div>
+          <div class="col-2"><%= e.changeInRating %></div>
+        </li>
+        <% }else { %>
+        <li class="row red mx-0">
+          <div class="col-1 mx-0 px-0"><%= e.rank %></div>
+          <div class="col-4"><%= e.contestName %></div>
+          <div class="col-3"><%= e.oldRating %> -> <%= e.newRating %></div>
+          <div class="col-2"><%= e.changeInRating %></div>
+        </li>
+        <% } %> <%})%>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="stylesheets/data/dataCF.css" />
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const weekday = document.getElementsByClassName("wday");
+    for (let i = 0; i < weekday.length; i++) {
+      weekday[i].setAttribute("fill", "white");
+    }
+    const month = document.getElementsByClassName("month");
+    for (let i = 0; i < month.length; i++) {
+      month[i].setAttribute("fill", "white");
+    }
+  });
+</script>

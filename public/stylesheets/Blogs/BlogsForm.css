@@ -1,0 +1,10 @@
+textarea.form-control{
+    background: linear-gradient(to right, #243B55, #141E30) !important;
+}
+textarea.form-control:not(:focus){
+    background: linear-gradient(to right, #243B55, #141E30) !important;
+}
+textarea.form-control:focus{
+    background: linear-gradient(to right, #243B55, #141E30) !important;
+    color: white;
+}

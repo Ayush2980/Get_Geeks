@@ -1,7 +1,8 @@
-<% layout('layout/boilerplate') %>
-<div class="container-fluid " >
-    <form action="/find">
-        <button class="btn btn-primary" type="submit">Find Another User</button>
-    </form>
+<% layout('layout/BoilerPlateMain') %>
+
+<div class="container-boss">
+    <%- include("../partials/SearchBar/searchbar.ejs") %>
+    <%- include("../partials/CFData.ejs") %>
 </div>
-<%- include("../partials/CF-data.ejs")%>
+
+<link rel="stylesheet" href="/stylesheets/profileTemplate/findCF.css" />

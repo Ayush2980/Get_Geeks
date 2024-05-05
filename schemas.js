@@ -3,11 +3,11 @@ const { joiPasswordExtendCore } = require('joi-password');
 const joiPassword = Joi.extend(joiPasswordExtendCore);
 
 module.exports.userJOI = Joi.object({
-  user : Joi.object({
+  // user : Joi.object({
     username: Joi.string().required(),
-    fullname: Joi.string().required(),
+    // fullname: Joi.string().required(),
     Email : Joi.string().required(),
-    state: Joi.string().required(),
+    // state: Joi.string().required(),
     country: Joi.string().required(),
     CCprof: Joi.string().required(),
     CFprof: Joi.string().required(),
@@ -24,5 +24,4 @@ module.exports.userJOI = Joi.object({
                 .noWhiteSpaces()
                 .onlyLatinCharacters()
                 .required(),
-  }).required(),
 });

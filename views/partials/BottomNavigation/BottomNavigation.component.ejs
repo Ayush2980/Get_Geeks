@@ -1,0 +1,48 @@
+<div class="bottom-navigation">
+  <nav class="nav">
+    <a href="#" class="nav-item is-active">
+      <i class="bx bx-heart"></i>
+      <span>Favorites</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="bx bx-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="bx bx-basket"></i>
+      <span>Order</span>
+    </a>
+
+    <div class="nav-indicator-wrapper">
+      <span class="nav-indicator"></span>
+    </div>
+  </nav>
+</div>
+
+<link
+  rel="stylesheet"
+  href="/stylesheets/BottomNavigation/BottomNavigation.styles.css"
+/>
+<script>
+  const indicator = document.querySelector(".nav-indicator-wrapper");
+  const items = document.querySelectorAll(".nav-item");
+
+  function handleIndicator(el) {
+    items.forEach((item) => {
+      item.classList.remove("is-active");
+    });
+
+    indicator.style.width = `${el.offsetWidth}px`;
+    indicator.style.left = `${el.offsetLeft}px`;
+
+    el.classList.add("is-active");
+  }
+
+  items.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      handleIndicator(item);
+    });
+
+    item.classList.contains("is-active") && handleIndicator(item);
+  });
+</script>

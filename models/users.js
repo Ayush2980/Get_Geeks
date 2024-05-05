@@ -1,62 +1,76 @@
-const { number } = require('joi');
-const mongoose = require('mongoose');
-const {ObjectId} = mongoose.Schema.Types
-const passportLocalMongoose = require('passport-local-mongoose')
+const { number } = require("joi");
+const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema({
-    username : {
-        type : String,
-        required : true
+  username: {
+    type: String,
+    required: true,
+  },
+  fullname: {
+    type: String,
+  },
+  Email: {
+    type: String,
+    required: true,
+  },
+  about: {
+    type: String,
+  },
+  pronoun: { type: String },
+  country: {
+    type: String,
+    required: true,
+  },
+  linkedIn: {
+    type: String,
+  },
+  isCCverified: {
+    type: Boolean,
+    default: false,
+  },
+  CCprof: {
+    type: String,
+  },
+  CFprof: {
+    type: String,
+  },
+  image: {
+    type : String    
+  },
+  Stalklist: [
+    {
+      type: Object,
     },
-    fullname : {
-        type : String,
-        required : true,
+  ],
+  friends: [
+    {
+      type: ObjectId,
+      ref: "User",
     },
-    Email : {
-        type : String,
-        required :true
+  ],
+  token: String,
+  pending: [
+    {
+      userId: {
+        type: ObjectId,
+        ref: "User",
+      },
+      pendingType: {
+        type: Number,
+        required: true,
+      },
     },
-    state : {
-        type : String,
-        required : true,
+  ],
+  blogs: [
+    {
+      type: ObjectId,
+      ref: "Blog",
     },
-    country : {
-        type : String , 
-        required : true
-    },
-    CCprof : {
-        type : String
-    },
-    CFprof : {
-        type : String
-    },
-    images : {
-        url : String , 
-        filename : String
-    },
-    Stalklist : [{
-        type : Object
-    }],
-    friendList : [{
-        friendId : {
-            type : ObjectId,
-            ref : "User",
-        },
-        status : {
-            type : String,
-        }
-    }],
-    token : String ,
-    pending : [{
-        type : ObjectId,
-        ref : "User",
-    }],
-    blogs : [{
-        type : ObjectId,
-        ref : 'Blog'
-    }]
-})
+  ],
+});
 
 userSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model("User" , userSchema);
+module.exports = mongoose.model("User", userSchema);

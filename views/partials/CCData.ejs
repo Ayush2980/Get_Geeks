@@ -1,0 +1,51 @@
+<div class="card-containerr">
+  <div class="left">
+    <img class="round" src="<%= dp%>" alt="user" />
+    <h3><%= username%></h3>
+    <h6><img src="<%= flag%>" /><%= country%></h6>
+    <div class="row" style="margin: 5% 0%">
+      <div class="col-6" style="border-right: 3px solid grey">
+        <h6>Current Status :</h6>
+        <h6>Rating : <%= ratingNo %></h6>
+        <div class="curr-rating-star"><%- currRatingHtml%></div>
+      </div>
+      <div class="col-6">
+        <h6>Peak Status :</h6>
+        <h6>Peak Rating : <%= maxRating %></h6>
+        <div class="curr-rating-star"><%- maxRatingHtml%></div>
+      </div>
+    </div>
+    <div class="row" style="margin: 5% 0%">
+      <div class="col-6" style="border-right: 3px solid grey">
+        <h6>Global Rank</h6>
+        <h6><%= globalRank%></h6>
+      </div>
+      <div class="col-6">
+        <h6>Country Rank</h6>
+        <h6><%= countryRank%></h6>
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="primary">Message</button>
+      <button class="primary ghost">Following</button>
+    </div>
+  </div>
+  <div class="right row">
+    <div class="col"><%- heatmapSvg%></div>
+    <div class="col"><%- ratingGraph%></div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="stylesheets/data/dataCF.css" />
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const texts = document.getElementsByTagName("text");
+    for(let i = 0;i < texts.length; i++){
+      texts[i].style.fill = "white";
+    }
+    const charts = document.getElementsByClassName("highcharts-background");
+    for(let i= 0;i < charts.length ;i++){
+      charts[i].style.fill = "#141E30";
+    }
+  });
+</script>
