@@ -55,7 +55,8 @@
       <p class="text-white" id="hidden-id" hidden><%= loggedin._id %></p>
       <%}%> <% if(blogs){ %> <% for(var i = blogs.length - 1;i >= 0 ;i--){ %>
       <!-- <div class="wrapper"> -->
-      <div class="card my-4">
+
+      <div class="card my-4 <%= blogs[i]._id %>">
         <div class="user">
           <div class="profile">
             <img src="https://placehold.co/50" alt="avatar" class="ava" />
@@ -74,6 +75,7 @@
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             stroke="#ffffff"
+            data-bs-toggle="modal" data-bs-target="#exampleModal"
           >
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g
@@ -87,20 +89,59 @@
               ></path>
             </g>
           </svg>
+
+          <!-- Modal  -->
+          <div class="modal" id="exampleModal" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-white">Delete Post</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p class="text-white">Are You Sure that you want to delete this post ?</p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary close-<%= blogs[i]._id%>"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-danger delete-post" id="<%= blogs[i]._id%>">
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <%}%>
         </div>
         <div class="twitt text-white">
           <h4 class="py-3 text-white"><%= blogs[i].title%></h4>
           <p class="px-2"><%= blogs[i].body %></p>
         </div>
+
         <div class="insight">
           <div class="like">
+            <% if(loggedin){ %>
+            <p class="hidden-blog-id" hidden><%= blogs[i]._id %></p>
+            <% let LikeBtnColor = (blogs[i].likers.indexOf(loggedin._id) != -1)
+            ? "red" : "none" ;%>
             <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              fill="none"
+              fill="<%= LikeBtnColor%>"
               xmlns="http://www.w3.org/2000/svg"
+              class="like-svg"
             >
               <g id="heart">
                 <path
@@ -114,11 +155,13 @@
                 />
               </g>
             </svg>
-
             <p class="like-value"><%= blogs[i].likes %></p>
+            <%}else{%>
+            <p class="like-valuee"><%= blogs[i].likes %> Likes</p>
+            <% } %>
           </div>
           <div class="created">
-            <p>3:40 PM – Feb 24, 2022</p>
+            <p><%= blogs[i].time%></p>
           </div>
         </div>
       </div>
@@ -127,5 +170,7 @@
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <link rel="stylesheet" href="/stylesheets/Blogs/Blogs.css" />
+<script src="/JavaScript/Blog/likeBtn.js"></script>

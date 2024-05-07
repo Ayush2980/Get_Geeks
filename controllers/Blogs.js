@@ -1,10 +1,17 @@
 const blogSchema = require("../models/Blogs.js");
 const userSchema = require("../models/users.js");
 const commentSchema = require("../models/comments.js");
+const {convertDate} = require("../public/JavaScript/Blog/blogs.js")
 
 module.exports = {
   Blogs: async (req, res) => {
     const blogs = await blogSchema.find().populate("author");
+    console.log(blogs);
+
+    blogs.forEach((e) => {
+      e.time = convertDate(e.createdAt);
+      console.log(e.time);
+    });
     res.render("pages/Blogs/Blogs.ejs", { blogs });
   },
 
@@ -51,17 +58,22 @@ module.exports = {
       const blogData = await blogSchema
         .findById({ _id: blogId })
         .populate("author");
+
+      console.log(req.user);
+      console.log("Blog iD : ", blogData.author._id);
       if (
         !req.user._id ||
-        !(parseInt(blogData.author) == parseInt(req.user._id))
-      )
+        !(parseInt(blogData.author._id) == parseInt(req.user._id))
+      ) {
+        console.log(":unauthorized");
         return new Error("Unauthorised access !!");
+      }
       const deleteBlog = await blogSchema.findByIdAndDelete({ _id: blogId });
       const updateAuthor = await userSchema.findByIdAndUpdate(
-        { _id: blogData.author },
+        { _id: blogData.author._id },
         { $pull: { blogs: blogId } }
       );
-      return res.send({ success: true, msg: "Blog Deleted" });
+      return res.send({ success: true, msg: "Blog Deleted", blogId });
     } catch (e) {
       next(e);
     }
@@ -70,38 +82,25 @@ module.exports = {
     try {
       //Validating that the user has not liked earlier ==> this is to avoid anyone using postman to make multiple requests , other than this in client side , like button willbe disabled
       const { id, blogId } = req.params;
+      console.log("From Params : ", blogId, id);
       const blogCheck = await blogSchema.findById(blogId);
-      const isTrue = blogCheck.likers.indexOf(id) > -1;
-      if (!isTrue) {
+      const hasLiked = blogCheck.likers.indexOf(id) > -1;
+      if (!hasLiked) {
+        //liking code
         const blog = await blogSchema.findOneAndUpdate(
           { _id: blogId },
           { $inc: { likes: 1 }, $push: { likers: id } },
           { returnOriginal: false }
         );
-        console.log(blog);
         res.send({ success: true, msg: "Liked Successfully", Blog: blog });
       } else {
-        res.send({ success: false, msg: "Dont act smart!!!" });
-      }
-    } catch (e) {
-      res.send({ success: false, msg: e.message });
-    }
-  },
-  unlikeBtn: async (req, res) => {
-    try {
-      const { id, blogId } = req.params;
-      const blogCheck = await blogSchema.findById(blogId);
-      const isTrue = blogCheck.likers.indexOf(id) > -1;
-      if (isTrue) {
-        //This means that this user has liked it earlier
+        //disliking code
         const blog = await blogSchema.findOneAndUpdate(
           { _id: blogId },
           { $inc: { likes: -1 }, $pull: { likers: id } },
           { returnOriginal: false }
         );
         res.send({ success: true, msg: "Disliked Successfully", Blog: blog });
-      } else {
-        res.send({ success: true, msg: "Dont act smart!!!" });
       }
     } catch (e) {
       res.send({ success: false, msg: e.message });

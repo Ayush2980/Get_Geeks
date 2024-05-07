@@ -1,16 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Blogs = require('../controllers/Blogs.js'); 
+const {Blogs , formBlogs , postBlogs , likeBtn , deleteBlogs} = require('../controllers/Blogs.js'); 
 const asyncError = require('../utils/AsyncError.js');
 
-router.get('/' , Blogs.Blogs);
+router.get('/' , Blogs);
 // router.get('/' , Blogs.);
-router.get('/addNew/:id' , Blogs.formBlogs);
-router.post('/addNew/:id' ,Blogs.postBlogs );
+router.get('/addNew/:id' , formBlogs);
+router.post('/addNew/:id' ,postBlogs );
 //Below remaining
-router.post('/delete/:id/:blogId' , );
-router.post('/like/:id/:blogId' , Blogs.likeBtn);
-router.post('/unlike/:id/:blogId' , Blogs.unlikeBtn);
+router.post('/delete/:blogId' , deleteBlogs);
+router.post('/react/:id/:blogId' , likeBtn);
 
 
 module.exports = router;

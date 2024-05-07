@@ -102,8 +102,27 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });
-  socket.on("profile-changes", async (e) => {
-    console.log(e);
+  socket.on("like-pressed", async (e) => {
+    console.log("Pressed the like btn", e);
+    const { blogId, userIdLoggedIn } = e;
+    console.log(blogId, userIdLoggedIn);
+    const response = await axios.post(
+      `http://localhost:8000/Blogs/react/${userIdLoggedIn}/${blogId}`
+    );
+    console.log(response.data);
+    const { Blog, success } = response.data;
+
+    io.emit("liked-data", { success, Blog, userIdLoggedIn });
+  });
+  socket.on("delete-post", async (e) => {
+    console.log("server socket caught the delete request");
+    const { id } = e;
+    console.log(id);
+
+    console.log("Request sent")
+    // const { success, msg } = response.data;
+    console.log(response.data)
+    io.emit("deleted-post", { id });
   });
 });
 

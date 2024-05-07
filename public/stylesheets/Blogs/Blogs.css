@@ -13,9 +13,11 @@
 .container-fluid {
   position: relative;
 }
-.new-blog-btn:hover{
-    width: 4.1%;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+.new-blog-btn:hover {
+  width: 4.1%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 /* Each blog card  */
@@ -127,8 +129,26 @@ h4 {
   cursor: pointer;
 }
 
-.delete-icon:hover{
+.delete-icon:hover {
   fill: red;
   filter: drop-shadow(0 0 10px crimson);
   cursor: pointer;
+}
+
+#exampleModal {
+  top: 20%;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background-color: #141d26 !important;
+}
+
+.btn-close{
+  color: white !important;
+  background-color: white !important;
+}
+
+.modal-footer{
+  border-top: none !important;
 }
