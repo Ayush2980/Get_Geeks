@@ -130,7 +130,14 @@
 .third-div {
   display: none;
   width: 95%;
+  position: relative;
 }
+
+.third-div-loader{
+  position: absolute;
+  backdrop-filter: blur(20px);
+}
+
 
 textarea.form-control {
   background-color: #141e30;
@@ -224,3 +231,6 @@ button.primary.ghost {
 .btn-holder{
   justify-content: space-around;
 }
+
+
+/* extra .third-div-loader */

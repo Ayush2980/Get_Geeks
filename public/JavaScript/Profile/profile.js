@@ -1,3 +1,4 @@
+
 //Dp change 
 const editDP = document.getElementsByClassName("edit-option")[0];
 editDP.addEventListener("click" , () => {
@@ -28,4 +29,24 @@ cancelBtn.addEventListener("click" , () => {
     document.getElementsByClassName("third-div")[0].style.display = "none";
     editDP.style.display = "none";
     secondDiv.style.display = "block";
-})
+});
+
+saveBtn.addEventListener("click" , async(e) => {
+    e.preventDefault();
+    const fullname = document.getElementById("gg-fullname").value;
+    const about = document.getElementById("gg-about").value;
+    //pronoun => showPronoun
+    const linkedIn = document.getElementById("linkedin").value;
+    console.log(fullname, showPronoun.innerHTML , about , linkedIn);
+    try{
+        //add a loader
+        const {response} = await axios.post("http://localhost:8000/Blogs/react/${userIdLoggedIn}/${blogId}" , {username , about , linkedIn , pronoun : showPronoun})
+        //end the loader
+        
+    }
+    catch(e){
+        //end the loader with an error
+        console.log(e);
+    }
+
+});

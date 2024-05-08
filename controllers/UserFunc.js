@@ -146,8 +146,8 @@ module.exports.removeFriend = async (req, res) => {
 };
 module.exports.showProfile = async (req, res, next) => {
   try {
-    // const { id } = req.params;
-    // const currUser = await userSchema.findById(id);
+    const { id } = req.params;
+    const currUser = await userSchema.findById(id);
     // const { CCprof, CFprof } = currUser;
     // console.log(CFprof)
     // // const currCfData = await fetchForProf(CFprof);
@@ -159,7 +159,8 @@ module.exports.showProfile = async (req, res, next) => {
     // currCcData.maxRating = getNumberFromString(currCcData.maxRating);
     // currCcData.maxRatingHtml = getDesignFromRating(currCcData.maxRating);
     // res.render("pages/Profile/profile.ejs", { currUser, result , currCcData });
-    res.render("pages/Profile/profile.ejs");
+    console.log(currUser)
+    res.render("pages/Profile/profile.ejs", { currUser });
   } catch (e) {
     next(e);
   }

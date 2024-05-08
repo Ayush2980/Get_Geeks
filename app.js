@@ -104,15 +104,16 @@ io.on("connection", (socket) => {
   });
   socket.on("like-pressed", async (e) => {
     console.log("Pressed the like btn", e);
-    const { blogId, userIdLoggedIn } = e;
+    const { blogId, userIdLoggedIn, i } = e;
     console.log(blogId, userIdLoggedIn);
     const response = await axios.post(
       `http://localhost:8000/Blogs/react/${userIdLoggedIn}/${blogId}`
     );
     console.log(response.data);
-    const { Blog, success } = response.data;
+    const { Blog, success=true } = response.data;
 
-    io.emit("liked-data", { success, Blog, userIdLoggedIn });
+    io.emit("liked-data", { success, Blog, userIdLoggedIn , i });
+    // io.emit("liked-data", { success : true, userIdLoggedIn , i });
   });
   socket.on("delete-post", async (e) => {
     console.log("server socket caught the delete request");

@@ -34,7 +34,10 @@ router.get("/signin", getSignIn);
 router.get("/signin_redirect?", signInRedirect);
 router.get("/signout", signOut);
 router.post(
-  "/signin",
+  "/signin",(req ,res ,next) => {
+    console.log(req.body);
+    next();
+  }, 
   passport.authenticate("local", {
     failureFlash: true,
     failureRedirect: "/signin",

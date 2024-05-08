@@ -1,4 +1,4 @@
-const { number } = require("joi");
+const { number, required } = require("joi");
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema.Types;
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   image: {
-    type : String    
+    type: String,
   },
   Stalklist: [
     {

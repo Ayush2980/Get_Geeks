@@ -16,7 +16,11 @@ module.exports = {
           "Dec",
         ];
         const date = new Date(e);
-        return `${date.getHours()}:${date.getMinutes()} – ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+        let minutes = `${date.getMinutes()}`;
+        if(minutes.length == 1) minutes = "0" + minutes;
+        
+
+        return `${date.getHours()}:${minutes} – ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
     }
     catch(e){
         const {msg} = e;

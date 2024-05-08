@@ -19,8 +19,11 @@
           </div>
         </div>
         <div class="user-data col-8 col-md-12">
-          <h5>Ayush Barman</h5>
-          <h6>Ayush2980 | He/Him</h6>
+          <h5><%= currUser.username%></h5>
+          <h6>
+          <% if(currUser.fullname == ""){ %>
+            <%= currUser.fullname%> |  
+            <%}%>He/Him</h6>
         </div>
       </div>
       <div class="second-div">
@@ -86,10 +89,10 @@
           <button class="primary">Message</button>
         </div>
       </div>
-      <div class="third-div flex-column">
+      <form class="third-div flex-column" id="form-edit">
         <div class="d-flex flex-column justify-content-center align-items-start  name-branch my-2">
           <label for="gg-username">Fullname</label>
-          <input class="form-control my-2" type="text" id="gg-username">
+          <input class="form-control my-2" type="text" id="gg-fullname">
         </div>
         <div class="d-flex flex-column justify-content-center align-items-start  about-branch">
           <label for="gg-about">About</label>
@@ -100,7 +103,7 @@
             <button class="btn btn-secondary btn-sm dropdown-toggle show-pronoun" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Pronouns
             </button>
-            <ul class="dropdown-menu" style="background-color: #141E30;">
+            <ul class="dropdown-menu" style="background-color: #141E30;" name="pronouns">
               <li class="my-0 dd-pro" >He/him</li>
               <li class="my-0 dd-pro" >She/her</li>
             </ul>
@@ -128,7 +131,7 @@
                 ></path>
               </g>
             </svg>
-            <input class="form-control linked-in-data my-2 mx-2" type="text" class="mx-2">
+            <input class="form-control linked-in-data my-2 mx-2" id="linkedin" type="text" class="mx-2">
           </div>
           <!-- <div class="codechef icon">
             <img style="border-radius: 5px;  width: 30px; height: 30px;" src="https://i.pinimg.com/originals/c5/d9/fc/c5d9fc1e18bcf039f464c2ab6cfb3eb6.jpg" alt="">
@@ -140,12 +143,14 @@
           </div>
           
         </div>
-        <input class="form-control my-2" type="file" name="" id="gg-dp" hidden>
+        <input class="form-control my-2" type="file" name="gg-dp" id="gg-dp" hidden>
         <div class="final-btns">
-          <div class="btn mx-2 btn-success save-edit">Save</div>
+          <button class="btn mx-2 btn-success save-edit">Save</button>
           <div class="btn mx-2 btn-secondary cancel-edit ">Cancel</div>
         </div>
-      </div>
+
+        <!-- loader -->
+      </form>
     </div>
     <div class="col-12 col-md-5 right-profile" style="margin: 5%">
       <h1>Handles</h1>
@@ -299,6 +304,6 @@
   </div>
 </div>
 <link rel="stylesheet" href="/stylesheets/Profile/profile.styles.css" />
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/JavaScript/Profile/profile.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script type="module"  src="/JavaScript/Sockets/EditProfile.js"></script>

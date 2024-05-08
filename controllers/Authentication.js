@@ -3,6 +3,7 @@ const userSchema = require("../models/users.js");
 const { userJOI } = require("../schemas.js");
 const HandleError = require("../utils/ExpressError.js");
 const User = new userSchema();
+const  {getUserName, getFullName} = require("../public/JavaScript/Auth/userSchema.js")
 
 module.exports = {
   validateJOI: (req, res, next) => {
@@ -29,14 +30,14 @@ module.exports = {
         return res.redirect("/signup");
       }
       const { password } = req.body;
-      console.log(req.body);
-      const user = new userSchema(req.body);
+      let userInstance = new userSchema(req.body);
       // user.images = {
       //   url: req.file.path,
       //   filename: req.file.filename,
       // };
       // const result = await user.save();
-      const registeredUser = await userSchema.register(user, password);
+      userInstance.fullname = getFullName(userInstance._id);
+      const registeredUser = await userSchema.register(userInstance, password);
       req.login(registeredUser, (err) => {
         if (err) return next(err);
         req.flash("success", "Registered Successfully");
