@@ -165,3 +165,20 @@ module.exports.showProfile = async (req, res, next) => {
     next(e);
   }
 };
+
+module.exports.editProfile = async(req ,res) => {
+  try{
+    if(!req.user){
+      console.log("No user logged in ")
+      throw Error("Please Login to continue !!!");
+    }
+    const {fullname = req.user.fullname , about = req.user.about , linkedIn = req.user.linkedIn , pronoun = "He/Him"} = req.body;
+    const userData = await userSchema.findByIdAndUpdate({_id: req.user._id} , {$set : {fullname : fullname , about: about , linkedIn : linkedIn , pronoun : pronoun}} , {new : true});
+    res.send({success : true , userData});
+  }catch(e){
+    const {message = "Some error"} = e;
+    console.log(e.message);
+    return res.send({success : false , error : message});
+  }
+}
+

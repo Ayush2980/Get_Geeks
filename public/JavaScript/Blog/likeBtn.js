@@ -51,4 +51,5 @@ window.addEventListener("load", () => {
       closeIt.click();
     });
   }
+
 });

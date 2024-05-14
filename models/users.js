@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   },
   fullname: {
     type: String,
+    default : " "
   },
   Email: {
     type: String,
@@ -17,8 +18,9 @@ const userSchema = new mongoose.Schema({
   },
   about: {
     type: String,
+    default : "A Geek"
   },
-  pronoun: { type: String },
+  pronoun: { type: String , default : "He/Him" },
   country: {
     type: String,
     required: true,

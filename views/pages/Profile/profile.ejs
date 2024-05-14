@@ -20,18 +20,15 @@
         </div>
         <div class="user-data col-8 col-md-12">
           <h5><%= currUser.username%></h5>
-          <h6>
-          <% if(currUser.fullname == ""){ %>
+          <h6 class="name-and-pronoun">
+          <% if(currUser.fullname != ""){ %>
             <%= currUser.fullname%> |  
             <%}%>He/Him</h6>
         </div>
       </div>
       <div class="second-div">
         <div class="user-about">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam
-            natus quibusdam sapiente porro voluptatum numquam.
-          </p>
+          <p><%= currUser.about %></p>
         </div>
         <div class="btn btn-secondary my-0 edit-pr-btn" >Edit Profile</div>
         <div class="handles my-2">
@@ -54,7 +51,7 @@
                 ></path>
               </g>
             </svg>
-            <p class="handle-link">LinkedIn</p>
+            <p class="handle-link"><a class="linked-in-link " style="text-decoration: none; color: white;" href="<%= currUser.linkedIn %>">LinkedIn</a></p>
           </div>
           <div class="codechef icon">
             <img style="border-radius: 5px;  width: 20px; height: 20px;" src="https://i.pinimg.com/originals/c5/d9/fc/c5d9fc1e18bcf039f464c2ab6cfb3eb6.jpg" alt="">
@@ -90,7 +87,10 @@
         </div>
       </div>
       <form class="third-div flex-column" id="form-edit">
-        <div class="d-flex flex-column justify-content-center align-items-start  name-branch my-2">
+        <div class="third-div-loader">
+          <div class="third-div-loading"></div>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-start  name-branch my-2" hidden>
           <label for="gg-username">Fullname</label>
           <input class="form-control my-2" type="text" id="gg-fullname">
         </div>
@@ -99,7 +99,7 @@
           <textarea name="" class="form-control my-2" id="gg-about" cols="20" rows="3"></textarea>
         </div>
         <div class="d-flex flex-column justify-content-center align-items-start my-2  pronouns-branch">
-          <div class="btn-group">
+          <div class="btn-group pronoun-btn">
             <button class="btn btn-secondary btn-sm dropdown-toggle show-pronoun" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Pronouns
             </button>
@@ -133,14 +133,10 @@
             </svg>
             <input class="form-control linked-in-data my-2 mx-2" id="linkedin" type="text" class="mx-2">
           </div>
-          <!-- <div class="codechef icon">
-            <img style="border-radius: 5px;  width: 30px; height: 30px;" src="https://i.pinimg.com/originals/c5/d9/fc/c5d9fc1e18bcf039f464c2ab6cfb3eb6.jpg" alt="">
-            <div class="btn-verify mx-2">Verify Handle</div>
-          </div> -->
-          <div class="codeforces icon">
+          <!-- <div class="codeforces icon">
             <img style="border-radius: 5px;  width: 30px; height: 30px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAsVBMVEX///9PgcH/1ACuDwpHfL+ctNj/0QD/9typAADv3NxhjMatBAD/4XTTl5f/1zC0NDI9d72Co9Fpksm6y+Tc5fGnvd08dr3T3u5WhsPo7vawxOGhudv/9tP/7rH/1hP//vfZoJ+wFxP/54v/7az/6JT//fL/9Mr/3VL/31z/4Wz/5ID/8Lv/2z/57u3lwcDqzMveray/U1G6RkTJc3HQiIfNgYD/++nEZmX25+a5QT7CXVtLKWyXAAADgElEQVR4nO3daVPaQBjA8RhjDAQxAcJlBe8DgXJVab//B2s4qu10Zo+nQ5Nt///XZmd/86zgG7OeR0RERERERERERERE9F/UytJGVVUjzVpFb/IPanaTIDhSFwRJt1n0RoW1qjrdu7Lq5BybbUPfpraDY8xsgDkxK3rDtjUTK+DRUeLYFHu2wJzYK3rTVjVMP2Q+ChpFb9qmjv0I8yF2it62Ran9CPMhpkVv2yLJCPMhFr1t80SH1Klj2pcc0vyY9oveuHEXQuFF0Rs37kQoPCl648YhRFj+ECIsfwgRlj+ECMsfQoTlDyHC8ocQYflDiLD8IUR4qE4vb2rKRrefzFYqp/CyHoahry4MB3f3jgoffJ3uHXnrpPDG0Lc1Pg7dEz5ZAPMGOmLphDU7oO/XHRNe2gL98Nkp4b01MCc+uCQcCYSac1ou4VDg0w2xXMIXyQh9v+aOcCQC+r47wrEMGKr+eiuXcCAUnjojlAERIkSIECFChAgRIkSI0HnhZHp1pmz22Wnh7DyKolhZ/gPzqavC6XUUHxsUR4uKk8KlmW9nvHJQuIhMfZuipXPCufEA98SVY8KV1QS3xKlTwoo18DiOnRIuLM/odogrh4SCEe6G6Izwi2CE299EZ4TXImG8ckY4kRzSXLhwRij6Ncy7/ueFxwgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSI8ADCQ7xH+BB3q8v/H78uFL4qdtMXCvuKNdfCdyqcezWZUPk+704iEiYd1aKxiBgvBTcjbHtSbcYTCpVrvsnebTITXY2QH9IX5W5SyTENUuWaU9EMo4nnPYlmqNyM7JiqD6ns9S3xW/7gq+R+C911Og37IQYNzZozwRCj9eZJm2t09o01m/F69kNMerpFv1oPcfc6M8nlAfpLn5q2xKSpXXMSWxLj+f7Joe13ourb/kdZ2wrYzgzWrNgR8+/C9x5t7nsaqL7sP2raENv6CW5a23zaRPOfH70zJobP2gut9rWqpic1qbYM1/TeTF8NGUdnvz75WtPeurbhhY+Gl8tta3aTQPehGgRJ12yAuypz3dtLd28wXU5+e3T4MhrXlY1rt2YH9KNWljaqqhppZjy/fevZcnGu7Ntqql+GiIiIiIiIiIiIiIjob/cdbx3Q0gt9Dn0AAAAASUVORK5CYII=" alt="">
             <div class="btn-success btn mx-2">Verify Handle</div>
-          </div>
+          </div> -->
           
         </div>
         <input class="form-control my-2" type="file" name="gg-dp" id="gg-dp" hidden>
@@ -157,13 +153,16 @@
       <div class="big-view" style="display: none;">
         <div class="codeforces-handle my-3">
           <h3>CodeForces</h3>
+          <div class="cf-loader" style="position: relative; width: 200px; height: 200px;">
+            <%- include("../../partials/Loader/miniLoader.ejs")%>
+          </div>
           <div class="card prof-handle-card">
             <div class="card-header d-flex flex-row align-items-center">
               <img
               style="width: 50px; height: 50px; border-radius: 100%"
-                src="https://cdn.codechef.com/sites/default/files/uploads/pictures/0776e14a73d4d772e407f291bf470d35.jpeg"
-                alt=""
-                />
+              src="https://cdn.codechef.com/sites/default/files/uploads/pictures/0776e14a73d4d772e407f291bf470d35.jpeg"
+              alt=""
+              />
               <h5 class="mx-4">barman_ayush</h5>
             </div>
             <div class="card-body">
@@ -188,6 +187,9 @@
         </div>
         <div class="codechef-handle my-3">
           <h3>CodeChef</h3>
+          <div class="cc-loader" style="position: relative; width: 200px; height: 200px;">
+            <%- include("../../partials/Loader/miniLoader.ejs")%>
+          </div>
           <div class="card prof-handle-card">
             <div class="card-header d-flex flex-row align-items-center">
               <img

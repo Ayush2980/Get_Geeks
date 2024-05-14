@@ -133,10 +133,6 @@
   position: relative;
 }
 
-.third-div-loader{
-  position: absolute;
-  backdrop-filter: blur(20px);
-}
 
 
 textarea.form-control {
@@ -173,8 +169,8 @@ input.form-control:focus {
   align-items: center;
   justify-content: center;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+  rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   padding: 2%;
 }
 .edit-option:hover {
@@ -233,4 +229,51 @@ button.primary.ghost {
 }
 
 
-/* extra .third-div-loader */
+/* container for loader */
+.cf-loader{
+  position: relative;
+  height: 200px;
+  width: 200px;
+  left: 37%;
+}
+.cc-loader{
+  position: relative;
+  height: 200px;
+  width: 200px;
+  left: 37%;
+}
+
+.prof-handle-card{
+  display: none;
+}
+
+/* Loader for save profile */
+.third-div-loader{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  backdrop-filter: blur(5px);
+  display: none;
+}
+
+.third-div-loading {
+  height: 0;
+  width: 0;
+  padding: 15px;
+  border: 6px solid #ccc;
+  border-right-color: #888;
+  border-radius: 22px;
+  animation: rotate 1s infinite linear;
+  /* left, top and position just for the demo! */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+@keyframes rotate {
+  /* 100% keyframe for  clockwise. 
+  use 0% instead for anticlockwise */
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}

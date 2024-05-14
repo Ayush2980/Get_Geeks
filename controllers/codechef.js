@@ -25,7 +25,8 @@ module.exports = {
       countryRank: ".rating-ranks ul li:nth-child(2) a strong",
       ratingGraph: "#cumulative-graph",
       currRatingHtml: ".rating-star",
-      heatmapSvg: "#submissions-graph",
+      // heatmapSvg: "#submissions-graph",
+      heatmapSvg: "#js-heatmap",
     };
     let i = 1;
     for (const key in dataObj) {

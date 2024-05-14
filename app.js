@@ -1,7 +1,7 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-
+const PORT=  8000;
 const express = require("express");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
@@ -127,6 +127,6 @@ io.on("connection", (socket) => {
   });
 });
 
-http.listen(8000, () => {
-  console.log("Listening on port 8000 !!!");
+http.listen(PORT, () => {
+  console.log(`http://localhost:${PORT}/find`);
 });

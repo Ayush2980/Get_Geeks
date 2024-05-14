@@ -20,7 +20,7 @@ router.post('/reject/:id/:friendId' , asyncError(UserFunct.rejectRequest))
 router.post('/removeFriend/:id/:friendID' , asyncError(UserFunct.removeFriend))
 //Profile view
 router.get('/profile/:id' , asyncError(UserFunct.showProfile))
-
+router.post('/profile/edit' , asyncError(UserFunct.editProfile));
 
 
 module.exports = router;
