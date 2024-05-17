@@ -113,9 +113,6 @@
 }
 
 @media (max-width: 920px) {
-  .right-profile {
-    margin-bottom: 30% !important;
-  }
   .second-div {
     width: 100% !important;
   }
@@ -230,18 +227,6 @@ button.primary.ghost {
 
 
 /* container for loader */
-.cf-loader{
-  position: relative;
-  height: 200px;
-  width: 200px;
-  left: 37%;
-}
-.cc-loader{
-  position: relative;
-  height: 200px;
-  width: 200px;
-  left: 37%;
-}
 
 .prof-handle-card{
   display: none;
