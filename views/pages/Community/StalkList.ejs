@@ -1,0 +1,73 @@
+<% layout("layout/BoilerPlateMain.ejs") %>
+<div style="height: 100vh; width: 100%">
+  <div
+    class="card p-3 shadow bg-getgeeks text-white parent-card-comm"
+    style="width: 100%; height: 100vh"
+  >
+    <!-- <% if(loggedin){ %>
+      <p class="classified-data">loggedin._id</p>
+    <% } %> -->
+    <h1>StalkList</h1>
+    <p>Find all your profiles that you added to StalkList</p>
+    <div class="input-group" style="width: 80%">
+      <input
+        type="text"
+        id="search"
+        placeholder="Search..."
+        autocomplete="off"
+      />
+      <label for="search"><i class="fas fa-search"></i></label>
+    </div>
+    <div class="stalklist-container">
+      <!-- Add a loader -->
+      <template friend-data-template>
+        <div class="inside-cont my-3">
+          <div class="row data-card-holder">
+            <div class="col-1 image-div mx-2">
+              <img friend-image class="image-sizer" src="" />
+            </div>
+            <div class="col-6 d-flex align-items-center mx-2">
+              <h5 friend-name></h5>
+              <p friend-handle></p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center btn-holders">
+            <a href="/stalklist" class="view-o-hombre">
+              <button class="btn btn-success mx-4">View</button>
+            </a>
+            <a href="" class="delete-o-hombre">
+              <svg
+                fill="#ffffff"
+                width="24px"
+                height="24px"
+                class="delete-icon"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                stroke="#ffffff"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"
+                  ></path>
+                </g>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" href="/stylesheets/Community/community.styles.css" />
+<link
+  rel="stylesheet"
+  href="/stylesheets/Community/stalklistProfCard.styles.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/JavaScript/Community/Community.js"></script>

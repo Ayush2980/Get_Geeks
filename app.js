@@ -1,7 +1,7 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-const PORT=  8000;
+const PORT = 8000;
 const express = require("express");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
@@ -81,11 +81,13 @@ const Auth = require("./routes/Authentication.js");
 const API = require("./routes/API.js");
 const UserFunc = require("./routes/UserFunc.js");
 const Blogs = require("./routes/Blogs.js");
+const Community = require("./routes/community.js");
 
 app.use("/", Auth);
 app.use("/", API);
 app.use("/", UserFunc);
 app.use("/Blogs", Blogs);
+app.use("/Community", Community);
 
 //Error Handlers
 app.all("*", (req, res, next) => {
@@ -94,7 +96,8 @@ app.all("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
   const { message = "Some Error Occured", statusCode = 404 } = err;
-  res.render("pages/Error.ejs", { message, statusCode });
+  res.send({ success: false, msg: message });
+  // res.render("pages/Error.ejs", { message, statusCode });
 });
 
 io.on("connection", (socket) => {
@@ -110,9 +113,9 @@ io.on("connection", (socket) => {
       `http://localhost:8000/Blogs/react/${userIdLoggedIn}/${blogId}`
     );
     console.log(response.data);
-    const { Blog, success=true } = response.data;
+    const { Blog, success = true } = response.data;
 
-    io.emit("liked-data", { success, Blog, userIdLoggedIn , i });
+    io.emit("liked-data", { success, Blog, userIdLoggedIn, i });
     // io.emit("liked-data", { success : true, userIdLoggedIn , i });
   });
   socket.on("delete-post", async (e) => {
@@ -120,9 +123,9 @@ io.on("connection", (socket) => {
     const { id } = e;
     console.log(id);
 
-    console.log("Request sent")
+    console.log("Request sent");
     // const { success, msg } = response.data;
-    console.log(response.data)
+    console.log(response.data);
     io.emit("deleted-post", { id });
   });
 });

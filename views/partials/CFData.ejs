@@ -1,10 +1,16 @@
 <div class="card-containerr">
   <div class="left">
-    <img class="round" src="<%= titlePhoto %>" alt="user" />
+    <h1><%= username%></h1>
+    <img
+      class="round"
+      style="height: 300px; width: 300px"
+      src="<%= titlePhoto %>"
+      alt="user"
+    />
     <h3><%= firstName%> <%= lastName %></h3>
     <h6><%= city%><%= country %></h6>
-    <div class="row" style="margin: 5% 0%;">
-      <div class="col-6" style="border-right: 3px solid grey;">
+    <div class="row" style="margin: 5% 0%">
+      <div class="col-6" style="border-right: 3px solid grey">
         <h6>Current Status :</h6>
         <h6>Rating : <%= rating %> , <%= rank %></h6>
       </div>
@@ -13,14 +19,22 @@
         <h6>Peak Rating : <%= maxRating %> , <%= maxRank %></h6>
       </div>
     </div>
-    <div class="online-data row" style="margin-bottom: 2% ;">
-      <h6 class="col-6" style="border-right: 2px gray solid;" >Last Online : <%= lastOnline %></h6>
+    <div class="online-data row" style="margin-bottom: 2%">
+      <h6 class="col-6" style="border-right: 2px gray solid">
+        Last Online : <%= lastOnline %>
+      </h6>
       <h6 class="col-6">Registered : <%= registered %></h6>
     </div>
+    <% if(loggedin){ %>
     <div class="buttons">
-      <button class="primary">Message</button>
-      <button class="primary ghost">Following</button>
+      <% if(loggedin && loggedin.Stalklist.find(obj => obj.name === username)){
+      %>
+      <button class="primary remove-stalklist">Remove From Stalklist</button>
+      <% }else{ %>
+      <button class="primary add-stalklist">Add To StalkList</button>
+      <% } %>
     </div>
+    <% } %>
   </div>
   <div class="right">
     <%- data2%>
@@ -73,4 +87,8 @@
       month[i].setAttribute("fill", "white");
     }
   });
+
+  const removeBtn = document.getElementsByClassName("remove-stalklist")[0];
+  const addBtn = document.getElementsByClassName("add-stalklist")[0];
+  // removeBtn.addEventListener("click",  ())
 </script>

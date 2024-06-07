@@ -1,5 +1,8 @@
 const { getsvg } = require("../controllers/codeforces.js");
-const {getNumberFromString , getDesignFromRating} = require("../utils/Miscellaneous.js");
+const {
+  getNumberFromString,
+  getDesignFromRating,
+} = require("../utils/Miscellaneous.js");
 const fetcher = require("../controllers/codechef.js");
 const { default: axios } = require("axios");
 module.exports.fetch = async (req, res) => {
@@ -23,8 +26,14 @@ module.exports.fetch = async (req, res) => {
       const { status, result } = data;
       if (!result[0].city) result[0].city = "";
       else result[0].city += " , ";
+      result[0].username = username;
       if (status == "FAILED") throw new HandleError("User Not Found", 404);
-      res.render("pages/findCF", { ...result[0], ...Svg, contestArray });
+      console.log({ ...result[0] });
+      res.render("pages/findCF", {
+        ...result[0],
+        ...Svg,
+        contestArray,
+      });
     } else if (handle === "CC") {
       let userDataCC = await fetcher.searchCode(username);
       if (userDataCC == undefined) throw new HandleError("User Not Found", 404);
@@ -39,8 +48,8 @@ module.exports.fetch = async (req, res) => {
   }
 };
 
-module.exports.justData = async (req ,res) => {
-    try {
+module.exports.justData = async (req, res) => {
+  try {
     console.log("Hitt theroute ");
     const { username, handle } = req.query; //handle if null
     if (!username) throw new Error("Need a username for result !!!");
@@ -72,6 +81,6 @@ module.exports.justData = async (req ,res) => {
   } catch (e) {
     console.log(e.message);
     req.flash("error", e.message);
-    res.send({error : e.message})
+    res.send({ error: e.message });
   }
-}
+};
