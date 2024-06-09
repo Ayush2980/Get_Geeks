@@ -146,3 +146,25 @@ async function fetchData(name, bit) {
   console.log(data.data);
   return data.data;
 }
+
+//Add friend or stalklist funtionality
+const addFriendButton = document.getElementsByClassName("add-friend")[0];
+if (addFriendButton) {
+  addFriendButton.addEventListener("click", async (e) => {
+    try {
+      e.preventDefault();
+      const { data } = await axios.post(
+        "http://localhost:8000/community/stalklist/add",
+        {
+          image:
+            "https://cdn.codechef.com/sites/default/files/uploads/pictures/5cf28a1c81060786bf492ef98a5cc252.jpg",
+          name: document.getElementById("GG-user-name").innerText,
+          plat: "GG",
+        },
+      );
+    } catch (err) {
+      const { message = "Friend Req not sent !!" } = err;
+      fireClientFlash(false, message);
+    }
+  });
+}

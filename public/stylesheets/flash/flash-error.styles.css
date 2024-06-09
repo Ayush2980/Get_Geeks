@@ -15,7 +15,7 @@
   .error-alert {
     width: 50% !important;
     height: auto;
-    transform: translate(-2%, -75%);
+    /* transform: translate(-2%, -75%); */
   }
 }
 

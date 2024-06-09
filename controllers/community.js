@@ -23,7 +23,7 @@ module.exports = {
   },
   addToStalkList: async (req, res, next) => {
     try {
-      const { id } = req.query;
+      const id = req.user._id;
       const { image, name, plat } = req.body;
       //   if (parseInt(id) != parseInt(req.user._id))
       //     throw Error("Unauthorized access!!!");
@@ -42,13 +42,13 @@ module.exports = {
   deleteFromStalklist: async (req, res, next) => {
     try {
       console.log("Delete request ");
-      const { id } = req.query;
+      const id = req.user._id;
       const { name, plat } = req.body;
       //   if (parseInt(id) != parseInt(req.user._id))
       //     throw Error("Unauthorized access!!!");
       const userUpdated = await userSchema.findByIdAndUpdate(
         { _id: id },
-        { $pull: { Stalklist: { name: name } } },
+        { $pull: { Stalklist: { name: name, plat: plat } } },
         { new: true }
       );
       res.send({ success: true, userUpdated: userUpdated });
