@@ -1,14 +1,18 @@
 <div class="card-containerr">
   <div class="left">
-    <h1><%= username%></h1>
+    <h1 id="CF-user-name"><%= username%></h1>
     <img
       class="round"
       style="height: 300px; width: 300px"
       src="<%= titlePhoto %>"
       alt="user"
     />
-    <h3><%= firstName%> <%= lastName %></h3>
+    <% if(firstName && lastName){ %>
+      <h3><%= firstName%> <%= lastName %></h3>
+      <% } %>
+      <% if(city && country){ %>
     <h6><%= city%><%= country %></h6>
+    <% } %>
     <div class="row" style="margin: 5% 0%">
       <div class="col-6" style="border-right: 3px solid grey">
         <h6>Current Status :</h6>
@@ -30,7 +34,13 @@
       <% if(loggedin && loggedin.Stalklist.find(obj => obj.name === username)){
       %>
       <button class="primary remove-stalklist">Remove From Stalklist</button>
+      <button class="primary add-stalklist" style="display: none">
+        Add To StalkList
+      </button>
       <% }else{ %>
+      <button class="primary remove-stalklist" style="display: none">
+        Remove From Stalklist
+      </button>
       <button class="primary add-stalklist">Add To StalkList</button>
       <% } %>
     </div>
@@ -76,19 +86,4 @@
 </div>
 
 <link rel="stylesheet" href="stylesheets/data/dataCF.css" />
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const weekday = document.getElementsByClassName("wday");
-    for (let i = 0; i < weekday.length; i++) {
-      weekday[i].setAttribute("fill", "white");
-    }
-    const month = document.getElementsByClassName("month");
-    for (let i = 0; i < month.length; i++) {
-      month[i].setAttribute("fill", "white");
-    }
-  });
-
-  const removeBtn = document.getElementsByClassName("remove-stalklist")[0];
-  const addBtn = document.getElementsByClassName("add-stalklist")[0];
-  // removeBtn.addEventListener("click",  ())
-</script>
+<script src="JavaScript/Profile/CFData.js"></script>

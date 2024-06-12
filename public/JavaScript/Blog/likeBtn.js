@@ -7,6 +7,7 @@ window.addEventListener("load", () => {
   const userIdLoggedIn = document.getElementById("hidden-id").innerText;
   const LikeSVG = document.getElementsByClassName("like-svg");
   const LikeValue = document.getElementsByClassName("like-value");
+  const blogDiv = document.getElementsByClassName("blog-anime");
   for (let i = 0; i < likeBtn.length; i++) {
     likeBtn[i].addEventListener("click", (e) => {
       console.log(i, " pressed !!");

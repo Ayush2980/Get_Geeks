@@ -20,16 +20,20 @@ window.addEventListener("load", async () => {
     const handle = card.querySelector("[friend-handle]");
     const image = card.querySelector(".image-sizer");
     const deleteBtn = card.querySelector(".delete-o-hombre");
+    const viewBtn = card.querySelector(".view-o-hombre");
     name.textContent = user.name;
     handle.textContent = user.plat;
     image.src = user.image;
+    if (user.plat == "GG") viewBtn.href = `/profile/${user.userId}`;
+    else viewBtn.href = `/fetch?handle=${user.plat}&username=${user.name}`;
+
     deleteBtn.addEventListener("click", async (e) => {
       e.preventDefault();
       const response = await axios({
         method: "post",
         url: "http://localhost:8000/community/stalklist/remove",
         params: {
-          id: "664788416e491bb512149f34",
+          id: document.getElementById("classified-data").innerText,
         },
         data: {
           name: user.name,
@@ -40,6 +44,7 @@ window.addEventListener("load", async () => {
       });
       console.log(response);
       //trigger a flash here
+      fireClientFlash(true, "User Removed from Stalklist");
       anime({
         targets: card,
         keyframes: [
@@ -56,7 +61,7 @@ window.addEventListener("load", async () => {
         },
       });
     });
-    
+
     baapContainer.append(card);
     return { ...user, element: card };
   });

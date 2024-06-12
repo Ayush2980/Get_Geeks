@@ -14,7 +14,7 @@ module.exports.validateUser = (req, res, next) => {
 
 module.exports.protectedRoute = async (req, res, next) => {
   try {
-    if (!req.user) throw Error("Please Login !!!");
+    if (!req.user) return res.redirect("/signin");
     next();
   } catch (e) {
     return next(e);

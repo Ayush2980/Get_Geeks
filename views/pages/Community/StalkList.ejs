@@ -4,9 +4,9 @@
     class="card p-3 shadow bg-getgeeks text-white parent-card-comm"
     style="width: 100%; height: 100vh"
   >
-    <!-- <% if(loggedin){ %>
-      <p class="classified-data">loggedin._id</p>
-    <% } %> -->
+    <% if(loggedin){ %>
+    <p id="classified-data" hidden><%= loggedin._id%></p>
+    <% } %>
     <h1>StalkList</h1>
     <p>Find all your profiles that you added to StalkList</p>
     <div class="input-group" style="width: 80%">
@@ -18,7 +18,7 @@
       />
       <label for="search"><i class="fas fa-search"></i></label>
     </div>
-    <div class="stalklist-container">
+    <div class="stalklist-container" style="height: 100%">
       <!-- Add a loader -->
       <template friend-data-template>
         <div class="inside-cont my-3">

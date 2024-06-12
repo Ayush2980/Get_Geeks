@@ -113,6 +113,7 @@ window.addEventListener("load", async () => {
   const ccusername = document.getElementsByClassName("cc-username-load");
   const ccRating = document.getElementsByClassName("cc-curr-rating-load");
   const ccRatingMax = document.getElementsByClassName("cc-rating-load");
+  const linkCc = document.getElementsByClassName("view-cc-acc");
   const ccDataFetch = await fetchData(ccProfName, 0);
   for (let i = 0; i < 2; i++) {
     ccLoader[i].style.display = "none";
@@ -120,12 +121,14 @@ window.addEventListener("load", async () => {
     ccusername[i].innerHTML = username;
     ccRating[i].innerHTML = ratingNo;
     ccRatingMax[i].innerHTML = maxRating;
+    linkCc[i].href = `/fetch?handle=CC&username=${username}`;
   }
   profCard[1].style.display = "block";
   profCard[3].style.display = "block";
   const cfDataFetch = await fetchData(cfProfName, 1);
   const cfusername = document.getElementsByClassName("cf-username-load");
   const cfRating = document.getElementsByClassName("cf-curr-rating-load");
+  const linkCf = document.getElementsByClassName("view-cf-acc");
   const cfRatingMax = document.getElementsByClassName("cf-rating-load");
   for (let i = 0; i < 2; i++) {
     cfLoader[i].style.display = "none";
@@ -133,6 +136,7 @@ window.addEventListener("load", async () => {
     cfusername[i].innerHTML = handle;
     cfRating[i].innerHTML = rating;
     cfRatingMax[i].innerHTML = maxRating;
+    linkCf[i].href = `/fetch?handle=CF&username=${handle}`;
     // profCard[2*i].style.display = "block";
   }
   profCard[0].style.display = "block";
@@ -160,7 +164,7 @@ if (addFriendButton) {
             "https://cdn.codechef.com/sites/default/files/uploads/pictures/5cf28a1c81060786bf492ef98a5cc252.jpg",
           name: document.getElementById("GG-user-name").innerText,
           plat: "GG",
-        },
+        }
       );
     } catch (err) {
       const { message = "Friend Req not sent !!" } = err;

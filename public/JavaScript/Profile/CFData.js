@@ -1,28 +1,40 @@
-const sendReqBtn = document.getElementsByClassName("add-friend");
-const removeFrnd = document.getElementsByClassName("remove-friend");
 window.addEventListener("load", () => {
+  console.log("hello from script");
+  document.addEventListener("DOMContentLoaded", () => {
+    const weekday = document.getElementsByClassName("wday");
+    for (let i = 0; i < weekday.length; i++) {
+      weekday[i].setAttribute("fill", "white");
+    }
+    const month = document.getElementsByClassName("month");
+    for (let i = 0; i < month.length; i++) {
+      month[i].setAttribute("fill", "white");
+    }
+  });
+
+  const removeFrnd = document.getElementsByClassName("remove-stalklist");
+  const sendReqBtn = document.getElementsByClassName("add-stalklist");
   try {
     for (let i = 0; i < sendReqBtn.length; i++) {
       sendReqBtn[i].addEventListener("click", async () => {
         try {
-          const sendObj = {
-            image:
-              "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fdefault-profile-picture&psig=AOvVaw02kcoBrxvIcQIi6giZU6VC&ust=1718045480517000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNCfmaaYz4YDFQAAAAAdAAAAABAJ",
-            name: document.getElementById("GG-user-name").innerText,
-            plat: "GG",
-            userId: document.getElementById("hidden-curr-id-profile").innerHTML,
-          };
-          console.log(sendObj);
           const { data } = await axios.post(
             "http://localhost:8000/community/stalklist/add",
-            sendObj,
+            {
+              image:
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fdefault-profile-picture&psig=AOvVaw02kcoBrxvIcQIi6giZU6VC&ust=1718045480517000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNCfmaaYz4YDFQAAAAAdAAAAABAJ",
+              name: document.getElementById("CF-user-name").innerText,
+              plat: "CF",
+            },
             {
               headers: {
                 "Content-Type": "application/json",
               },
             }
           );
-          let message = data.success ? "Added to stalkList" : err.msg;
+          console.log(data);
+          let message = data.success
+            ? "Added to stalkList"
+            : "Some error Occured";
           fireClientFlash(data.success, message);
           for (let i = 0; i < sendReqBtn.length; i++) {
             sendReqBtn[i].style.display = "none";
@@ -39,6 +51,7 @@ window.addEventListener("load", () => {
 
   try {
     for (let i = 0; i < removeFrnd.length; i++) {
+      console.log("CLickc", i);
       removeFrnd[i].addEventListener("click", async () => {
         try {
           const { data } = await axios.post(
@@ -46,10 +59,8 @@ window.addEventListener("load", () => {
             {
               image:
                 "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fdefault-profile-picture&psig=AOvVaw02kcoBrxvIcQIi6giZU6VC&ust=1718045480517000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNCfmaaYz4YDFQAAAAAdAAAAABAJ",
-              name: document.getElementById("GG-user-name").innerText,
-              plat: "GG",
-              userId: document.getElementById("hidden-curr-id-profile")
-                .innerHTML,
+              name: document.getElementById("CF-user-name").innerText,
+              plat: "CF",
             },
             {
               headers: {
@@ -57,7 +68,7 @@ window.addEventListener("load", () => {
               },
             }
           );
-          let message = data.success ? "Removed from stalkList" : data.err.msg;
+          let message = data.success ? "Removed from stalkList" : err.msg;
           fireClientFlash(data.success, message);
           for (let i = 0; i < sendReqBtn.length; i++) {
             sendReqBtn[i].style.display = "block";
@@ -72,5 +83,3 @@ window.addEventListener("load", () => {
     console.log("NONON");
   }
 });
-
-//Think of some logicx to make it reasltinm e

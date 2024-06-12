@@ -4,8 +4,12 @@ const blogSchema = require("../models/Blogs.js");
 const AsyncError = require("../utils/AsyncError.js");
 const { fetchForProf } = require("../controllers/codeforces.js");
 const { fetchForCCprof } = require("../controllers/codechef.js");
-const axios = require("axios")
-const {getDesignFromRating , getNumberFromString} = require("../utils/Miscellaneous.js")
+const axios = require("axios");
+const {
+  getDesignFromRating,
+  getNumberFromString,
+} = require("../utils/Miscellaneous.js");
+const { ObjectId } = require("mongodb");
 
 //Checked
 module.exports.find = (req, res) => {
@@ -146,40 +150,46 @@ module.exports.removeFriend = async (req, res) => {
 };
 module.exports.showProfile = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    let { id } = req.params;
+    console.log(id, typeof id);
+    id = new ObjectId(String(id));
+    console.log(id, typeof id);
     const currUser = await userSchema.findById(id);
-    // const { CCprof, CFprof } = currUser;
-    // console.log(CFprof)
-    // // const currCfData = await fetchForProf(CFprof);
-    // const { result } = (await axios.get(
-    //   `https://codeforces.com/api/user.info?handles=${CFprof}`
-    // )).data;
-    // let currCcData = await fetchForCCprof(CCprof);
-    // if (currCcData == undefined) throw new HandleError("User Not Found", 404);
-    // currCcData.maxRating = getNumberFromString(currCcData.maxRating);
-    // currCcData.maxRatingHtml = getDesignFromRating(currCcData.maxRating);
-    // res.render("pages/Profile/profile.ejs", { currUser, result , currCcData });
-    console.log(currUser)
+    console.log("Checking the found user ", currUser._id);
     res.render("pages/Profile/profile.ejs", { currUser });
   } catch (e) {
     next(e);
   }
 };
 
-module.exports.editProfile = async(req ,res) => {
-  try{
-    if(!req.user){
-      console.log("No user logged in ")
+module.exports.editProfile = async (req, res) => {
+  try {
+    if (!req.user) {
+      console.log("No user logged in ");
       throw Error("Please Login to continue !!!");
     }
-    const {fullname = req.user.fullname , about = req.user.about , linkedIn = req.user.linkedIn , pronoun = "He/Him"} = req.body;
-    const userData = await userSchema.findByIdAndUpdate({_id: req.user._id} , {$set : {fullname : fullname , about: about , linkedIn : linkedIn , pronoun : pronoun}} , {new : true});
-    res.send({success : true , userData});
-  }catch(e){
-    const {message = "Some error"} = e;
+    const {
+      fullname = req.user.fullname,
+      about = req.user.about,
+      linkedIn = req.user.linkedIn,
+      pronoun = "He/Him",
+    } = req.body;
+    const userData = await userSchema.findByIdAndUpdate(
+      { _id: req.user._id },
+      {
+        $set: {
+          fullname: fullname,
+          about: about,
+          linkedIn: linkedIn,
+          pronoun: pronoun,
+        },
+      },
+      { new: true }
+    );
+    res.send({ success: true, userData });
+  } catch (e) {
+    const { message = "Some error" } = e;
     console.log(e.message);
-    return res.send({success : false , error : message});
+    return res.send({ success: false, error: message });
   }
-}
-
-
+};

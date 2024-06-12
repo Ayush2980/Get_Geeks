@@ -1,8 +1,10 @@
 <div class="card-containerr">
   <div class="left">
     <img class="round" src="<%= dp%>" alt="user" />
-    <h3><%= username%></h3>
+    <h3 id="CC-user-name"><%= username%></h3>
+    <% if(country){ %>
     <h6><img src="<%= flag%>" /><%= country%></h6>
+    <% } %>
     <div class="row" style="margin: 5% 0%">
       <div class="col-6" style="border-right: 3px solid grey">
         <h6>Current Status :</h6>
@@ -25,10 +27,22 @@
         <h6><%= countryRank%></h6>
       </div>
     </div>
+    <% if(loggedin){ %>
     <div class="buttons">
-      <button class="primary">Message</button>
-      <button class="primary ghost">Following</button>
+      <% if(loggedin && loggedin.Stalklist.find(obj => obj.name === username)){
+      %>
+      <button class="primary remove-stalklist">Remove From Stalklist</button>
+      <button class="primary add-stalklist" style="display: none">
+        Add To StalkList
+      </button>
+      <% }else{ %>
+      <button class="primary remove-stalklist" style="display: none">
+        Remove From Stalklist
+      </button>
+      <button class="primary add-stalklist">Add To StalkList</button>
+      <% } %>
     </div>
+    <% } %>
   </div>
   <div class="right row">
     <div class="col"><%- heatmapSvg%></div>
@@ -37,15 +51,4 @@
 </div>
 
 <link rel="stylesheet" href="stylesheets/data/dataCF.css" />
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const texts = document.getElementsByTagName("text");
-    for(let i = 0;i < texts.length; i++){
-      texts[i].style.fill = "white";
-    }
-    const charts = document.getElementsByClassName("highcharts-background");
-    for(let i= 0;i < charts.length ;i++){
-      charts[i].style.fill = "#141E30";
-    }
-  });
-</script>
+<script src="JavaScript/Profile/CCData.js"></script>

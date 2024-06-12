@@ -8,7 +8,7 @@ const {
   getStalkList,
 } = require("../controllers/community");
 
-router.get("/", commPage);
+router.get("/", protectedRoute, commPage);
 router.get("/stalklist", getStalkList);
 router.post("/stalklist/add", addToStalkList);
 router.post("/stalklist/remove", deleteFromStalklist);

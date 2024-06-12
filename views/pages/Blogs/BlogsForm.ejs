@@ -1,26 +1,43 @@
 <% layout("layout/BoilerPlateMain.ejs") %>
 <div class="container-fluid">
-    <%- include('../../partials/flash/flash-success.ejs')%>
-    <%- include('../../partials/flash/flash-error.ejs')%>
-    <div class="row d-flex align-items-center justify-content-center">
-        <!-- <div class="col"></div> -->
-        <div class="col-12 col-md-6">
-            <form action="/Blogs/addNew/<%= loggedin._id%>" method="POST" novalidate class="validated-form">            
-                <div class="mb-3">
-                    <label for="Title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="Title" name="title" placeholder="Title(e.g. DP)">
-                </div>
-                <div class="mb-3">
-                    <label for="Text" class="form-label">Blog Text</label>
-                    <textarea class="form-control" id="Text" rows="3" name="body" placeholder="Your thoughts here !"></textarea>
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-primary">POST</button>
-                </div>
-            </form>
+  <%- include('../../partials/flash/flash-success.ejs')%> <%-
+  include('../../partials/flash/flash-error.ejs')%>
+  <div class="row d-flex align-items-center justify-content-center">
+    <!-- <div class="col"></div> -->
+    <div class="col-12 col-md-6">
+      <form
+        action="/Blogs/addNew/<%= loggedin._id%>"
+        method="POST"
+        novalidate
+        class="validated-form"
+      >
+        <div class="mb-3">
+          <label for="Title" class="form-label">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="Title"
+            name="title"
+            placeholder="Title(e.g. DP)"
+          />
         </div>
-        <!-- <div class="col"></div> -->
+        <div class="mb-3">
+          <label for="Text" class="form-label">Blog Text</label>
+          <textarea
+            class="form-control"
+            id="Text"
+            rows="3"
+            name="body"
+            placeholder="Your thoughts here !"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-primary">POST</button>
+        </div>
+      </form>
     </div>
+    <!-- <div class="col"></div> -->
+  </div>
 </div>
-  
-<link rel="stylesheet" href="/stylesheets/Blogs/BlogsForm.css">
+
+<link rel="stylesheet" href="/stylesheets/Blogs/BlogsForm.css" />

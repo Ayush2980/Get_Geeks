@@ -9,6 +9,7 @@ module.exports.fetch = async (req, res) => {
   try {
     console.log("Hitt theroute ");
     const { username, handle } = req.query; //handle if null
+    console.log(req.query);
     if (!username) throw new Error("Need a username for result !!!");
     if (handle === "CF") {
       const { data } = await axios.get(
@@ -27,6 +28,14 @@ module.exports.fetch = async (req, res) => {
       if (!result[0].city) result[0].city = "";
       else result[0].city += " , ";
       result[0].username = username;
+      if (!result[0].firstName) {
+        result[0].firstName = "Codeforces";
+        result[0].lastName = "User";
+      }
+      if (!result[0].country) {
+        result[0].country = "Somewhere on earth";
+        result[0].city = "";
+      }
       if (status == "FAILED") throw new HandleError("User Not Found", 404);
       console.log({ ...result[0] });
       res.render("pages/findCF", {
