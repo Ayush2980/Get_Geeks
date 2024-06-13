@@ -1,17 +1,28 @@
 <div class="bottom-navigation">
   <nav class="nav">
-    <a href="#" class="nav-item is-active">
+    <a href="/find" class="nav-item is-active home-btm">
       <i class="bx bx-heart"></i>
-      <span>Favorites</span>
-    </a>
-    <a href="#" class="nav-item">
-      <i class="bx bx-home"></i>
       <span>Home</span>
     </a>
-    <a href="#" class="nav-item">
-      <i class="bx bx-basket"></i>
-      <span>Order</span>
+    <a href="/Blogs" class="nav-item blogs-btm">
+      <i class="bx bx-home"></i>
+      <span>Blogs</span>
     </a>
+    <a href="/community" class="nav-item comm-btm">
+      <i class="bx bx-basket"></i>
+      <span>Community</span>
+    </a>
+    <% if(loggedin){ %>
+    <a href="/profile/<%= loggedin._id%>" class="nav-item prof-btm">
+      <i class="bx bx-basket"></i>
+      <span>Profile</span>
+    </a>
+    <% }else{ %>
+    <a href="/signin" class="nav-item prof-btm">
+      <i class="bx bx-basket"></i>
+      <span>SignIn</span>
+    </a>
+    <% } %>
 
     <div class="nav-indicator-wrapper">
       <span class="nav-indicator"></span>
@@ -37,6 +48,17 @@
 
     el.classList.add("is-active");
   }
+  const obj = {
+    home: document.getElementsByClassName("home-btm")[0],
+    blogs: document.getElementsByClassName("blogs-btm")[0],
+    comm: document.getElementsByClassName("comm-btm")[0],
+    prof: document.getElementsByClassName("prof-btm")[0],
+  };
+  const currEndPoint = window.location.pathname;
+  if (currEndPoint == "/Blogs") handleIndicator(obj.blogs);
+  else if (currEndPoint == "/find") handleIndicator(obj.home);
+  else if (currEndPoint == "/commnity") handleIndicator(obj.comm);
+  else handleIndicator(obj.prof);
 
   items.forEach((item) => {
     item.addEventListener("click", (e) => {

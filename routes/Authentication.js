@@ -3,6 +3,8 @@ const router = express.Router();
 const axios = require("axios")
 //requirements
 const multer = require("multer");
+const { storage } = require("../cloudinary");
+const upload = multer({ storage });
 const asyncError = require("../utils/AsyncError");
 const userSchema = require("../models/users.js");
 const User = new userSchema();
@@ -16,8 +18,6 @@ const {
   postSignUp,
   validateJOI,
 } = require("../controllers/Authentication.js");
-const { storage } = require("../cloudinary");
-const upload = multer({ storage });
 
 // router.post('/register', upload.single('image'),AuthFunc.validateJOI ,asyncError(AuthFunc.postSignUp));
 router.post("/uploadImage/:id" , upload.single('image') , async(req , res, next) => {
