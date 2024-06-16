@@ -1,7 +1,7 @@
 const blogSchema = require("../models/Blogs.js");
 const userSchema = require("../models/users.js");
 const commentSchema = require("../models/comments.js");
-const {convertDate} = require("../public/JavaScript/Blog/blogs.js")
+const { convertDate } = require("../public/JavaScript/Blog/blogs.js");
 
 module.exports = {
   Blogs: async (req, res) => {
@@ -54,7 +54,8 @@ module.exports = {
 
   deleteBlogs: async (req, res, next) => {
     try {
-      const { blogId } = req.params;
+      // const { blogId } = req.params;
+      const blogId = req.user._id;
       const blogData = await blogSchema
         .findById({ _id: blogId })
         .populate("author");

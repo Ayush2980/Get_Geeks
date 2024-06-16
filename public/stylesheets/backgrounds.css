@@ -85,6 +85,7 @@ input:valid:not(:focus) {
 
 ::-webkit-scrollbar {
   width: 20px;
+  display: none !important;
 }
 ::-webkit-scrollbar-track {
   background-color: #141e30;

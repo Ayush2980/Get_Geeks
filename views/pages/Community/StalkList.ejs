@@ -20,6 +20,9 @@
     </div>
     <div class="stalklist-container" style="height: 100%">
       <!-- Add a loader -->
+      <% if(loggedin.Stalklist.length == 0){ %>
+      <h4>You have no friends, go and get some</h4>
+      <% } %>
       <template friend-data-template>
         <div class="inside-cont my-3">
           <div class="row data-card-holder">

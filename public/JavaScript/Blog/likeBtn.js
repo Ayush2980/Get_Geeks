@@ -9,31 +9,30 @@ window.addEventListener("load", () => {
   const LikeValue = document.getElementsByClassName("like-value");
   const blogDiv = document.getElementsByClassName("blog-anime");
   for (let i = 0; i < likeBtn.length; i++) {
-    likeBtn[i].addEventListener("click", (e) => {
+    likeBtn[i].addEventListener("click", async (e) => {
       console.log(i, " pressed !!");
       const blogId = hiddenIdList[i].innerHTML;
       console.log(userIdLoggedIn);
-      socket.emit("like-pressed", { blogId, userIdLoggedIn, i });
+      try {
+        const response = await axios.post(
+          `http://localhost:8000/Blogs/react/${userIdLoggedIn}/${blogId}`
+        );
+        console.log(response.data);
+        const { Blog, success = true } = response.data;
+        if (!success) {
+          console.log("Not Liked");
+          throw new Error("Could Not Like !! some error occured");
+        }
+        const color = LikeSVG[i].getAttribute("fill");
+        if (color == "none") LikeSVG[i].setAttribute("fill", "red");
+        else LikeSVG[i].setAttribute("fill", "none");
+        LikeValue[i].innerHTML = Blog.likes;
+        fireClientFlash(true, "Reaction Updated successfully!");
+      } catch (e) {
+        fireClientFlash(false, "some error occured");
+      }
     });
   }
-
-  socket.on("liked-data", (e) => {
-    try {
-      const { success, Blog, userId, i } = e;
-      if (!success) {
-        console.log("Not Liked");
-        return;
-      }
-      console.log(i, "was actually pressed !!");
-      const color = LikeSVG[i].getAttribute("fill");
-      if (color == "none") LikeSVG[i].setAttribute("fill", "red");
-      else LikeSVG[i].setAttribute("fill", "none");
-      LikeValue[i].innerHTML = Blog.likes;
-      fireClientFlash(true, "Reaction Updated successfully!");
-    } catch (e) {
-      fireClientFlash(false, "some error occured");
-    }
-  });
 
   //Delete Post Button
   const deleteBtn = document.getElementsByClassName("delete-post");
