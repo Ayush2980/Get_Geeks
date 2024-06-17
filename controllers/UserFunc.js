@@ -1,5 +1,6 @@
 const userSchema = require("../models/users.js");
 const { ObjectId } = require("mongodb");
+const { cloudinary } = require("../cloudinary/index.js");
 
 module.exports = {
   find: (req, res) => {
@@ -21,17 +22,31 @@ module.exports = {
 
   editProfile: async (req, res) => {
     try {
-      if (!req.user) {
-        console.log("No user logged in ");
-        throw Error("Please Login to continue !!!");
-      }
-      console.log("Multerrr re bab", req.body);
+      console.log("Checking image there ot not ", req.file);
       const {
         fullname = req.user.fullname,
         about = req.user.about,
         linkedIn = req.user.linkedIn,
         pronoun = "He/Him",
       } = req.body;
+      let image = req.user.image;
+      if (req.file) {
+        image = {
+          link: req.file.path,
+          publicId: req.file.filename,
+        };
+        //if Some data for image has been sent
+        if (req.user.image.publicId) {
+          // default is not there then delete
+          try {
+            const result = await cloudinary.uploader.destroy(
+              req.user.image.publicId
+            );
+          } catch (e) {
+            next(e);
+          }
+        }
+      }
       const userData = await userSchema.findByIdAndUpdate(
         { _id: req.user._id },
         {
@@ -40,6 +55,7 @@ module.exports = {
             about: about,
             linkedIn: linkedIn,
             pronoun: pronoun,
+            image: image,
           },
         },
         { new: true }

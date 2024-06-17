@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
   },
   fullname: {
     type: String,
-    default : " "
+    default: " ",
   },
   Email: {
     type: String,
@@ -18,9 +18,9 @@ const userSchema = new mongoose.Schema({
   },
   about: {
     type: String,
-    default : "A Geek"
+    default: "A Geek",
   },
-  pronoun: { type: String , default : "He/Him" },
+  pronoun: { type: String, default: "He/Him" },
   country: {
     type: String,
     required: true,
@@ -39,7 +39,14 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   image: {
-    type: String,
+    link: {
+      type: String,
+      default: "https://avatars.githubusercontent.com/u/122623846?v=4",
+    },
+    publicId: {
+      type: String,
+      default: null,
+    },
   },
   Stalklist: [
     {

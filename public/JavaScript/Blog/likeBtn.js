@@ -27,7 +27,7 @@ window.addEventListener("load", () => {
         if (color == "none") LikeSVG[i].setAttribute("fill", "red");
         else LikeSVG[i].setAttribute("fill", "none");
         LikeValue[i].innerHTML = Blog.likes;
-        fireClientFlash(true, "Reaction Updated successfully!");
+        fireClientFlash(true, "Liked !!");
       } catch (e) {
         fireClientFlash(false, "some error occured");
       }

@@ -59,7 +59,11 @@
       <div class="blog-anime card my-4 <%= blogs[i]._id %>">
         <div class="user">
           <div class="profile">
-            <img src="https://placehold.co/50" alt="avatar" class="ava" />
+            <img
+              src="<%= blogs[i].author.image.link %>"
+              alt="avatar"
+              class="ava"
+            />
             <div class="username">
               <a
                 href="/profile/<%= blogs[i].author._id%>"
@@ -67,7 +71,7 @@
               >
                 <h3 class="name text-white"><%= blogs[i].author.username %></h3>
               </a>
-              <p class="uname">@realjohndoe</p>
+              <p class="uname">@<%= blogs[i].author.fullname %></p>
             </div>
           </div>
           <% if(loggedin && (parseInt(loggedin._id) ==

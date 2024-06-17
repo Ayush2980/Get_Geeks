@@ -11,10 +11,8 @@ const asyncError = require("../utils/AsyncError.js");
 const { protectedRoute } = require("../middleware");
 
 router.get("/", Blogs);
-// router.get('/' , Blogs.);
 router.get("/addNew/:id", protectedRoute, formBlogs);
 router.post("/addNew/:id", protectedRoute, postBlogs);
-//Below remaining
 router.post("/delete/:blogId", protectedRoute, deleteBlogs);
 router.post("/react/:id/:blogId", protectedRoute, likeBtn);
 

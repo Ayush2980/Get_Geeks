@@ -58,15 +58,24 @@ window.addEventListener("load", async () => {
       thirdDivLoader.style.display = "flex";
       pronounBtn.style.display = "none";
 
-      const { data } = await axios.post("http://localhost:8000/profile/edit", {
-        fullname,
-        about,
-        linkedIn,
-        pronoun:
-          showPronoun.innerHTML.toString() == ""
-            ? undefined
-            : showPronoun.innerHTML.toString(),
-      });
+      const { data } = await axios.post(
+        "http://localhost:8000/profile/edit",
+        {
+          fullname,
+          about,
+          linkedIn,
+          pronoun:
+            showPronoun.innerHTML.toString() == ""
+              ? undefined
+              : showPronoun.innerHTML.toString(),
+          image: document.getElementById("gg-dp").files[0],
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       document.getElementById("gg-fullname").value = "";
       document.getElementById("gg-about").value = "";
       document.getElementById("linkedin").value = "";
@@ -92,6 +101,7 @@ window.addEventListener("load", async () => {
       secondDiv.style.display = "block";
       thirdDiv.style.display = "none";
       console.log(data);
+      fireClientFlash(true, "Information Updated !!");
     } catch (e) {
       //end the loader with an error
       thirdDivLoader.style.display = "none";
@@ -99,6 +109,7 @@ window.addEventListener("load", async () => {
       secondDiv.style.display = "block";
       thirdDiv.style.display = "none";
       console.log(e);
+      fireClientFlash(false, "Some error Occured !!");
     }
   });
   //load user Data
