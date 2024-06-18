@@ -11,6 +11,7 @@ textarea.form-control:focus {
 
 body {
   height: 100vh !important;
+  font-family: "Raleway", sans-serif !important;
 }
 .card {
   display: flex;

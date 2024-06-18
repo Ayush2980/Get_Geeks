@@ -79,7 +79,7 @@ h2 {
 .search-img-btn {
   border-bottom-left-radius: 100px !important;
   border-top-left-radius: 100px !important;
-  background-color: #141e30 !important; 
+  background-color: #141e30 !important;
 }
 
 .real-input {
@@ -89,7 +89,7 @@ h2 {
 .dropdown-toggle {
   border-bottom-right-radius: 100px;
   border-top-right-radius: 100px;
-  background-color: #141e30 !important; 
+  background-color: #141e30 !important;
 }
 
 .custom-styling {
@@ -294,6 +294,9 @@ a {
   /* .footer-content-column {
       width: 49.99%;
   } */
+}
+body {
+  font-family: "Raleway", sans-serif !important;
 }
 
 .card-body {

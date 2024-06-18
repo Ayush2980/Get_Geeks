@@ -5,6 +5,9 @@
   height: 200px;
   width: 200px;
 }
+body {
+  font-family: "Raleway", sans-serif !important;
+}
 
 .cs-loader-inner {
   transform: translateY(-50%);
@@ -62,8 +65,8 @@
   }
 }
 
-label{
-    margin: 0px 5px;
+label {
+  margin: 0px 5px;
 }
 
 .cs-loader-inner label:nth-child(7) {

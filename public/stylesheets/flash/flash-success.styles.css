@@ -15,6 +15,9 @@
   .success-alert {
     width: 50% !important;
     height: auto;
-    transform: translate(-2%, -75%);
+    /* transform: translate(-2%, -75%); */
   }
+}
+body {
+  font-family: "Raleway", sans-serif !important;
 }

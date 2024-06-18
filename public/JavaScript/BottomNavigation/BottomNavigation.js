@@ -24,20 +24,20 @@ const obj = {
   home: document.getElementsByClassName("home-btm")[0],
   blogs: document.getElementsByClassName("blogs-btm")[0],
   comm: document.getElementsByClassName("comm-btm")[0],
-  prof: document.getElementsByClassName("prof-btm")[0],
+  prof: document.getElementsByClassName("prof-btm"),
 };
 const currEndPoint = window.location.pathname;
-if (currEndPoint == "/Blogs") {
+if (currEndPoint.toLowerCase().includes("blogs")) {
   handleIndicator(obj.blogs);
   document.getElementById("blog-mob").style.fill = "#6ba7a8";
-} else if (currEndPoint == "/find") {
+} else if (currEndPoint.toLowerCase().includes("find")) {
   handleIndicator(obj.home);
   document.getElementById("home-mob").style.fill = "#6ba7a8";
-} else if (currEndPoint == "/community") {
+} else if (currEndPoint.toLowerCase().includes("community")) {
   handleIndicator(obj.comm);
 } else {
-  document.getElementById("login-mob").style.fill = "#6ba7a8";
-  handleIndicator(obj.prof);
+  document.getElementById("prof-btm").style.fill = "#6ba7a8";
+  handleIndicator(obj.prof[0]);
 }
 
 items.forEach((item) => {

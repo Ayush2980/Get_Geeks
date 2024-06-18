@@ -1,3 +1,6 @@
+body {
+  font-family: "Raleway", sans-serif !important;
+}
 .new-blog-btn {
   border-radius: 1000px;
   width: 4%;
@@ -10,6 +13,28 @@
   right: 24%;
   bottom: 10%;
 }
+
+@media (max-width: 700px) {
+  .new-blog-btn {
+    border-radius: 1000px;
+    width: 10%;
+    height: auto;
+    /* background-color: lightblue; */
+    background-color: transparent;
+    border: none;
+    display: inline;
+    position: fixed;
+    right: 4%;
+    bottom: 15%;
+  }
+  .new-blog-btn:hover {
+    width: 11% !important;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+}
+
 .container-fluid {
   position: relative;
 }
@@ -144,11 +169,11 @@ h4 {
   background-color: #141d26 !important;
 }
 
-.btn-close{
+.btn-close {
   color: white !important;
   background-color: white !important;
 }
 
-.modal-footer{
+.modal-footer {
   border-top: none !important;
 }

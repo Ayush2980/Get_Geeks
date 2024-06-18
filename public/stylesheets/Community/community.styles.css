@@ -1,3 +1,12 @@
+body {
+  font-family: "Raleway", sans-serif !important;
+}
+
+.info-stalk {
+  width: 75%;
+  text-align: center;
+}
+
 .bg-getgeeks {
   /* background-color: #243447; */
   background-color: #2433476b;

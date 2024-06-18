@@ -1,4 +1,4 @@
-.profile-btn{
+.profile-btn {
   border-top-right-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
   width: 8vw;
@@ -8,20 +8,32 @@
   align-items: center;
   border-radius: 50px !important;
 }
-.profile-dropdown{
+body {
+  font-family: "Raleway", sans-serif !important;
+}
+.profile-dropdown {
   background-color: #1c2431;
   color: white;
   border: gray 1px solid;
   width: 10%;
 }
-.nav-but{
+.nav-but {
   margin-right: 2vw !important;
 }
 
-.dropdown-a{
+.dropdown-a {
   color: inherit;
 }
-.dropdown-li:hover{
+.dropdown-li:hover {
   color: black;
+}
 
+.prof-image-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
+}
+
+.profile-dropdown {
+  backdrop-filter: 3px;
 }

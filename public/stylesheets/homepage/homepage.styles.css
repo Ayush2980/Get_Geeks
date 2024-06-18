@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;400;700&family=Raleway:wght@400;700&display=swap");
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Raleway", sans-serif !important;
   background-image: linear-gradient(hsl(218, 28%, 15%), hsl(217, 28%, 13%));
   font-size: 14px;
 }
@@ -251,4 +251,16 @@ h6 {
   .card-title {
     margin: 0px !important;
   }
+  #menu-company {
+    width: 100% !important;
+  }
+}
+@media (min-width: 801px) {
+  #menu-company {
+    width: 200% !important;
+  }
+}
+
+#menu-company li {
+  margin-top: 5%;
 }

@@ -65,7 +65,7 @@ window.addEventListener("load", async () => {
           about,
           linkedIn,
           pronoun:
-            showPronoun.innerHTML.toString() == ""
+            showPronoun.innerText.toString() == ""
               ? undefined
               : showPronoun.innerHTML.toString(),
           image: document.getElementById("gg-dp").files[0],

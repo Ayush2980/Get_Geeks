@@ -7,8 +7,8 @@
     <% if(loggedin){ %>
     <p id="classified-data" hidden><%= loggedin._id%></p>
     <% } %>
-    <h1>StalkList</h1>
-    <p>Find all your profiles that you added to StalkList</p>
+    <h1 class="header-stalk">StalkList</h1>
+    <p class="info-stalk">Find all your profiles that you added to StalkList</p>
     <div class="input-group" style="width: 80%">
       <input
         type="text"
@@ -18,11 +18,25 @@
       />
       <label for="search"><i class="fas fa-search"></i></label>
     </div>
+    <!-- Add a loader -->
+    <% if(loggedin.Stalklist.length == 0){ %>
+    <div
+      class="stalklist-container"
+      style="
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div class="empty-div">
+        <h4>
+          Oops! It looks like your stalk list is empty. Start exploring now!
+        </h4>
+      </div>
+    </div>
+    <% } %>
     <div class="stalklist-container" style="height: 100%">
-      <!-- Add a loader -->
-      <% if(loggedin.Stalklist.length == 0){ %>
-      <h4>You have no friends, go and get some</h4>
-      <% } %>
       <template friend-data-template>
         <div class="inside-cont my-3">
           <div class="row data-card-holder">
