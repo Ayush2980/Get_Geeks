@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+require("dotenv").config();
 const PORT = 8000;
 const express = require("express");
 const mongoose = require("mongoose");
@@ -10,7 +8,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const asyncError = require("./utils/AsyncError");
 const HandleError = require("./utils/ExpressError");
-const { validateUser } = require("./middleware");
+const { validateUser, protectedRoute } = require("./middleware");
 const flash = require("connect-flash");
 var session = require("express-session");
 const userSchema = require("./models/users.js");
@@ -21,29 +19,19 @@ const { storage } = require("./cloudinary");
 const upload = multer({ storage });
 const bcrypt = require("bcrypt");
 const axios = require("axios");
-
-//Socket.io
 const http = require("http").createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(http, {});
-
 //Middlewares
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views"));
 app.use(express.static("public"));
-//serving the node_modules directory as a static asset
-app.use(
-  "/socket.io",
-  express.static(__dirname + "/node_modules/socket.io-client/dist")
-);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(flash());
 app.use(
   session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
-    secret: "woot",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
@@ -73,7 +61,9 @@ main()
   .catch((e) => console.log(e))
   .then(() => console.log("Database connected !!!"));
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/getGeeks");
+  await mongoose.connect(
+    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@getgeeks.kwk5f8s.mongodb.net/`
+  );
 }
 
 //Routes
@@ -101,5 +91,5 @@ app.use((err, req, res, next) => {
 });
 
 http.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}/find`);
+  console.log(`${process.env.BASE_URL}:${PORT}/find`);
 });
