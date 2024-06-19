@@ -1,5 +1,5 @@
 window.addEventListener("load", async () => {
-  const response = await axios.get("http://localhost:8000/community/stalklist");
+  const response = await axios.get("https://getgeeks.onrender.com/community/stalklist");
   console.log(response.success);
   if (!response.data.success) {
     console.log("Please Login , some error occured ");
@@ -31,7 +31,7 @@ window.addEventListener("load", async () => {
       e.preventDefault();
       const response = await axios({
         method: "post",
-        url: "http://localhost:8000/community/stalklist/remove",
+        url: "https://getgeeks.onrender.com/community/stalklist/remove",
         params: {
           id: document.getElementById("classified-data").innerText,
         },

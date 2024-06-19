@@ -14,7 +14,7 @@ window.addEventListener("load", () => {
           };
           console.log(sendObj);
           const { data } = await axios.post(
-            "http://localhost:8000/community/stalklist/add",
+            "https://getgeeks.onrender.com/community/stalklist/add",
             sendObj,
             {
               headers: {
@@ -42,7 +42,7 @@ window.addEventListener("load", () => {
       removeFrnd[i].addEventListener("click", async () => {
         try {
           const { data } = await axios.post(
-            "http://localhost:8000/community/stalklist/remove",
+            "https://getgeeks.onrender.com/community/stalklist/remove",
             {
               image:
                 "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fdefault-profile-picture&psig=AOvVaw02kcoBrxvIcQIi6giZU6VC&ust=1718045480517000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNCfmaaYz4YDFQAAAAAdAAAAABAJ",

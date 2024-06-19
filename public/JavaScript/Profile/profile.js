@@ -59,7 +59,7 @@ window.addEventListener("load", async () => {
       pronounBtn.style.display = "none";
 
       const { data } = await axios.post(
-        "http://localhost:8000/profile/edit",
+        "https://getgeeks.onrender.com/profile/edit",
         {
           fullname,
           about,
@@ -169,7 +169,7 @@ if (addFriendButton) {
     try {
       e.preventDefault();
       const { data } = await axios.post(
-        "http://localhost:8000/community/stalklist/add",
+        "https://getgeeks.onrender.com/community/stalklist/add",
         {
           image:
             "https://cdn.codechef.com/sites/default/files/uploads/pictures/5cf28a1c81060786bf492ef98a5cc252.jpg",

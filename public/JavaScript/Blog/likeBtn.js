@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
       console.log(userIdLoggedIn);
       try {
         const response = await axios.post(
-          `http://localhost:8000/Blogs/react/${userIdLoggedIn}/${blogId}`
+          `https://getgeeks.onrender.com/Blogs/react/${userIdLoggedIn}/${blogId}`
         );
         console.log(response.data);
         const { Blog, success = true } = response.data;
@@ -42,7 +42,7 @@ window.addEventListener("load", () => {
         const { id } = e.target;
         console.log("Delete clicked");
         const response = await axios.post(
-          `http://localhost:8000/Blogs/delete/${id}`
+          `https://getgeeks.onrender.com/Blogs/delete/${id}`
         );
         const { success, blogId } = response.data;
         if (!success) {
