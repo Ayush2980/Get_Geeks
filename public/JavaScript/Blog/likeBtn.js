@@ -1,5 +1,3 @@
-const socket = io();
-// const axios = require("axios")
 
 window.addEventListener("load", () => {
   const likeBtn = document.getElementsByClassName("like-svg"); //generalise it
