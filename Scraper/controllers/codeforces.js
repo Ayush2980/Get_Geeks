@@ -60,7 +60,10 @@ module.exports = {
     console.log(dataObj);
     return dataObj;
   },
-  getsvg: async (user) => {
+
+  // Used
+  getsvg: async (req, res) => {
+    const { user } = req.params;
     console.log("get svg");
     const page = await LaunchScrapper(`https://codeforces.com/profile/${user}`);
 
@@ -81,37 +84,39 @@ module.exports = {
     }
     console.log("Time Nodes ");
     console.log(onlineData);
-    return { data2, ...onlineData };
+    const returnObj = { data2, ...onlineData };
+    res.send({ success: true, result: returnObj });
+    // return { data2, ...onlineData };
   },
-  fetchForProf: async (user) => {
-    console.log("Fetch cf");
-    const page = await LaunchScrapper(`https://codeforces.com/profile/${user}`);
-    var dataObj = {
-      username: ".main-info > h1 > a",
-      userRank: ".main-info div:nth-child(1)",
-      userRating: ".info ul > li > span",
-      userMaxRank: ".info ul > li span:nth-child(3) span:nth-child(1)",
-      userMaxRating: ".info ul > li span:nth-child(3) span:nth-child(2)",
-      userImage: ".title-photo > div > div > div > img",
-    };
-    for (const keys in dataObj) {
-      if (keys === "userImage") {
-        const data = await page.waitForSelector(dataObj[keys]);
-        dataObj[keys] = await data.evaluate((e) => {
-          return e.src;
-        });
-      } else {
-        try {
-          const data = await page.waitForSelector(dataObj[keys]);
-          dataObj[keys] = await data.evaluate((e) => {
-            return e.innerText;
-          });
-        } catch (e) {
-          dataObj[keys] = "No Data";
-        }
-      }
-    }
-    console.log(dataObj);
-    return dataObj;
-  },
+  // fetchForProf: async (user) => {
+  //   console.log("Fetch cf");
+  //   const page = await LaunchScrapper(`https://codeforces.com/profile/${user}`);
+  //   var dataObj = {
+  //     username: ".main-info > h1 > a",
+  //     userRank: ".main-info div:nth-child(1)",
+  //     userRating: ".info ul > li > span",
+  //     userMaxRank: ".info ul > li span:nth-child(3) span:nth-child(1)",
+  //     userMaxRating: ".info ul > li span:nth-child(3) span:nth-child(2)",
+  //     userImage: ".title-photo > div > div > div > img",
+  //   };
+  //   for (const keys in dataObj) {
+  //     if (keys === "userImage") {
+  //       const data = await page.waitForSelector(dataObj[keys]);
+  //       dataObj[keys] = await data.evaluate((e) => {
+  //         return e.src;
+  //       });
+  //     } else {
+  //       try {
+  //         const data = await page.waitForSelector(dataObj[keys]);
+  //         dataObj[keys] = await data.evaluate((e) => {
+  //           return e.innerText;
+  //         });
+  //       } catch (e) {
+  //         dataObj[keys] = "No Data";
+  //       }
+  //     }
+  //   }
+  //   console.log(dataObj);
+  //   return dataObj;
+  // },
 };

@@ -90,8 +90,7 @@ module.exports = {
         return e.innerText;
       });
     }
-    console.log("Time Nodes ");
-    console.log(onlineData);
+    console.log("GETTTTT", { data2, ...onlineData });
     return { data2, ...onlineData };
   },
   fetchForProf: async (user) => {
@@ -131,6 +130,5 @@ module.exports = {
     await browser.close();
     console.log(dataObj);
     return dataObj;
-    
   },
 };

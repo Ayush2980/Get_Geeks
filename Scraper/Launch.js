@@ -17,7 +17,7 @@ module.exports = {
             ? PUPPETEER_EXECUTABLE_PATH
             : puppeteer.executablePath(),
       });
-      // DEVELOPMENT MODE BROWSER OPENER : 
+      // DEVELOPMENT MODE BROWSER OPENER :
       //   const browser = await puppeteer.launch();
       const page = await browser.newPage();
       await page.goto(websiteUrl);

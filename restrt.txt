@@ -1,2 +1,0 @@
-user handles check and verification 
-user email check using actual handle of get geeks

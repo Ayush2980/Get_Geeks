@@ -40,5 +40,5 @@ app.use((err, req, res, next) => {
 });
 
 http.listen(PORT, () => {
-  console.log(`${process.env.BASE_URL}:${PORT}/find`);
+  console.log(`${process.env.BASE_URL}${PORT}`);
 });

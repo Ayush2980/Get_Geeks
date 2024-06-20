@@ -1,9 +1,10 @@
 const puppeteer = require("puppeteer-core");
 const { LaunchScrapper } = require("../Launch");
-// const {executablePath} = require('puppeteer');
 
 module.exports = {
-  searchCode: async function (user) {
+  //used
+  searchCode: async (req, res) => {
+    const { user } = req.params;
     const page = await LaunchScrapper(`https://www.codechef.com/users/${user}`);
     const url = page.url();
     if (url == "https://www.codechef.com/")
@@ -42,44 +43,7 @@ module.exports = {
         return e.src;
       });
     }
-    // console.log(dataObj)
-    await browser.close();
-    return { ...dataObj, ...images };
-  },
-  fetchForCCprof: async function (user) {
-    const page = await LaunchScrapper(`https://www.codechef.com/users/${user}`);
-    const url = page.url();
-    if (url == "https://www.codechef.com/")
-      return new Error("No such exists !!");
-
-    let dataObj = {};
-    //Search for userDetails
-    dataObj = {
-      username: ".m-username--link",
-      country: ".user-country-name",
-      ratingNo: ".rating-number",
-      maxRating: ".rating-header small",
-      currRatingHtml: ".rating-star",
-    };
-    let i = 1;
-    for (const key in dataObj) {
-      console.log(i++);
-      const data = await page.waitForSelector(dataObj[key]);
-      dataObj[`${key}`] = await data.evaluate((e) => {
-        return e.innerHTML;
-      });
-    }
-    let images = {
-      dp: ".profileImage",
-    };
-    for (const key in images) {
-      const data = await page.waitForSelector(images[key]);
-      images[`${key}`] = await data.evaluate((e) => {
-        return e.src;
-      });
-    }
-    // console.log(dataObj)
-    await browser.close();
-    return { ...dataObj, ...images };
+    const returnObj = { ...dataObj, ...images };
+    res.send({ success: true, result: returnObj });
   },
 };
