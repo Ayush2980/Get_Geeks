@@ -20,17 +20,7 @@ const upload = multer({ storage });
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const http = require("http").createServer(app);
-const cors = require("cors");
 //Middlewares
-
-app.use(
-  cors({
-    origin: true,
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  })
-);
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views"));
