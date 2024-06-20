@@ -20,7 +20,17 @@ const upload = multer({ storage });
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const http = require("http").createServer(app);
+const cors = require("cors");
 //Middlewares
+
+app.use(
+  cors({
+    origin: true,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
+  })
+);
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views"));
@@ -72,32 +82,30 @@ const API = require("./routes/API.js");
 const UserFunc = require("./routes/UserFunc.js");
 const Blogs = require("./routes/Blogs.js");
 const Community = require("./routes/community.js");
-
 app.use("/", Auth);
 app.use("/", API);
 app.use("/", UserFunc);
 app.use("/Blogs", Blogs);
 app.use("/Community", Community);
-// app.get("/test", async (req, res) => {
-//   const response = await axios.get(
-//     "https://getgeeks-5o49.onrender.com/searchCode/barman_ayush"
-//   );
-//   //response.data.result
-//   console.log(response.data);
-//   res.send({ success: true, result: JSON.stringify(response.data) });
-// });
 
-// // //Just keeping the server alive
-// app.get("/areYouAlive", (req, res) => {
-//   res.send({ success: true, data: "Si patron , I am Alive !!!" });
-// });
-
-// setInterval(async () => {
-//   console.log("Sending req");
-//   const resposne = await axios.get("https://localhost:3000/areYouAlive");
-//   // const resposne = await axios.get("https://getgeeks.onrender.com/areYouAlive");
-//   console.lot(resposne.data.data);
-// }, 1000);
+//Server Hacks
+app.get("/AreYouAlive", (req, res) => {
+  //This responds to request from scraper
+  res.send({
+    success: true,
+    data: "Node Main Server this side , I am alive , patron !!",
+  });
+});
+setInterval(async () => {
+  try {
+    const response = await axios.get(
+      "https://getgeeks-5o49.onrender.com/AreYouAlive"
+    );
+    console.log(response.data.success, response.data.data);
+  } catch (e) {
+    console.log("Scraper Server Died , Please wake him up Patron !!");
+  }
+}, 10000);
 
 //Error Handlers
 app.all("*", (req, res, next) => {
@@ -105,7 +113,8 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  const { message = "Some Error Occured", statusCode = 404 } = err;
+  let { message, statusCode = 404 } = err;
+  if (!message) message = "Some Error Occured";
   res.send({ success: false, msg: message });
   // res.render("pages/Error.ejs", { message, statusCode });
 });

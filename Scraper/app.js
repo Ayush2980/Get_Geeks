@@ -10,7 +10,7 @@ const http = require("http").createServer(app);
 //cors
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://getgeeks.onrender.com/Blogs"],
+    origin: ["http://localhost:3000", "https://getgeeks.onrender.com/"],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
@@ -25,9 +25,25 @@ app.use(bodyParser.json());
 const API = require("./routes/scraper.js");
 
 app.use("/", API);
-app.get("/test", (req, res) => {
-  res.send({ success: true, data: "Test successfull !!" });
+
+//Server Hacks
+app.get("/AreYouAlive", (req, res) => {
+  //This responds to request from scraper
+  res.send({
+    success: true,
+    data: "Scraper Server this side , I am alive , patron !!",
+  });
 });
+setInterval(async () => {
+  try {
+    const response = await axios.get(
+      "https://getgeeks.onrender.com/AreYouAlive"
+    );
+    console.log(response.data.success, response.data.data);
+  } catch (e) {
+    console.log("Backend Server Died , Please wake him up Patron !!");
+  }
+}, 10000);
 
 //Error Handlers
 app.all("*", (req, res, next) => {

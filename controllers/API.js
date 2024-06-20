@@ -1,9 +1,7 @@
-const { getsvg } = require("../controllers/codeforces.js");
 const {
   getNumberFromString,
   getDesignFromRating,
 } = require("../utils/Miscellaneous.js");
-const fetcher = require("../controllers/codechef.js");
 const { default: axios } = require("axios");
 module.exports.fetch = async (req, res) => {
   try {
@@ -18,8 +16,6 @@ module.exports.fetch = async (req, res) => {
       const contestData = await axios.get(
         `https://codeforces.com/api/user.rating?handle=${username}`
       );
-      //Change this to cross site
-      // const Svg = await getsvg(username);
       console.log("Getting the svg ");
       const response = await axios.get(
         `https://getgeeks-5o49.onrender.com/getSvg/${username}`
@@ -52,9 +48,6 @@ module.exports.fetch = async (req, res) => {
         contestArray,
       });
     } else if (handle === "CC") {
-      //cross site
-      // let userDataCC = await fetcher.searchCode(username);
-      // we can replace the userDataCC with the response.data.result
       console.log("Getting  the response cc");
       const response = await axios.get(
         `https://getgeeks-5o49.onrender.com/searchCode/${username}`
@@ -88,13 +81,10 @@ module.exports.justData = async (req, res) => {
       const contestData = await axios.get(
         `https://codeforces.com/api/user.rating?handle=${username}`
       );
-      //Change this to cross site
-      // const Svg = await getsvg(username);
       const response = await axios.get(
         `https://getgeeks-5o49.onrender.com/getSvg/${username}`
       );
       let Svg = response.data.result;
-      //Change above
       const contestArray = contestData.data.result;
       contestArray.forEach((e) => {
         e.changeInRating = e.newRating - e.oldRating;
@@ -106,10 +96,6 @@ module.exports.justData = async (req, res) => {
       if (status == "FAILED") throw new HandleError("User Not Found", 404);
       res.send({ ...result[0], ...Svg, contestArray });
     } else if (handle === "CC") {
-      //cross site
-      //cross site
-      // let userDataCC = await fetcher.searchCode(username);
-      // we can replace the userDataCC with the response.data.result
       const response = await axios.get(
         `https://getgeeks-5o49.onrender.com/searchCode/${username}`
       );
