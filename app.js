@@ -1,5 +1,5 @@
 require("dotenv").config();
-const PORT = 8000;
+const PORT = 3000;
 const express = require("express");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
@@ -78,6 +78,26 @@ app.use("/", API);
 app.use("/", UserFunc);
 app.use("/Blogs", Blogs);
 app.use("/Community", Community);
+// app.get("/test", async (req, res) => {
+//   const response = await axios.get(
+//     "https://getgeeks-5o49.onrender.com/searchCode/barman_ayush"
+//   );
+//   //response.data.result
+//   console.log(response.data);
+//   res.send({ success: true, result: JSON.stringify(response.data) });
+// });
+
+// // //Just keeping the server alive
+// app.get("/areYouAlive", (req, res) => {
+//   res.send({ success: true, data: "Si patron , I am Alive !!!" });
+// });
+
+// setInterval(async () => {
+//   console.log("Sending req");
+//   const resposne = await axios.get("https://localhost:3000/areYouAlive");
+//   // const resposne = await axios.get("https://getgeeks.onrender.com/areYouAlive");
+//   console.lot(resposne.data.data);
+// }, 1000);
 
 //Error Handlers
 app.all("*", (req, res, next) => {

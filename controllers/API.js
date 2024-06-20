@@ -19,7 +19,13 @@ module.exports.fetch = async (req, res) => {
         `https://codeforces.com/api/user.rating?handle=${username}`
       );
       //Change this to cross site
-      const Svg = await getsvg(username);
+      // const Svg = await getsvg(username);
+      console.log("Getting the svg ");
+      const response = await axios.get(
+        `https://getgeeks-5o49.onrender.com/getSvg/${username}`
+      );
+      let Svg = response.data.result;
+      console.log("Getting the svg ", Svg);
       //Change above
       const contestArray = contestData.data.result;
       contestArray.forEach((e) => {
@@ -47,7 +53,17 @@ module.exports.fetch = async (req, res) => {
       });
     } else if (handle === "CC") {
       //cross site
-      let userDataCC = await fetcher.searchCode(username);
+      // let userDataCC = await fetcher.searchCode(username);
+      // we can replace the userDataCC with the response.data.result
+      console.log("Getting  the response cc");
+      const response = await axios.get(
+        `https://getgeeks-5o49.onrender.com/searchCode/${username}`
+      );
+      let userDataCC = response.data.result;
+      console.log("Getting  the response cc", userDataCC);
+
+      //Updated code here
+      console.log("GETTTT", userDataCC);
       if (userDataCC == undefined) throw new HandleError("User Not Found", 404);
       userDataCC.maxRating = getNumberFromString(userDataCC.maxRating);
       userDataCC.maxRatingHtml = getDesignFromRating(userDataCC.maxRating);
@@ -72,8 +88,13 @@ module.exports.justData = async (req, res) => {
       const contestData = await axios.get(
         `https://codeforces.com/api/user.rating?handle=${username}`
       );
-      //cross site
-      const Svg = await getsvg(username);
+      //Change this to cross site
+      // const Svg = await getsvg(username);
+      const response = await axios.get(
+        `https://getgeeks-5o49.onrender.com/getSvg/${username}`
+      );
+      let Svg = response.data.result;
+      //Change above
       const contestArray = contestData.data.result;
       contestArray.forEach((e) => {
         e.changeInRating = e.newRating - e.oldRating;
@@ -86,7 +107,13 @@ module.exports.justData = async (req, res) => {
       res.send({ ...result[0], ...Svg, contestArray });
     } else if (handle === "CC") {
       //cross site
-      let userDataCC = await fetcher.searchCode(username);
+      //cross site
+      // let userDataCC = await fetcher.searchCode(username);
+      // we can replace the userDataCC with the response.data.result
+      const response = await axios.get(
+        `https://getgeeks-5o49.onrender.com/searchCode/${username}`
+      );
+      let userDataCC = response.data.result;
       if (userDataCC == undefined) throw new HandleError("User Not Found", 404);
       userDataCC.maxRating = getNumberFromString(userDataCC.maxRating);
       userDataCC.maxRatingHtml = getDesignFromRating(userDataCC.maxRating);
