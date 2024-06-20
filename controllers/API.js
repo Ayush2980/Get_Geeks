@@ -18,7 +18,9 @@ module.exports.fetch = async (req, res) => {
       const contestData = await axios.get(
         `https://codeforces.com/api/user.rating?handle=${username}`
       );
+      //Change this to cross site
       const Svg = await getsvg(username);
+      //Change above
       const contestArray = contestData.data.result;
       contestArray.forEach((e) => {
         e.changeInRating = e.newRating - e.oldRating;
@@ -44,6 +46,7 @@ module.exports.fetch = async (req, res) => {
         contestArray,
       });
     } else if (handle === "CC") {
+      //cross site
       let userDataCC = await fetcher.searchCode(username);
       if (userDataCC == undefined) throw new HandleError("User Not Found", 404);
       userDataCC.maxRating = getNumberFromString(userDataCC.maxRating);
@@ -69,6 +72,7 @@ module.exports.justData = async (req, res) => {
       const contestData = await axios.get(
         `https://codeforces.com/api/user.rating?handle=${username}`
       );
+      //cross site
       const Svg = await getsvg(username);
       const contestArray = contestData.data.result;
       contestArray.forEach((e) => {
@@ -81,6 +85,7 @@ module.exports.justData = async (req, res) => {
       if (status == "FAILED") throw new HandleError("User Not Found", 404);
       res.send({ ...result[0], ...Svg, contestArray });
     } else if (handle === "CC") {
+      //cross site
       let userDataCC = await fetcher.searchCode(username);
       if (userDataCC == undefined) throw new HandleError("User Not Found", 404);
       userDataCC.maxRating = getNumberFromString(userDataCC.maxRating);

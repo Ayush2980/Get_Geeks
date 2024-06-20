@@ -31,11 +31,6 @@ module.exports = {
       }
       const { password } = req.body;
       let userInstance = new userSchema(req.body);
-      // user.images = {
-      //   url: req.file.path,
-      //   filename: req.file.filename,
-      // };
-      // const result = await user.save();
       userInstance.fullname = getFullName(userInstance._id);
       const registeredUser = await userSchema.register(userInstance, password);
       req.login(registeredUser, (err) => {
