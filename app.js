@@ -103,6 +103,7 @@ setInterval(async () => {
     );
     console.log(response.data.success, response.data.data);
   } catch (e) {
+    console.log(e);
     console.log("Scraper Server Died , Please wake him up Patron !!");
   }
 }, 10000);
