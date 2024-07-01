@@ -1,3 +1,6 @@
 /node_modules
 *.env
 *.gitignore
+# env files stored in gdrive barmanayush
+# dunno why tf is it not ignoring env 🥺
+# https://docs.google.com/document/d/1XiIr6NY1RTT82sDfoHujBDLS-x4lnKZFrMlpB-AR6TY/edit?usp=sharing
